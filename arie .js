@@ -1,1 +1,0 @@
-console.log("my love amit ha gever");
