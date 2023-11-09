@@ -31,7 +31,7 @@ Here is a diagram showing the architecture:
          └─────────┘                       │
                      ┌─────────────────────┴────────┐
                      │                           │
-                     │       mongoDB          │ 
+                     │       mnogoDB          │ 
                      │                           │
                      │                           │
                      └───────────────────────────┘
