@@ -1,0 +1,11 @@
+body {
+  background: silver;
+  margin: 0;
+}
+
+#root {
+  background: white;
+  width: 80%;
+  min-height: 560px;
+  margin: 0 auto;
+}
