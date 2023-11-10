@@ -12,11 +12,9 @@ function App() {
     }
       fixed maxWidth="xl">
       <Box sx={{ my: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        
         <Typography variant='h3'>
           app
         </Typography>
-        
       </Box>
     </Container>
   );
