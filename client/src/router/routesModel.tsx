@@ -1,7 +1,7 @@
 const ROUTES = {
     APP: '/',
     HOME: '/home',
-    TRIPS: '/trips',
+    CATEGORIES: '/categories',
     LOGIN: '/login',
     REGISTER: '/register',
     PROFILE: '/profile',

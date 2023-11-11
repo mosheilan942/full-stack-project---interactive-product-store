@@ -1,9 +1,11 @@
 import { Box, Container, Typography } from '@mui/material';
 
+import { RouterProvider } from "react-router-dom";
+import router from './router/Router';
 
 import { store } from './Redux/store';
 import { Provider } from 'react-redux';
-import HomePage from './pages/HomePage';
+
 
 function App() {
  
@@ -22,7 +24,7 @@ function App() {
     <Container sx={styleContainer} fixed maxWidth="xl">
       <Provider store={store}>
         <Box sx={styleMainBox}>
-          <HomePage/>
+        <RouterProvider router={router} />
         </Box>
       </Provider>
     </Container>
