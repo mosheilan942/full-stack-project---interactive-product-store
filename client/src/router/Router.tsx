@@ -9,7 +9,7 @@ import Project from "../types/ProjectType";
 import HomePage from "../pages/HomePage";
 
 
-import type { RootState } from '../store'
+import type { RootState } from '../Redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 

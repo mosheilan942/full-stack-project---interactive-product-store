@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import projectsSlice from './utils/projectsSlice'
-import indexProjectSlice from './utils/indexProjectSlice'
+import cartIndexSlice from './cartIndexSlice'
 
 export const store = configureStore({
   reducer: {
-    projects: projectsSlice,
-    indexProject : indexProjectSlice
+    cartIndex : cartIndexSlice
   },
 })
 

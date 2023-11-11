@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/Redux/store.tsx", "src/Redux/hookStore.tsx", "src/Redux/cartIndexSlice.ts", "src/Redux/projectsSlice.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
