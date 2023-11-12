@@ -12,6 +12,8 @@ import Comparison from "../pages/Comparison";
 
 import Project from "../types/ProjectType";
 import Cart from "../pages/Cart";
+import Login from "../components/Login";
+import SignupForm from "../components/SignupForm";
 
 
 
@@ -19,6 +21,16 @@ import Cart from "../pages/Cart";
         {
             path: '/',
             element: <HomePage />,
+            errorElement: <ErrorPage />,          
+        },
+        {
+            path: '/login',
+            element: <Login  />,
+            errorElement: <ErrorPage />,          
+        },
+        {
+            path: '/signup',
+            element: <SignupForm  />,
             errorElement: <ErrorPage />,          
         },
         {
