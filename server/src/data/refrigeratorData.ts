@@ -141,7 +141,7 @@ const refrigerators: Refrigerator[] = [
       addresses: ["101 Pine St, Cityville", "456 Cedar St, Suburbia"],
     },
   ];
-  
+  export default refrigerators
   // You can access individual refrigerators like this:
 //   const firstRefrigerator = refrigerators[0];
 //   console.log(firstRefrigerator);
