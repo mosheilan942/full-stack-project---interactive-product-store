@@ -19,12 +19,21 @@ function App() {
       "'header header header' \
       'main main main' \
       'footer footer footer'",
-    gridTemplateRows: '80px 1fr 50px',
+    gridTemplateRows: '90px 1fr 70px',
     gridTemplateColumns: '15% 1fr 15%',
     gridGap: '4px',
   };
+  const styleHeaderBox = {
+    my: 1, display: 'block',
+  }
+
   const styleMainBox = {
     my: 1, display: 'flex', flexDirection: 'column',
+    justifyContent: 'center', alignItems: 'center',
+  }
+
+  const styleFooterBox = {
+    my: 1, display: 'flex',
     justifyContent: 'center', alignItems: 'center',
   }
 
@@ -33,13 +42,13 @@ function App() {
   return (
     <Container sx={styleContainer} fixed maxWidth="xl">
       <Provider store={store}>
-        <Box sx={{ ...styleMainBox, border: "2px solid red", gridArea: 'header' }}>
+        <Box sx={{...styleHeaderBox, border: "2px solid red", gridArea: 'header' }}>
           <Header />
         </Box>
         <Box sx={{ ...styleMainBox, border: "2px solid red", gridArea: 'main' }}>
           <RouterProvider router={router} />
         </Box>
-        <Box sx={{ ...styleMainBox, border: "2px solid red", gridArea: 'footer' }}>
+        <Box sx={{ ...styleFooterBox, border: "2px solid red", gridArea: 'footer' }}>
           <Footer />
         </Box>
       </Provider>

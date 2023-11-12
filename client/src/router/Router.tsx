@@ -7,9 +7,11 @@ import ROUTES from "./routesModel";
 import HomePage from "../pages/HomePage";
 import Categories from "../pages/Categories";
 import ProductPage from "../pages/ProductPage";
+import Comparison from "../pages/Comparison";
 
 
 import Project from "../types/ProjectType";
+import Cart from "../pages/Cart";
 
 
 
@@ -27,6 +29,16 @@ import Project from "../types/ProjectType";
         {
             path: `${ROUTES.CATEGORIES}`,
             element: <Categories />,
+            errorElement: <ErrorPage />,          
+        },
+        {
+            path: '/comparison',
+            element: <Comparison />,
+            errorElement: <ErrorPage />,          
+        },
+        {
+            path: '/cart',
+            element: <Cart />,
             errorElement: <ErrorPage />,          
         },
     ]
