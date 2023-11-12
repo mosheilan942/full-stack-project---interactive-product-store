@@ -141,7 +141,7 @@ const washingMachines: WashingMachine[] = [
       addresses: ["789 Elm St, Villagetown", "101 Pine St, Hamletville"],
     },
   ];
-  
+export default washingMachines 
   // You can access individual washing machines like this:
 //   const firstWashingMachine = washingMachines[0];
 //   console.log(firstWashingMachine);

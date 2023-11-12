@@ -151,7 +151,7 @@ const cellPhones: CellPhone[] = [
       addresses: ["101 Pine St, Cityville", "456 Cedar St, Suburbia"],
     },
   ];
-  
+export default cellPhones
   // You can access individual cell phones like this:
 //   const firstCellPhone = cellPhones[0];
 //   console.log(firstCellPhone);
