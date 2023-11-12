@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import Project from '../types/ProjectType';
 
-
-
 import { Typography, Box, Button, IconButton } from '@mui/material';
 
 // import { Outlet } from "react-router-dom";
