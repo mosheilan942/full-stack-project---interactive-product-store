@@ -152,6 +152,7 @@ const cellPhones: CellPhone[] = [
     },
   ];
   
+export default cellPhones
   // You can access individual cell phones like this:
 //   const firstCellPhone = cellPhones[0];
 //   console.log(firstCellPhone);
