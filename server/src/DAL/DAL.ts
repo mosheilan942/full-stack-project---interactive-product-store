@@ -1,6 +1,6 @@
 
 const getHome = () => {
-    return "";
+    return "hello from Zebulon group";
 };
 
 export { getHome }
