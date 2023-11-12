@@ -1,9 +1,9 @@
 import userService from '../service/service';
 
 
-const getUsers = (req, res) => {
-const users = userService.getUsers();
-res.json(users);
+const getHomePage = (req, res) => {
+const homePage = userService.getHomePage();
+res.json(homePage);
 };
 
-module.exports = {getUsers}
+export {getHomePage}

@@ -1,7 +1,9 @@
-import express  from 'express';
-import userController from '../controller/controller';
+import express from 'express';
+import {getHomePage} from '../controller/controller';
 
 const router = express.Router();
 
 
-router.get('/users', userController.getUsers);
+router.get('/', getHomePage);
+
+export { router }
