@@ -1,26 +1,32 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../Redux/store'
+import LoginORname from './loginORname'
+
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 type Props = {}
 
 const styleHeaderBox = {
     my: 1, display: 'flex',
-    justifyContent: 'space-around', alignItems: 'space-around',
-  }
+    justifyContent: 'space-between', alignItems: 'center',
+}
 
 const Header = (props: Props) => {
     const cartIndex = useSelector((state: RootState) => state.cartIndex.cart);
 
     return (
         <Box sx={styleHeaderBox} >
-            <Typography variant='h5'>
-            Header
-            </Typography>
-            <Typography variant='h5'>
-            cart: {cartIndex}
-            </Typography>
+            <Box >
+                Header
+            </Box>
+            <Box sx={{ background: 'skyblue', width: 200, height: 30, display: 'flex', justifyContent: 'space-between' }}>
+                <LoginORname />
+                <Box>
+                <ShoppingCartOutlinedIcon/>
+                {cartIndex}
+                </Box>
+            </Box>
         </Box>
     )
 }
