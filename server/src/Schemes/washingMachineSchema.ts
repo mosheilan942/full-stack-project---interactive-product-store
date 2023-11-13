@@ -31,7 +31,7 @@ const washingMachinesData: WashingMachine[] = washingMachines
 
 
 // Insert data into MongoDB
-export async function insertData1() {
+export async function insertDataWashingMachine() {
   try {
     // Use a loop to insert each document
     for (const washingMachine of washingMachinesData) {

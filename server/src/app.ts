@@ -4,8 +4,9 @@ import morgan from 'morgan';
 import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
 import { insertuser } from './Schemes/usersSchema';
-import { insertData1 } from './Schemes/washingMachineSchema';
-import { insertData2 } from './Schemes/refrigeratorsSchema';
+import {  insertDataWashingMachine } from './Schemes/washingMachineSchema';
+import { insertDataRefrigerator } from './Schemes/refrigeratorsSchema';
+import { insertDataCellPhone } from './Schemes/cellPhoneSchema';
 
 
 const app = express();
@@ -23,8 +24,9 @@ const connectANDlisten = async ()=> {
         await connectDB()
         console.log('Connecting to mongodb');
         await insertuser()
-        await insertData2();
-        await insertData1();
+        await insertDataCellPhone();
+        await insertDataRefrigerator();
+        await insertDataWashingMachine();
         app.listen(PORT, () => {
             console.log(`Server is up and running on port: ${PORT}`);
         });
