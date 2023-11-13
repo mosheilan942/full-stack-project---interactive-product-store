@@ -4,16 +4,16 @@ export default interface WashingMachine {
     model: string;
     color: string;
     price: number;
-    category: string
-    energyRating: string; // You can use a specific type or string for energy ratings
+    category: string;
+    energyRating: string;
     dimensions: {
-      height: number;
-      width: number;
-      depth: number;
-      weight: number;
+        height: number;
+        width: number;
+        depth: number;
+        weight: number;
     };
     quantity: number;
     description: string;
-    image: string; // You can use the 'string' type for the image URL
+    image: string;
     addresses: string[];
-  }
+}
