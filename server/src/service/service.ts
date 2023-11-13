@@ -1,4 +1,4 @@
-import { getHome } from '../DAL/DAL.js';
+import { getHome } from '../DAL/DAL';
 
 
 const homepage = async () => {

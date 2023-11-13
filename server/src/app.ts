@@ -1,11 +1,11 @@
 import express from 'express';
-import { router } from './routes/routes.js';
+import { router } from './routes/routes';
 import morgan from 'morgan';
 import cors from 'cors'
-import { connectDB } from './Schemes/conectMongoose.js';
-import { insertuser } from './Schemes/usersSchema.js';
-import { insertData1 } from './Schemes/washingMachineSchema.js';
-import { insertData2 } from './Schemes/refrigeratorsSchema.js';
+import { connectDB } from './Schemes/conectMongoose';
+import { insertuser } from './Schemes/usersSchema';
+import { insertData1 } from './Schemes/washingMachineSchema';
+import { insertData2 } from './Schemes/refrigeratorsSchema';
 
 
 const app = express();
@@ -23,8 +23,8 @@ const connectANDlisten = async ()=> {
         await connectDB()
         console.log('Connecting to mongodb');
         await insertuser()
-        // await insertData2();
-        // await insertData1();
+        await insertData2();
+        await insertData1();
         app.listen(PORT, () => {
             console.log(`Server is up and running on port: ${PORT}`);
         });
