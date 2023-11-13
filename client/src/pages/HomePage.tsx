@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
-import CardProduct from '../components/CardProduct';
+import CardProduct from '../components/cardProduct/CardProduct';
 import ProductCategory from '../components/ProductCategory';
 import CellPhone from '../types/cellPhone';
 import Refrigerator from '../types/refrigerators';

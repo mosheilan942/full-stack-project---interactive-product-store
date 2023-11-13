@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material'
-import Product from '../types/ProductType';
+import Product from '../../types/ProductType';
 
 type Props = {
     product: Product;
