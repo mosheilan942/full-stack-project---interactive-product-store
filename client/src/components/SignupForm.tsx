@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate } from 'react-router-dom';
 
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
+// import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { handleResError, handleValidationError } from '../utils/errorHandler';
 // import 'react-toastify/dist/ReactToastify.css'
 import { setEmailError, setPasswordError, setFnameError, setLnameError } from '../Redux/registerSlice';
@@ -69,7 +69,7 @@ export default function Register() {
     //   await register({ name, email, password }).unwrap();
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      handleResError(err as FetchBaseQueryError);
+      // handleResError(err as FetchBaseQueryError);
     }
   };
 

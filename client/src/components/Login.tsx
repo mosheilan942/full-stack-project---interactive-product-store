@@ -22,7 +22,7 @@ const Login = (props: Props) => {
     const avatarStyle = { backgroundColor: 'green' };
     const textFieldStyle = { padding: '2px', margin: '4px auto ' }
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
         // פה תוכל להוסיף את הפעולות שיש לבצע בעת לחיצה על כפתור ההתחברות (לדוגמה, שליחת הטופס לשרת)
         // לדוגמה:
         // אפשר לשלוח את הפרטים של המשתמש לשרת ולבדוק אם הוא מורשה
