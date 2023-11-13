@@ -1,4 +1,4 @@
-import { homepage } from '../service/service.js';
+import { homepage } from '../service/service';
 import {Request, Response} from 'express';
 
 
