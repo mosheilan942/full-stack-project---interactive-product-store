@@ -1,28 +1,42 @@
-import React, { useState } from 'react'
-import Project from '../types/ProjectType';
+import React, { useState, useEffect } from 'react';
+import { Typography, Box } from '@mui/material';
+import CardProduct from '../components/CardProduct';
+import ProductCategory from '../components/ProductCategory';
+import CellPhone from '../types/cellPhone';
+import Refrigerator from '../types/refrigerators';
+import WashingMachine from '../types/washingMachines';
+import cellPhones from '../data/cellPhoneData';
+import refrigerators from '../data/refrigeratorData';
+import washingMachines from '../data/WashingMachineData';
 
-import { Typography, Box, Button, IconButton } from '@mui/material';
+const HomePage = () => {
+    const [cellPhoneData, setCellPhoneData] = useState<CellPhone[]>([]);
+    const [refrigeratorData, setRefrigeratorData] = useState<Refrigerator[]>([]);
+    const [washingMachineData, setWashingMachineData] = useState<WashingMachine[]>([]);
 
-// import { Outlet } from "react-router-dom";
+    //   useEffect(() => {
+    //     const fetchData = async () => {
+    //       setCellPhoneData(await fetchCellPhoneData());
+    //       setRefrigeratorData(await fetchRefrigeratorData());
+    //       setWashingMachineData(await fetchWashingMachineData());
+    //     };
+
+    //     fetchData();
+    //   }, []);
+
+    setCellPhoneData(cellPhones);
+    setRefrigeratorData(refrigerators);
+    setWashingMachineData(washingMachines);
+    console.log(cellPhoneData)
 
 
-type Props = {
+    return (
+        <>
+            <ProductCategory title="Cell Phones" products={cellPhoneData} />
+            <ProductCategory title="Refrigerators" products={refrigeratorData} />
+            <ProductCategory title="Washing Machines" products={washingMachineData} />
+        </>
+    );
+};
 
-}
-
-const HomePage = (props: Props) => {
-   
-
-    return (<>
-        <Box sx={{ display: 'flex' }}>
-            Home Page
-           
-        </Box>
-
-        {/* <Outlet/> */}
-    </>
-
-    )
-}
-
-export default HomePage
+export default HomePage;
