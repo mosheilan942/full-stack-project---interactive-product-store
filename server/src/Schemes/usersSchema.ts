@@ -3,14 +3,14 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 import { Number } from 'mongoose';
 
 
-export interface User extends Document {
+export interface User  {
   name: string;
   email: string;
   password: string;
 }
 
 
-const userSchema = new mongoose.Schema<User>(
+const userSchema = new Schema<User>(
   {
     name: {
       type: String,
@@ -34,4 +34,20 @@ const userSchema = new mongoose.Schema<User>(
   }
 );
 
-export const UserModel: Model<User> = mongoose.model<User>('user', userSchema);
+export const UserModel = mongoose.model<User>('User', userSchema);
+
+
+export const insertuser = async () => {
+  const userr = {
+      name: 'rhgr',
+      email: 'hyhnhy@gmail.com',
+      password: 'sthnring;'
+  }
+  try {
+     const newr = new UserModel(userr)
+     newr.save();
+  } catch (err) {
+     console.log('gfh');
+      throw err
+  }
+}

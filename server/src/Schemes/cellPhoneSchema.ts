@@ -26,7 +26,7 @@ const cellPhoneSchema: any = new Schema<CellPhone>({
 });
 
 // Create a Mongoose model
-export const CellPhoneModel = mongoose.model<CellPhone & Document>('CellPhone', cellPhoneSchema);
+export const CellPhoneModel = mongoose.model('CellPhone', cellPhoneSchema);
 
 // Connect to MongoDB
 
@@ -44,11 +44,8 @@ async function insertData() {
     console.log('Data cellPhone inserted successfully.');
   } catch (error) {
     console.error('Error inserting cellPhone data:', error);
-  } finally {
-    // Close the connection after insertion
-    mongoose.disconnect();
   }
 }
 
 // Call the function to insert data
-// insertData();
+insertData();

@@ -1,7 +1,12 @@
+import { UserModel } from "../Schemes/usersSchema";
 
-const getHome = () => {
+
+const getHome = async () => {
     return "hello from Zebulon group";
+    // const data = await UserModel.find({})
+    // return data
 };
+
 
 
 

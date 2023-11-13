@@ -24,25 +24,14 @@ const washingMachineSchema: any = new Schema<WashingMachine>({
 });
 
 // Create a Mongoose model
-const WashingMachineModel = mongoose.model<WashingMachine & Document>('WashingMachine', washingMachineSchema);
-
-// Connect to MongoDB
-async function connectToDatabase() {
-  try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/fullstack');
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-}
-// connectToDatabase();
+const WashingMachineModel = mongoose.model('WashingMachine', washingMachineSchema);
 
 // data
 const washingMachinesData: WashingMachine[] = washingMachines
 
 
 // Insert data into MongoDB
-async function insertData() {
+export async function insertData1() {
   try {
     // Use a loop to insert each document
     for (const washingMachine of washingMachinesData) {
@@ -51,11 +40,8 @@ async function insertData() {
     console.log('Washing machines data inserted successfully.');
   } catch (error) {
     console.error('Error inserting washing machines data:', error);
-  } finally {
-    // Close the connection after insertion
-    mongoose.disconnect();
   }
 }
 
 // Call the function to insert data
-// insertData();
+
