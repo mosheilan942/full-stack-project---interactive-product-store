@@ -1,9 +1,15 @@
 import express from 'express';
-import { getHomePage } from '../controller/controller';
+import {userController} from '../controller/controller';
 
-const router = express.Router();
+const userRouter = express.Router();
 
 
-router.get('/', getHomePage);
+userRouter.get('/', userController.getHomePage);
 
-export { router }
+userRouter.get('/user/:id',userController.getUserById)
+
+userRouter.post('/reg',userController.register);
+
+
+
+export { userRouter }

@@ -43,6 +43,8 @@ export const insertuser = async () => {
   try {
     const newuser = new UserModel(user)
     newuser.save();
+    console.log("user cellPhone inserted successfully.");
+    
   } catch (err) {
     throw err
   }

@@ -40,10 +40,7 @@ export async function insertDataRefrigerator() {
     for (const refrigerator of refrigeratorsData) {
       const newdata = new RefrigeratorModel(refrigerator);
       await newdata.save()
-      console.log('Insert refrigerator');
-
     }
-
     console.log('Refrigerators data inserted successfully.');
   } catch (error) {
     console.error('Error inserting refrigerators data:', error);

@@ -1,5 +1,5 @@
 import express from 'express';
-import { router } from './routes/routes';
+import { userRouter } from './routes/routes';
 import morgan from 'morgan';
 import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
@@ -7,7 +7,6 @@ import { insertuser } from './Schemes/usersSchema';
 import {  insertDataWashingMachine } from './Schemes/washingMachineSchema';
 import { insertDataRefrigerator } from './Schemes/refrigeratorsSchema';
 import { insertDataCellPhone } from './Schemes/cellPhoneSchema';
-
 
 const app = express();
 app.use(express.json());
@@ -17,7 +16,9 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use('/', router);
+app.use('/users', userRouter);
+
+
 
 const connectANDlisten = async ()=> {
     try {
