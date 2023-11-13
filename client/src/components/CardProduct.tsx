@@ -19,7 +19,7 @@ const CardProduct = (props: Props) => {
             textAlign: 'center',
             flexDirection: 'column'
         }}>
-            <img src={"https://images.pexels.com/photos/63690/pexels-photo-63690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: '30%' }} />
+            <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: '30%' }} />
             <Typography sx={{ background: 'red', marginTop: 3 }} variant="h6">Name: </Typography>
             {product.name}
             <Typography sx={{ background: 'red', marginTop: 3 }} variant="h6">Category: </Typography>
