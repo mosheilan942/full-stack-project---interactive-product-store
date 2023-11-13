@@ -51,4 +51,4 @@ async function insertData() {
 }
 
 // Call the function to insert data
-insertData();
+// insertData();

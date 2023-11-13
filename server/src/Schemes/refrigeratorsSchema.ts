@@ -38,7 +38,7 @@ async function connectToDatabase() {
         console.error('Error connecting to MongoDB:', error);
     }
 }
-connectToDatabase();
+// connectToDatabase();
 
 // Insert data into MongoDB
 async function insertData() {
@@ -58,4 +58,4 @@ async function insertData() {
   }
   
   // Call the function to insert data
-  insertData();
+  // insertData();
