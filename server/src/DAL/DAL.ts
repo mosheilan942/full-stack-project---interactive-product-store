@@ -1,8 +1,10 @@
+import { RefrigeratorModel } from "../Schemes/refrigeratorsSchema.js";
 
-const getHome = () => {
-    return "hello from Zebulon group";
+const getCategories = async () => {
+    const phoneCategories = await RefrigeratorModel.find({})  
+    console.log(phoneCategories); 
 };
 
 
 
-export { getHome }
+export { getCategories }

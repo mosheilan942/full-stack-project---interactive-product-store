@@ -24,7 +24,7 @@ const refrigeratorSchema: any = new Schema<Refrigerator>({
 });
 
 // Create a Mongoose model
-const RefrigeratorModel = mongoose.model<Refrigerator & Document>('Refrigerator', refrigeratorSchema)
+export const RefrigeratorModel = mongoose.model<Refrigerator & Document>('Refrigerator', refrigeratorSchema)
 
 // data
 const refrigeratorsData: Refrigerator[] = refrigerators
@@ -58,4 +58,4 @@ async function insertData() {
   }
   
   // Call the function to insert data
-  // insertData();
+  insertData();

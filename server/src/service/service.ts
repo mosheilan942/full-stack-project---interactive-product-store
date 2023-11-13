@@ -1,8 +1,8 @@
-import { getHome } from '../DAL/DAL.js';
+import { getCategories } from '../DAL/DAL.js';
 
 
 const homepage = async () => {
-const homePage = await getHome();
+const homePage = await getCategories();
 return homePage;
 };
 

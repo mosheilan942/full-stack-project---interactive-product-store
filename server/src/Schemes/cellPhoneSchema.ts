@@ -32,13 +32,13 @@ export const CellPhoneModel = mongoose.model<CellPhone & Document>('CellPhone', 
 
 
 // data
-const cellPhonesData: CellPhone[] = cellPhones
+const cellPhonesDataArray: CellPhone[] = cellPhones
 
 // Insert data into MongoDB
 async function insertData() {
   try {
     // Use a loop to insert each document
-    for (const cellPhone of cellPhonesData) {
+    for (const cellPhone of cellPhonesDataArray) {
       await CellPhoneModel.create(cellPhone);
     }
     console.log('Data cellPhone inserted successfully.');

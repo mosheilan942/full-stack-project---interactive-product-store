@@ -3,8 +3,12 @@ import {Request, Response} from 'express';
 
 
 const getHomePage = (req:Request, res:Response) => {
-const homePage = homepage();
-res.json(homePage);
+    try {
+        const homePage = homepage();
+        res.json(homePage);
+    } catch (error) {
+        res.json(error)
+    }
 };
 
 export { getHomePage }
