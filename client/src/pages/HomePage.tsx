@@ -8,6 +8,7 @@ import WashingMachine from '../types/washingMachines';
 import cellPhones from '../data/cellPhoneData';
 import refrigerators from '../data/refrigeratorData';
 import washingMachines from '../data/WashingMachineData';
+import NavBar from '../components/NavBar';
 
 const HomePage = () => {
     const [cellPhoneData, setCellPhoneData] = useState<CellPhone[]>([]);
@@ -24,14 +25,17 @@ const HomePage = () => {
     //     fetchData();
     //   }, []);
 
-    setCellPhoneData(cellPhones);
-    setRefrigeratorData(refrigerators);
-    setWashingMachineData(washingMachines);
-    console.log(cellPhoneData)
 
+    useEffect(() => {
+        setCellPhoneData(cellPhones);
+        setRefrigeratorData(refrigerators);
+        setWashingMachineData(washingMachines);
+        console.log(cellPhoneData)
+    }, []);
 
     return (
         <>
+            <NavBar/>
             <ProductCategory title="Cell Phones" products={cellPhoneData} />
             <ProductCategory title="Refrigerators" products={refrigeratorData} />
             <ProductCategory title="Washing Machines" products={washingMachineData} />
