@@ -3,6 +3,9 @@ import { router } from './routes/routes.js';
 import morgan from 'morgan';
 import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose.js';
+import { insertuser } from './Schemes/usersSchema.js';
+import { insertData1 } from './Schemes/washingMachineSchema.js';
+import { insertData2 } from './Schemes/refrigeratorsSchema.js';
 
 
 const app = express();
@@ -15,12 +18,18 @@ app.use(cors({
 
 app.use('/', router);
 
-
-
-// Listen to specified port in .env or default 5000
-connectDB().then((res) => {
-    console.log('Connecting to mongodb');
-    app.listen(PORT, () => {
-      console.log(`Server is up and running on port: ${PORT}`);
-    });
-  }).catch((err) => console.error(err))
+const connectANDlisten = async ()=> {
+    try {
+        await connectDB()
+        console.log('Connecting to mongodb');
+        await insertuser()
+        // await insertData2();
+        // await insertData1();
+        app.listen(PORT, () => {
+            console.log(`Server is up and running on port: ${PORT}`);
+        });
+    } catch (err) {
+        console.error(err)
+    }
+}
+connectANDlisten()
