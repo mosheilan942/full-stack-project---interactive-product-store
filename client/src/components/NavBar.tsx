@@ -12,7 +12,7 @@ const NavBar = (props: Props) => {
             display: 'flex',
             alignItems: 'center'
         }}>
-            <h3>Cell Phone | Refrigerators | Washing Machines</h3>
+            <h3 style={{marginLeft: 20}}>All product | Cell Phone | Refrigerators | Washing Machines</h3>
         </Box>
     )
 }
