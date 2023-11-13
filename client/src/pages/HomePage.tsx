@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import Project from '../types/ProjectType';
-import { Typography, Box, Button, IconButton } from '@mui/material';
+import { Typography, Box } from '@mui/material';
+import CardProduct from '../components/CardProduct';
+import ProductCategory from '../components/ProductCategory';
+import CellPhone from '../types/cellPhone';
+import Refrigerator from '../types/refrigerators';
+import WashingMachine from '../types/washingMachines';
+import cellPhones from '../data/cellPhoneData';
+import refrigerators from '../data/refrigeratorData';
+import washingMachines from '../data/WashingMachineData';
 
-type Props = {};
+const HomePage = () => {
+    const [cellPhoneData, setCellPhoneData] = useState<CellPhone[]>([]);
+    const [refrigeratorData, setRefrigeratorData] = useState<Refrigerator[]>([]);
+    const [washingMachineData, setWashingMachineData] = useState<WashingMachine[]>([]);
 
-const HomePage = (props: Props) => {
-    const [data, setData] = useState<Project[]>([]);
+    //   useEffect(() => {
+    //     const fetchData = async () => {
+    //       setCellPhoneData(await fetchCellPhoneData());
+    //       setRefrigeratorData(await fetchRefrigeratorData());
+    //       setWashingMachineData(await fetchWashingMachineData());
+    //     };
 
-    useEffect(() => {
-        fetch("http://localhost:3000")
-            .then(response => response.json())
-            .then(data => setData(data))
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
+    //     fetchData();
+    //   }, []);
+
+    setCellPhoneData(cellPhones);
+    setRefrigeratorData(refrigerators);
+    setWashingMachineData(washingMachines);
+    console.log(cellPhoneData)
+
 
     return (
         <>
-            <Box sx={{ display: 'flex' }}>
-                <Typography variant="h4">Products:</Typography>
-            </Box>
-
-            {data.map((project: Project) => (
-                <Box key={project.id} sx={{ background: "silver", width: 150, height: 250 }}>
-                    <Typography variant="h6">Name: {project.name}</Typography>
-                    <Typography variant="h6">Category: {project.category}</Typography>
-
-                </Box>
-            ))}
+            <ProductCategory title="Cell Phones" products={cellPhoneData} />
+            <ProductCategory title="Refrigerators" products={refrigeratorData} />
+            <ProductCategory title="Washing Machines" products={washingMachineData} />
         </>
     );
 };

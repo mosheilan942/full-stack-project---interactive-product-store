@@ -10,7 +10,7 @@ import ProductPage from "../pages/ProductPage";
 import Comparison from "../pages/Comparison";
 
 
-import Project from "../types/ProjectType";
+import Project from "../types/ProductType";
 import Cart from "../pages/Cart";
 import Login from "../components/Login";
 import SignupForm from "../components/SignupForm";

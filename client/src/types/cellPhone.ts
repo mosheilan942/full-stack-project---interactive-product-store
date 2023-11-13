@@ -1,11 +1,12 @@
 export default interface CellPhone {
+    _id: string;
     name: string;
     manufacturer: string;
     model: string;
     price: number
     category: string
     color: string;
-    isKosher: boolean; 
+    isKosher: boolean;
     screenSize: number;
     dimensions: {
         height: number;
