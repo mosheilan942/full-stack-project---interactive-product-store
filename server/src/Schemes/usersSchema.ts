@@ -1,9 +1,6 @@
-import { number } from 'joi';
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { Number } from 'mongoose';
 
-
-export interface User  {
+export interface User {
   name: string;
   email: string;
   password: string;
@@ -38,16 +35,15 @@ export const UserModel = mongoose.model<User>('User', userSchema);
 
 
 export const insertuser = async () => {
-  const userr = {
-      name: 'rhgr',
-      email: 'hyhnhy@gmail.com',
-      password: 'sthnring;'
+  const user = {
+    name: 'moshe he poch',
+    email: 'hyhnhy@gmail.com',
+    password: 'sthnring;'
   }
   try {
-     const newr = new UserModel(userr)
-     newr.save();
+    const newuser = new UserModel(user)
+    newuser.save();
   } catch (err) {
-     console.log('gfh');
-      throw err
+    throw err
   }
 }

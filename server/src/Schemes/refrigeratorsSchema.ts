@@ -34,7 +34,7 @@ export const RefrigeratorModel = mongoose.model('Refrigerator', refrigeratorSche
 const refrigeratorsData: Refrigerator[] = refrigerators
 
 // Insert data into MongoDB
-export async function insertData2() {
+export async function insertDataRefrigerator() {
   try {
     // Use a loop to insert each document
     for (const refrigerator of refrigeratorsData) {

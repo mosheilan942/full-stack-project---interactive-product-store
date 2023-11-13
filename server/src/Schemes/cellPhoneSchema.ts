@@ -28,14 +28,12 @@ const cellPhoneSchema: any = new Schema<CellPhone>({
 // Create a Mongoose model
 export const CellPhoneModel = mongoose.model('CellPhone', cellPhoneSchema);
 
-// Connect to MongoDB
-
 
 // data
 const cellPhonesData: CellPhone[] = cellPhones
 
 // Insert data into MongoDB
-async function insertData() {
+export async function insertDataCellPhone() {
   try {
     // Use a loop to insert each document
     for (const cellPhone of cellPhonesData) {
@@ -48,4 +46,3 @@ async function insertData() {
 }
 
 // Call the function to insert data
-insertData();
