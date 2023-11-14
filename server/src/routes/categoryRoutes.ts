@@ -1,10 +1,14 @@
 import express from 'express';
-import { getHomePageControl, getCategoriesControl} from '../controller/categoryController';
+import { categoryController} from '../controller/categoryController';
 
 const routerCategory = express.Router();
 
 
-routerCategory.get('/', getHomePageControl);
-routerCategory.get('/:name', getCategoriesControl);
+routerCategory.get('/', categoryController.getHomePageControl);
+
+routerCategory.get('/:name', categoryController.getCategoriesControl);
+
+routerCategory.get('/:name/:filter', categoryController.getProducts);
+
 
 export { routerCategory }
