@@ -1,15 +1,15 @@
+// import npm packages
 import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+
+// import local pages
 import { userRouter } from './routes/userRoutes';
 import { routerCategory } from './routes/categoryRoutes';
-import morgan from 'morgan';
-import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
-// import { insertuser } from './Schemes/usersSchema';
-// import { insert } from './Schemes/cellPhonesModel';
-// import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
-// import {  insertDataWashingMachine } from './Schemes/washingMachineSchema';
-// import { insertDataRefrigerator } from './Schemes/refrigeratorsSchema';
-// import { insertDataCellPhone } from './Schemes/cellPhonesModel';
+import { insertuser } from './Schemes/usersSchema';
+import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
+
 
 
 const app = express();
@@ -30,11 +30,8 @@ const connectANDlisten = async ()=> {
         await connectDB()
         console.log('Connecting to mongodb');
         // await insertuser()
-        // await run().catch(err => console.log(err));
-        // await insert()
-        // await insertDataCellPhone();
-        // await insertDataRefrigerator();
-        // await insertDataWashingMachine();
+        await DatabaseInitializationForProducts().catch(err => console.log(err));
+        await DatabaseInitializationForCategories().catch(err => console.log(err));
         app.listen(PORT, () => {
             console.log(`Server is up and running on port: ${PORT}`);
         });

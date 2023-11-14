@@ -1,23 +1,30 @@
-import { categoryService } from '../service/categoryService';
-import { Request, Response, response } from 'express';
+
+import { getAllProductsFromCategory, getProductsByCategory, getAllCategory } from '../service/categoryService';
+import {Request, Response} from 'express';
 
 
-const getHomePageControl = async (req: Request, res: Response) => {
+const getAllProductsFromCategoryControl = async (req:Request, res:Response) => {
     try {
-        const homePage = await categoryService.getHomepage();
-        // console.log(homePage);
-        res.json(homePage);
+        const allProductsFromCategory = await getAllProductsFromCategory();
+        res.json(allProductsFromCategory);
     } catch (error) {
         res.json(error)
     }
 };
 
-const getCategoriesControl = async (req: Request, res: Response) => {
+
+const getAllCategoryControl = async (req:Request, res:Response) => {
     try {
+        const allCategory = await getAllCategory();
+        res.json(allCategory);
+    } catch (error) {
+        res.json(error)
+    }
+};
 
-        const ProductsByCategory = await categoryService.getCategories(req.params.name);
-        // const ProductsByCategory = await categoryService.getCategories('cellPhone');
-
+const getProductsByCategoryControl = async (req:Request, res:Response) => {
+    try {
+        const ProductsByCategory = await getProductsByCategory(req.params.name);
         res.json(ProductsByCategory);
     } catch (error) {
         res.json(error)
@@ -45,9 +52,12 @@ const getProducts = async (req:Request, res:Response) => {
 
 
 
-export const categoryController = {
-    getHomePageControl,
-    getCategoriesControl,
-    getProducts,
-}
+// export const categoryController = {
+//     getHomePageControl,
+//     getCategoriesControl,
+//     getProducts,
+// }
 
+
+export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getHomePageControl,
+    getCategoriesControl, getProducts } 
