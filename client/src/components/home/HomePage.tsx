@@ -6,23 +6,24 @@ import CardCategory from './CardCategory';
 // רשימת קטגוריות
 const categoriesData = [
     {
-        id: 1,
+        categoryName: "cellPhone",
         name: "Cell Phone",
         image: "https://images.pexels.com/photos/63690/pexels-photo-63690.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        id: 2,
+        categoryName: "refrigerator",
         name: "Refrigerators",
         image: "https://media.istockphoto.com/id/842160124/photo/refrigerator-with-fruits-and-vegetables.webp?s=1024x1024&w=is&k=20&c=EyLsx0KNKvsVYSK0_7dkTmjtTwJVFfpQXqU1cs1MgsQ="
     },
     {
-        id: 3,
+        categoryName: "washingMachine",
         name: 'Washing Machines',
         image: "https://images.pexels.com/photos/4700383/pexels-photo-4700383.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
 ];
 
 const HomePage = () => {
+
 
     return (
         <>
@@ -37,7 +38,7 @@ const HomePage = () => {
             </Box>
 
             {categoriesData.map((category) => (
-                <CardCategory key={category.id} category={category} />
+                <CardCategory key={category.categoryName} category={category} />
             ))}
         </>
     )

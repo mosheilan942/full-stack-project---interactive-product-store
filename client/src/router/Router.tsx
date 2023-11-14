@@ -40,7 +40,7 @@ import CardsProducts from "../components/cardProduct/CardsProducts";
             errorElement: <ErrorPage />,          
         },
         {
-            path: '/category/:categoryIdFP',
+            path: '/category/:categoryName',
             element: <CardsProducts />,
             errorElement: <ErrorPage />,          
         },

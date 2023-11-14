@@ -5,54 +5,48 @@ import { useParams } from 'react-router-dom';
 import { CellPhoneType } from '../../types/ProductTypes';
 import { RefrigeratorType } from '../../types/ProductTypes';
 import { WashingMachineType } from '../../types/ProductTypes';
-import { productData } from '../../data/alldata';
+import { getProductByCategory } from '../../api/productFuncApi';
+import NavBar from '../NavBar';
 
 type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
 const CardsProducts = () => {
-  const { categoryIdFP } = useParams();
+  const { categoryName } = useParams();
 
   const [data, setData] = useState<ProductType[]>([]);
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       setCellPhoneData(await fetchCellPhoneData());
-  //       setRefrigeratorData(await fetchRefrigeratorData());
-  //       setWashingMachineData(await fetchWashingMachineData());
-  //     };
-
-  //     fetchData();
-  //   }, []);
 
 
   useEffect(() => {
-    setData(productData);
+    const insertData = async () => {
+      const getData = await getProductByCategory(categoryName!)
+      setData(getData);
+    }
+
+    insertData()
   }, []);
 
 
   const allData = [
     {
-      categoryId: 1,
-      name: "Cell Phone",
-      data: data
+      categoryName: "cellPhone",
+      name: "Cell Phone"
     },
     {
-      categoryId: 2,
-      name: "Refrigerators",
-      data: data
+      categoryName: "refrigerator",
+      name: "Refrigerators"
     },
     {
-      categoryId: 3,
-      name: 'Washing Machines',
-      data: data
+      categoryName: 'washingMachine',
+      name: 'Washing Machines'
     }
   ]
 
-
-  const filteredProducts = allData.find((product) => product.categoryId === parseInt(categoryIdFP!));
+  const nameView = allData.find((category) => category.categoryName === categoryName)
 
   return (
     <>
+      <NavBar />
       <Box sx={{
         width: 1150,
         height: 100,
@@ -60,9 +54,10 @@ const CardsProducts = () => {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <Typography variant="h4">{`Category: ${filteredProducts?.name}`}</Typography>
+
+        <Typography variant="h4">{`Category: ${nameView?.name}`}</Typography>
       </Box>
-      {filteredProducts?.data.map((product) => (
+      {data.map((product) => (
         <CardProduct key={product._id} product={product} />
       ))}
     </>
