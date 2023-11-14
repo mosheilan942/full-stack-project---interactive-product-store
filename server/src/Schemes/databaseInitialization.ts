@@ -67,7 +67,6 @@ const productsSchema = new Schema<Iproducts>({
         required: true,
         enum: ['cellPhone', 'refrigerator', 'washingMachine',
             'television', 'microwave', 'speaker', 'vacuumCleaner'],
-            'televisions', 'microwaves', 'speakers', 'vacuum cleaners'],
     },
 });
 
