@@ -4,16 +4,17 @@ import ROUTES from "./routesModel";
 
 
 // Pages that contain routes 
-import HomePage from "../pages/HomePage";
-import Categories from "../pages/Categories";
 import ProductPage from "../pages/ProductPage";
 import Comparison from "../pages/Comparison";
 
-
-import Project from "../types/ProductType";
 import Cart from "../pages/Cart";
+
 import Login from "../components/loginANDsignup/Login";
 import SignupForm from "../components/loginANDsignup/SignupForm";
+
+import HomePage from "../components/home/HomePage";
+import CardsProducts from "../components/cardProduct/CardsProducts";
+
 
 
 
@@ -39,8 +40,8 @@ import SignupForm from "../components/loginANDsignup/SignupForm";
             errorElement: <ErrorPage />,          
         },
         {
-            path: `${ROUTES.CATEGORIES}`,
-            element: <Categories />,
+            path: '/category/:categoryIdFP',
+            element: <CardsProducts />,
             errorElement: <ErrorPage />,          
         },
         {

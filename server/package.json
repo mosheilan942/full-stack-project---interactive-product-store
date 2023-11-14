@@ -15,12 +15,12 @@
   "name": "server",
   "description": "My server!",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "node ./dist/app.js",
-    "start": "tsc && npm run dev"
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon --watch src/**/*.ts --exec ts-node src/app.ts"
   },
   "keywords": [],
   "author": "",
