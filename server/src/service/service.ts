@@ -6,4 +6,4 @@ const homePage = await getHome();
 return homePage;
 };
 
-export { homepage }
+export { homepage } 

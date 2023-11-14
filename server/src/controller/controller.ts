@@ -8,4 +8,4 @@ const homePage = await homepage();
 res.json(homePage);
 };
 
-export { getHomePage }
+export { getHomePage } 
