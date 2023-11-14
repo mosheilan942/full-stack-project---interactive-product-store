@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../Redux/store'
-import LoginORname from './LoginORname'
+import LoginORname from './loginANDsignup/LoginORname'
 
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 

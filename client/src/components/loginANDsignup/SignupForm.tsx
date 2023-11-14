@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate } from 'react-router-dom';
 
 // import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
-import { handleResError, handleValidationError } from '../utils/errorHandler';
+import { handleResError, handleValidationError } from '../../utils/errorHandler';
 // import 'react-toastify/dist/ReactToastify.css'
-import { setEmailError, setPasswordError, setFnameError, setLnameError } from '../Redux/registerSlice';
+import { setEmailError, setPasswordError, setFnameError, setLnameError } from '../../Redux/registerSlice';
 
-import { isValidEmail, isValidPassword, isValidName } from '../utils/validators';
-import ROUTES from '../router/routesModel';
+import { isValidEmail, isValidPassword, isValidName } from '../../utils/validators';
+import ROUTES from '../../router/routesModel';
 
 interface RegisterState {
     isEmailError: boolean;

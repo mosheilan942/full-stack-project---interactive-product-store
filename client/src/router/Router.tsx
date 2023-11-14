@@ -12,8 +12,8 @@ import Comparison from "../pages/Comparison";
 
 import Project from "../types/ProductType";
 import Cart from "../pages/Cart";
-import Login from "../components/Login";
-import SignupForm from "../components/SignupForm";
+import Login from "../components/loginANDsignup/Login";
+import SignupForm from "../components/loginANDsignup/SignupForm";
 
 
 

@@ -1,8 +1,8 @@
 import { Box, Button, Link } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getUserNameInLS } from '../utils/LSofUser';
+import { getUserNameInLS } from '../../utils/LSofUser';
 import { Navigate } from 'react-router-dom';
-import ROUTES from '../router/routesModel';
+import ROUTES from '../../router/routesModel';
 
 type Props = {}
 
