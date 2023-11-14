@@ -1,9 +1,9 @@
 
-import { getAllProductsFromCategory, getProductsByCategory, getAllCategory } from '../service/categoryService';
-import {Request, Response} from 'express';
+import { getAllProductsFromCategory, getProductsByCategory, getAllCategory, getByCategoryAndPrice } from '../service/categoryService';
+import { Request, Response } from 'express';
 
 
-const getAllProductsFromCategoryControl = async (req:Request, res:Response) => {
+const getAllProductsFromCategoryControl = async (req: Request, res: Response) => {
     try {
         const allProductsFromCategory = await getAllProductsFromCategory();
         res.json(allProductsFromCategory);
@@ -13,7 +13,7 @@ const getAllProductsFromCategoryControl = async (req:Request, res:Response) => {
 };
 
 
-const getAllCategoryControl = async (req:Request, res:Response) => {
+const getAllCategoryControl = async (req: Request, res: Response) => {
     try {
         const allCategory = await getAllCategory();
         res.json(allCategory);
@@ -22,7 +22,7 @@ const getAllCategoryControl = async (req:Request, res:Response) => {
     }
 };
 
-const getProductsByCategoryControl = async (req:Request, res:Response) => {
+const getProductsByCategoryControl = async (req: Request, res: Response) => {
     try {
         const ProductsByCategory = await getProductsByCategory(req.params.name);
         res.json(ProductsByCategory);
@@ -32,22 +32,22 @@ const getProductsByCategoryControl = async (req:Request, res:Response) => {
 };
 
 // filter
-const getProducts = async (req:Request, res:Response) => {
+const getProducts = async (req: Request, res: Response) => {
     try {
-      const {min, max, order} = req.query;
-      const category = req.params.name;
-  
-      const products = await categoryService.getByCategoryAndPrice(
-        order, min, max, category
-      );
-      
-      res.json(products);
-  
+        const { min, max, order } = req.query;
+        const category = req.params.name;
+
+        const products = await getByCategoryAndPrice(
+            order, min, max, category
+        );
+
+        res.json(products);
+
     } catch (err) {
-      console.error(err);
-      res.status(500).send('Error getting products'); 
+        console.error(err);
+        res.status(500).send('Error getting products');
     }
-  }
+}
 
 
 
@@ -59,5 +59,4 @@ const getProducts = async (req:Request, res:Response) => {
 // }
 
 
-export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getHomePageControl,
-    getCategoriesControl, getProducts } 
+export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getProducts} 

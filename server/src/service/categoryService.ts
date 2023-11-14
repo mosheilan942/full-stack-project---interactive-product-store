@@ -1,5 +1,5 @@
 
-import { allProductsFromCategoryData, ProductsByCategoryData, allCategoriesData } from '../DAL/categoryDal';
+import { allProductsFromCategoryData, ProductsByCategoryData, allCategoriesData, findPrice } from '../DAL/categoryDal';
 
 
 const getAllProductsFromCategory = async () => {
@@ -16,14 +16,19 @@ const getAllCategory = async () => {
 
 const getProductsByCategory = async (name: string) => {
     const ProductsByCategory = await ProductsByCategoryData(name);
+    if (ProductsByCategory) return ProductsByCategory;
+    throw new Error("404")
+}
 
 // service
 const getByCategoryAndPrice = async (order: any, min: any, max: any, category:any) => {
-    return await categoryDal.findPrice(min, max, order, category);
+    const data = await findPrice(min, max, order, category);
+    return 
 }
 
 
 export { getAllProductsFromCategory, getProductsByCategory, getAllCategory, getByCategoryAndPrice } 
+
 // export const categoryService = {
 //     getHomepage,
 //     getCategories,
