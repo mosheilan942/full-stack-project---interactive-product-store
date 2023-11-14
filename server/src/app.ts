@@ -27,8 +27,8 @@ const connectANDlisten = async ()=> {
     try {
         await connectDB()
         console.log('Connecting to mongodb');
-        await insertuser()
-        await run().catch(err => console.log(err));
+        // await insertuser()
+        // await run().catch(err => console.log(err));
         // await insert()
         // await insertDataCellPhone();
         // await insertDataRefrigerator();
