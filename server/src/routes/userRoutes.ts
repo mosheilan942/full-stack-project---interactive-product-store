@@ -7,7 +7,7 @@ const userRouter = express.Router();
 
 
 
-userRouter.get('/', userController.getHomePage);
+// userRouter.get('/', userController.getHomePage);
 
 userRouter.get('/:id',userController.getUserById)
 

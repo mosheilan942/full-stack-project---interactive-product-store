@@ -14,9 +14,7 @@ const getHomePageControl = async (req:Request, res:Response) => {
 
 const getCategoriesControl = async (req:Request, res:Response) => {
     try {
-        const categoryName = req.params.name;
-       
-        const ProductsByCategory = await getCategories(categoryName);
+        const ProductsByCategory = await getCategories(req.params.name);
         res.json(ProductsByCategory);
     } catch (error) {
         res.json(error)

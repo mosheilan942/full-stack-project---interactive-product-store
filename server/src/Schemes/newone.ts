@@ -9,6 +9,7 @@ interface Iproducts {
     manufacturer: string
     model: string
     price: number
+    rating: number
     date: SchemaDefinitionProperty<number, Iproducts> | undefined
     Categorie?: Types.ObjectId,
     color: string;
@@ -28,10 +29,14 @@ interface Iproducts {
 
 interface Icategories {
     name: string
+    rating: number
+    image: string
 }
 
 const categoriesSchema = new Schema<Icategories>({
-    name: { type: String, required: true }
+    name: { type: String, required: true },
+    rating: { type: Number, default: 0, required: true },
+    image: { type: String, default: "https://tinyurl.com/22brmde9", required: true }
 })
 
 const productsSchema = new Schema<Iproducts>({
@@ -39,6 +44,7 @@ const productsSchema = new Schema<Iproducts>({
     manufacturer: { type: String, required: true },
     model: { type: String, required: false },
     price: { type: Number, required: true },
+    rating: { type: Number, default: 0, required: true },
     date: { type: Date, default: Date.now },
     Categorie: { type: Schema.Types.ObjectId, ref: 'Categorie' },
     color: { type: String, required: false },
@@ -53,9 +59,13 @@ const productsSchema = new Schema<Iproducts>({
     categoryType: {
         type: String,
         required: true,
-        enum: ['cellPhone', 'refrigerator', 'washingMachine'],
+        enum: ['cellPhone', 'refrigerator', 'washingMachine',
+            'televisions', 'microwaves', 'speakers', 'vacuum cleaners'],
     },
 });
+
+const arrayCategories = ['cellPhone', 'refrigerator', 'washingMachine',
+    'televisions', 'microwaves', 'speakers', 'vacuum cleaners']
 
 // 3. Create a Model.
 export const Product = model<Iproducts>('Product', productsSchema);
@@ -90,25 +100,20 @@ const washingMachinesDetailsSchema = new Schema({
 
 
 export async function run() {
-    const cellPhones = new categorie({
-        name: "cellPhone"
-    })
-    await cellPhones.save();
 
-    const refrigerators = new categorie({
-        name: "refrigerator"
+    arrayCategories.forEach( async (newCategorie) => {
+        const setCategorie = new categorie({
+            name: newCategorie
+        })
+        await setCategorie.save();
     })
-    await refrigerators.save();
-
-    const washingMachines = new categorie({
-        name: "washingMachine"
-    })
-    await washingMachines.save();
+    
 
     cellPhonesArray.forEach(async (phone) => {
+        const nameOfcategorie = await categorie.find({name: "cellPhone"}, "cellPhone._id").exec()
         const product = new Product({
             ...phone,
-            Categorie: cellPhones._id,
+            Categorie: nameOfcategorie[0],
             categoryType: 'cellPhone',
             categoryDetails: {
                 ...phone.dimensions,
@@ -119,16 +124,12 @@ export async function run() {
         await product.save();
     })
 
-    Product.findOne({}).populate<{ category: Icategories }>('Categorie').orFail().then(doc => {
-        // Works
-        const t = doc.Categorie!;
-        console.log(t);
-
-    })
+    
     refrigeratorsArray.forEach(async (refrigerator) => {
+        const nameOfcategorie = await categorie.find({name: "refrigerator"}, "cellPhone._id")
         const product = new Product({
             ...refrigerator,
-            Categorie: refrigerators._id,
+            Categorie: nameOfcategorie[0],
             categoryType: 'refrigerator',
             categoryDetails: {
                 ...refrigerator.dimensions,
@@ -138,9 +139,10 @@ export async function run() {
         await product.save();
     })
     washingMachinesArray.forEach(async (washingMachine) => {
+        const nameOfcategorie = await categorie.find({name: "washingMachine"}, "cellPhone._id").exec()
         const product = new Product({
             ...washingMachine,
-            Categorie: washingMachines._id,
+            Categorie: nameOfcategorie[0],
             categoryType: 'washingMachine',
             categoryDetails: {
                 ...washingMachine.dimensions,
