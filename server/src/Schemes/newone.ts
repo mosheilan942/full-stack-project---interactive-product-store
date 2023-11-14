@@ -60,7 +60,7 @@ const productsSchema = new Schema<Iproducts>({
 // 3. Create a Model.
 export const Product = model<Iproducts>('Product', productsSchema);
 
-const categorie = model<Icategories>('Categorie', categoriesSchema);
+export const categorie = model<Icategories>('Categorie', categoriesSchema);
 
 const cellPhoneDetailsSchema = new Schema({
     dimensions: {
@@ -91,17 +91,17 @@ const washingMachinesDetailsSchema = new Schema({
 
 export async function run() {
     const cellPhones = new categorie({
-        name: "cellPhones"
+        name: "cellPhone"
     })
     await cellPhones.save();
 
     const refrigerators = new categorie({
-        name: "refrigerators"
+        name: "refrigerator"
     })
     await refrigerators.save();
 
     const washingMachines = new categorie({
-        name: "washingMachines"
+        name: "washingMachine"
     })
     await washingMachines.save();
 
@@ -129,7 +129,7 @@ export async function run() {
         const product = new Product({
             ...refrigerator,
             Categorie: refrigerators._id,
-            categoryType: 'refrigerators',
+            categoryType: 'refrigerator',
             categoryDetails: {
                 ...refrigerator.dimensions,
                 freezerLocation: refrigerator.freezerLocation
@@ -141,7 +141,7 @@ export async function run() {
         const product = new Product({
             ...washingMachine,
             Categorie: washingMachines._id,
-            categoryType: 'washingMachines',
+            categoryType: 'washingMachine',
             categoryDetails: {
                 ...washingMachine.dimensions,
                 energyRating: washingMachine.energyRating
