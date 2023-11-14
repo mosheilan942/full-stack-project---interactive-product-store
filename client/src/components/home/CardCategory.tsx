@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Category = {
   id: number;
@@ -13,19 +13,26 @@ type Props = {
 
 const CardCategory = (props: Props) => {
   const category = props.category
+  const navigate = useNavigate();
+
+  const handleBoxClick = () => {
+    navigate(`/category/${category.id}`);
+  };
 
   return (
-    <Link to={`/category/${category.id}`}>
-      <Box key={category.id} sx={{
-        background: "#ffe3b8",
-        width: 200,
-        minHeight: 250,
-        margin: 2,
-        display: 'flex',
-        justifyContent: 'center',
-        textAlign: 'center',
-        flexDirection: 'column'
-      }}>
+      <Box
+        onClick={handleBoxClick}
+        key={category.id}
+        sx={{
+          background: "#ffe3b8",
+          width: 200,
+          minHeight: 250,
+          margin: 2,
+          display: 'flex',
+          justifyContent: 'center',
+          textAlign: 'center',
+          flexDirection: 'column'
+        }}>
 
         <img src={category.image} alt={category.name} style={{ width: '100%', height: '30%' }} />
         <Typography sx={{
@@ -34,7 +41,6 @@ const CardCategory = (props: Props) => {
         }} variant="h6">{category.name}</Typography>
 
       </Box>
-    </Link>
   )
 }
 
