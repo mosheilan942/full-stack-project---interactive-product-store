@@ -7,4 +7,5 @@ const routerCategory = express.Router();
 routerCategory.get('/', getHomePageControl);
 routerCategory.get('/:name', getCategoriesControl);
 
+
 export { routerCategory }
