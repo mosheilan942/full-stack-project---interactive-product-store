@@ -1,22 +1,31 @@
-import { Product, categorie } from "../Schemes/newone";
+import { Product, category } from "../Schemes/databaseInitialization";
 
 
-const getHomePageData = async () => {
-    const data = await Product.find({})
+const allProductsFromCategoryData = async () => {
+    const data = await category.find({})
+        .populate({
+            path: 'product'
+        }).exec()
+    if (data) return data
+    throw new Error("404")
+};
+
+const allCategoriesData = async () => {
+    const data = await category.find({})
+    console.log(data);
     return data
 };
 
-const getCategoriesData = async (name: string) => {
-    console.log(name);
-    const data = await categorie.findOneAndUpdate(
+const ProductsByCategoryData = async (name: string) => {
+    const data = await category.findOneAndUpdate(
         { name: name },
         { $inc: { rating: 1 } }
-    );
-    console.log(data);
+    )
+        .populate({
+            path: 'product'
+        }).exec();
     if (data) {
-        const products = await Product.find({ categoryType: `${name}` })
-        console.log(products);
-        return products
+        return data
     }
     throw new Error("404")
 };
@@ -25,4 +34,4 @@ const getCategoriesData = async (name: string) => {
 
 
 
-export { getHomePageData, getCategoriesData } 
+export { allProductsFromCategoryData, ProductsByCategoryData, allCategoriesData } 
