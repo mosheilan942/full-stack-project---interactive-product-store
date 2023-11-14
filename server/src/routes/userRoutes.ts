@@ -1,9 +1,10 @@
 import express from 'express';
-import { getHomePage } from '../controller/controller';
+import { getHomePageControl, getCategoriesControl} from '../userController/userController';
 
 const router = express.Router();
 
 
-router.get('/', getHomePage);
+router.get('/', getHomePageControl);
+router.get('/category', getCategoriesControl);
 
 export { router }
