@@ -14,10 +14,9 @@ const getHomePageControl = async (req:Request, res:Response) => {
 
 const getCategoriesControl = async (req:Request, res:Response) => {
     try {
-        // השורה העתידית
-        // const homePage = await getCategories(req.params.name);
-        // שורת ניסוי
-        const ProductsByCategory = await getCategories('cellPhone');
+        const categoryName = req.params.name;
+       
+        const ProductsByCategory = await getCategories(categoryName);
         res.json(ProductsByCategory);
     } catch (error) {
         res.json(error)
