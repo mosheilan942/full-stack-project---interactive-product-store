@@ -1,5 +1,5 @@
 import express from 'express';
-import { router } from './routes/routes';
+import { router } from './routes/userRoutes';
 import morgan from 'morgan';
 import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
