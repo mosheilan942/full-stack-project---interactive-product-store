@@ -1,14 +1,42 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import { Box, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-type Props = {}
+type Product = {
+  id: string;
+};
 
-const ProductPage = (props: Props) => {
+const ProductPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`ה-URL-שלך/${id}`);
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (!product) {
     return (
-        <Box>
-            ProductPage
-        </Box>
-    )
-}
+      <Box>
+        <Typography variant="h4">Loading...</Typography>
+      </Box>
+    );
+  }
 
-export default ProductPage
+  return (
+    <Box>
+      <Typography variant="h4">{product.id}</Typography>
+    </Box>
+  );
+};
+
+export default ProductPage;

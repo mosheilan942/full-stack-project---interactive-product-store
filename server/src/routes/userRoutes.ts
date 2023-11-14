@@ -1,5 +1,7 @@
 import express from 'express';
+
 import { getHomePageControl, getCategoriesControl} from '../userController/userController';
+
 
 const router = express.Router();
 
