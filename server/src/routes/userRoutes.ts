@@ -6,7 +6,7 @@ const userRouter = express.Router();
 
 userRouter.get('/', userController.getHomePage);
 
-userRouter.get('/user/:id',userController.getUserById)
+userRouter.get('/:id',userController.getUserById)
 
 userRouter.post('/reg',userController.reg);
 

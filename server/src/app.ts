@@ -1,5 +1,6 @@
 import express from 'express';
-import { router } from './routes/userRoutes';
+import { userRouter } from './routes/userRoutes';
+import { routerCategory } from './routes/categoryRoutes';
 import morgan from 'morgan';
 import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
@@ -19,14 +20,15 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use('/', router);
+app.use('/user', userRouter);
+app.use('/category', routerCategory);
 
 const connectANDlisten = async ()=> {
     try {
         await connectDB()
         console.log('Connecting to mongodb');
-        // await insertuser()
-        // await run().catch(err => console.log(err));
+        await insertuser()
+        await run().catch(err => console.log(err));
         // await insert()
         // await insertDataCellPhone();
         // await insertDataRefrigerator();
