@@ -40,7 +40,7 @@ const Login = (props: Props) => {
                     </Link>
                 </Typography>
                 <Typography>
-                    <Link href='#' onClick={((e) => (console.log('grfg')))} >
+                    <Link href='http://localhost:5173/signup' onClick={((e) => (console.log('grfg')))} >
                         sign Up
                     </Link>
                 </Typography>

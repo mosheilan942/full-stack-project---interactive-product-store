@@ -2,7 +2,9 @@ import { categoryDal} from '../DAL/categoryDal';
 
 
 const getHomepage = async () => {
+
     const homePage = await categoryDal.getHomePageData();
+
     if (homePage) return homePage;
     throw new Error("404")
 };
@@ -12,6 +14,7 @@ const getCategories = async (name: string) => {
     if (ProductsByCategory) return ProductsByCategory;
     throw new Error("404")
 };
+
 
 
 

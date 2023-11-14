@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 type Category = {
-  id: number;
+  categoryName: string;
   name: string; 
   image: string;
 }
@@ -16,13 +16,13 @@ const CardCategory = (props: Props) => {
   const navigate = useNavigate();
 
   const handleBoxClick = () => {
-    navigate(`/category/${category.id}`);
+    navigate(`/category/${category.categoryName}`);
   };
 
   return (
     <Box
       onClick={handleBoxClick}
-      key={category.id}
+      key={category.categoryName}
       sx={{
         background: "#ffe3b8",
         width: 200,

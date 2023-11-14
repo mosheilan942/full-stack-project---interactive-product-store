@@ -14,8 +14,10 @@ const getHomePageControl = async (req: Request, res: Response) => {
 
 const getCategoriesControl = async (req: Request, res: Response) => {
     try {
+
         const ProductsByCategory = await categoryService.getCategories(req.params.name);
         // const ProductsByCategory = await categoryService.getCategories('cellPhone');
+
         res.json(ProductsByCategory);
     } catch (error) {
         res.json(error)
