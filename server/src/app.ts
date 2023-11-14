@@ -6,7 +6,7 @@ import cors from 'cors'
 import { connectDB } from './Schemes/conectMongoose';
 // import { insertuser } from './Schemes/usersSchema';
 // import { insert } from './Schemes/cellPhonesModel';
-// import { run } from './Schemes/newone';
+// import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
 // import {  insertDataWashingMachine } from './Schemes/washingMachineSchema';
 // import { insertDataRefrigerator } from './Schemes/refrigeratorsSchema';
 // import { insertDataCellPhone } from './Schemes/cellPhonesModel';
