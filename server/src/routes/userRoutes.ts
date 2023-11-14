@@ -1,10 +1,15 @@
 import express from 'express';
-import { getHomePageControl, getCategoriesControl} from '../userController/userController';
+import {userController} from '../controller/userController';
 
-const router = express.Router();
+const userRouter = express.Router();
 
 
-router.get('/', getHomePageControl);
-router.get('/category', getCategoriesControl);
+userRouter.get('/', userController.getHomePage);
 
-export { router }
+userRouter.get('/user/:id',userController.getUserById)
+
+userRouter.post('/reg',userController.reg);
+
+userRouter.post('/login',userController.loginController)
+
+export { userRouter }
