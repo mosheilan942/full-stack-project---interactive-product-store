@@ -1,9 +1,16 @@
-import { getHome } from '../DAL/DAL';
+import { getHomePageData, getCategoriesData } from '../DAL/userDal';
 
 
-const homepage = async () => {
-const homePage = await getHome();
-return homePage;
+const getHomepage = async () => {
+const homePage = await getHomePageData();
+if (homePage) return homePage;
+throw new Error("404")
 };
 
-export { homepage } 
+const getCategories = async (name: string) => {
+    const ProductsByCategory = await getCategoriesData(name);
+    if (ProductsByCategory) return ProductsByCategory;
+    throw new Error("404")
+    };
+
+export { getHomepage, getCategories } 
