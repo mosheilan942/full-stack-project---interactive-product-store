@@ -52,7 +52,7 @@ const productsSchema = new Schema<Iproducts>({
     price: { type: Number, required: true },
     rating: { type: Number, default: 0, required: true },
     date: { type: Date, default: Date.now },
-    // categoryID: { type: Schema.Types.ObjectId, ref: 'Category' },
+    // categoryID: { type: Schema.Types.ObjectId, ref: 'Category' }
     color: { type: String, required: false },
     quantity: { type: Number, required: true },
     description: { type: String, required: true },
@@ -67,6 +67,7 @@ const productsSchema = new Schema<Iproducts>({
         required: true,
         enum: ['cellPhone', 'refrigerator', 'washingMachine',
             'television', 'microwave', 'speaker', 'vacuumCleaner'],
+            'televisions', 'microwaves', 'speakers', 'vacuum cleaners'],
     },
 });
 
@@ -78,7 +79,6 @@ const arrayProducts = [televisionsArray, MicrowavesArray, VacuumCleanersArray,
 ]
 
 
-// 3. Create a Model.
 export const Product = model<Iproducts>('Product', productsSchema);
 
 export const category = model<Icategories>('Category', categoriesSchema);
@@ -106,9 +106,6 @@ const refrigeratorsDetailsSchema = new Schema({
 const washingMachinesDetailsSchema = new Schema({
     energyRating: { type: String, required: true },
 });
-
-
-
 
 export async function DatabaseInitializationForProducts() {
 
@@ -187,3 +184,4 @@ export async function DatabaseInitializationForCategories() {
 //         });
 //         await product.save();
 //     })
+

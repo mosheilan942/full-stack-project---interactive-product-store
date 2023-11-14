@@ -13,8 +13,7 @@ const NavBar = (props: Props) => {
             alignItems: 'center',
             justifyContent: 'space-around'
         }}>
-            <h3 style={{marginLeft: 20}}>All product | Cell Phone | Refrigerators | Washing Machines</h3>
-            <Input sx={{background: 'white', padding: '0px 3px'}} placeholder='Search...'/>
+            <Input sx={{ background: 'white',width: 500, padding: '0px 3px' }} placeholder='Search...' />
         </Box>
     )
 }

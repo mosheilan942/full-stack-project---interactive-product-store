@@ -49,7 +49,9 @@ export const loginController = async (req: Request, res: Response) => {
       }
   
       // Additional logic like generating tokens, etc
-    //   return res.status(200).json({ message: "Login successful" });
+
+      return res.status(200).json({ message: "Login successful",user });
+
   
     } catch (error) {
       console.error(error);

@@ -1,3 +1,4 @@
+
 import { getAllProductsFromCategory, getProductsByCategory, getAllCategory } from '../service/categoryService';
 import {Request, Response} from 'express';
 
@@ -10,6 +11,7 @@ const getAllProductsFromCategoryControl = async (req:Request, res:Response) => {
         res.json(error)
     }
 };
+
 
 const getAllCategoryControl = async (req:Request, res:Response) => {
     try {
@@ -27,6 +29,35 @@ const getProductsByCategoryControl = async (req:Request, res:Response) => {
     } catch (error) {
         res.json(error)
     }
-    };
+};
 
-export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl } 
+// filter
+const getProducts = async (req:Request, res:Response) => {
+    try {
+      const {min, max, order} = req.query;
+      const category = req.params.name;
+  
+      const products = await categoryService.getByCategoryAndPrice(
+        order, min, max, category
+      );
+      
+      res.json(products);
+  
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error getting products'); 
+    }
+  }
+
+
+
+
+// export const categoryController = {
+//     getHomePageControl,
+//     getCategoriesControl,
+//     getProducts,
+// }
+
+
+export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getHomePageControl,
+    getCategoriesControl, getProducts } 

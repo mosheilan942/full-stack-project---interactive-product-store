@@ -11,6 +11,7 @@ import { insertuser } from './Schemes/usersSchema';
 import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
 
 
+
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
@@ -21,6 +22,8 @@ app.use(cors({
 
 app.use('/user', userRouter);
 app.use('/category', routerCategory);
+// router
+
 
 const connectANDlisten = async ()=> {
     try {
