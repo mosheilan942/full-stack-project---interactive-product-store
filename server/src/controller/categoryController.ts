@@ -1,4 +1,4 @@
-import { getHomepage, getCategories } from '../service/userService';
+import { getHomepage, getCategories } from '../service/categoryService';
 import {Request, Response} from 'express';
 
 
