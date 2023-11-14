@@ -8,14 +8,10 @@ const getHomePageData = async () => {
 
 const getCategoriesData = async (name: string) => {
     console.log(name);
-
-    const data = await categorie.find({ name: `${name}` })
-
-//     const data = await categorie.findOneAndUpdate(
-//         { name: name },
-//         { $inc: { rating: 1 } }
-//     );
-
+    const data = await categorie.findOneAndUpdate(
+        { name: name },
+        { $inc: { rating: 1 } }
+    );
     console.log(data);
     if (data) {
         const products = await Product.find({ categoryType: `${name}` })
