@@ -2,6 +2,7 @@ const ROUTES = {
     APP: '/',
     HOME: '/home',
     CATEGORIES: '/categories',
+    CATEGORY: '/category/:id',
     LOGIN: '/login',
     REGISTER: '/register',
     PROFILE: '/profile',
