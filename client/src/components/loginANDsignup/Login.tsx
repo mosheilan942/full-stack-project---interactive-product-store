@@ -3,13 +3,11 @@ import { Typography, Avatar, Button, Checkbox, Grid, Paper, TextField, Link } fr
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useEffect } from 'react';
-
-
-
+import LoginForm from './LoginForm';
 
 
 type Props = {
-    // handleChange: (event: React.SyntheticEvent, newValue: number) => void
+
 };
 
 const Login = (props: Props) => {
@@ -20,14 +18,7 @@ const Login = (props: Props) => {
 
     const paperStyle = { padding: 20, margin: '0 auto ' };
     const avatarStyle = { backgroundColor: 'green' };
-    const textFieldStyle = { padding: '2px', margin: '4px auto ' }
 
-    const handleLogin = () => {
-        // פה תוכל להוסיף את הפעולות שיש לבצע בעת לחיצה על כפתור ההתחברות (לדוגמה, שליחת הטופס לשרת)
-        // לדוגמה:
-        // אפשר לשלוח את הפרטים של המשתמש לשרת ולבדוק אם הוא מורשה
-        // אם ההתחברות הצליחה, תוכל להפנות את המשתמש לדף מסוים באפליקציה שלך
-    };
 
     return (
         <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '70vh' }}>
@@ -42,22 +33,7 @@ const Login = (props: Props) => {
                         <h2>login</h2>
                     </Grid>
                 </Grid>
-                <TextField style={textFieldStyle} label="userName" placeholder="Enter user name" fullWidth required />
-                <TextField style={textFieldStyle} label="password" placeholder="Enter password" type="password" fullWidth required />
-                <FormControlLabel
-                    control={
-                        <Checkbox name="checkedB" color="primary" />
-                    }
-                    label="Remember me"
-                />
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    fullWidth
-                    onClick={handleLogin}
-                >
-                    sign in
-                </Button>
+                <LoginForm />
                 <Typography>
                     <Link href='#'>
                         Forgot password?

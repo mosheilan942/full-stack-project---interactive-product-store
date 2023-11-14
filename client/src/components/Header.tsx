@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../Redux/store'
-import LoginORname from './loginORname'
+import LoginORname from './loginANDsignup/LoginORname'
 
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
@@ -20,7 +20,7 @@ const Header = (props: Props) => {
             <Box >
                 Header
             </Box>
-            <Box sx={{ background: 'skyblue', width: 200, height: 30, display: 'flex', justifyContent: 'space-between' }}>
+            <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
                 <Box>
                 <ShoppingCartOutlinedIcon/>
