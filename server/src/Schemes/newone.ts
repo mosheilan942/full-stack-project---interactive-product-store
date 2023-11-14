@@ -109,7 +109,7 @@ export async function run() {
         const product = new Product({
             ...phone,
             Categorie: cellPhones._id,
-            // categoryType: "cellPhone",
+            categoryType: "cellPhone",
             categoryDetails: {
                 ...phone.dimensions,
                 screenSize: phone.screenSize,
@@ -129,6 +129,7 @@ export async function run() {
         const product = new Product({
             ...refrigerator,
             Categorie: refrigerators._id,
+            categoryType: "refrigerator",
             categoryDetails: {
                 ...refrigerator.dimensions,
                 freezerLocation: refrigerator.freezerLocation
@@ -142,6 +143,7 @@ export async function run() {
             Categorie: washingMachines._id,
             categoryDetails: {
                 ...washingMachine.dimensions,
+                categoryType: "washingMachines",
                 energyRating: washingMachine.energyRating
             }
         });

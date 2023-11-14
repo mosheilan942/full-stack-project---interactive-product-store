@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import CardProduct from './CardProduct';
 import { useParams } from 'react-router-dom';
-import CellPhone from '../../types/cellPhone';
-import Refrigerator from '../../types/refrigerators';
-import WashingMachine from '../../types/washingMachines';
+import { CellPhoneType } from '../../types/ProductTypes';
+import { RefrigeratorType } from '../../types/ProductTypes';
+import { WashingMachineType } from '../../types/ProductTypes';
 import cellPhones from '../../data/cellPhoneData';
 import refrigerators from '../../data/refrigeratorData';
 import washingMachines from '../../data/WashingMachineData';
@@ -14,9 +14,9 @@ import washingMachines from '../../data/WashingMachineData';
 const CardsProducts = () => {
   const { categoryIdFP } = useParams();
 
-  const [cellPhoneData, setCellPhoneData] = useState<CellPhone[]>([]);
-  const [refrigeratorData, setRefrigeratorData] = useState<Refrigerator[]>([]);
-  const [washingMachineData, setWashingMachineData] = useState<WashingMachine[]>([]);
+  const [cellPhoneData, setCellPhoneData] = useState<CellPhoneType[]>([]);
+  const [refrigeratorData, setRefrigeratorData] = useState<RefrigeratorType[]>([]);
+  const [washingMachineData, setWashingMachineData] = useState<WashingMachineType[]>([]);
 
   //   useEffect(() => {
   //     const fetchData = async () => {
