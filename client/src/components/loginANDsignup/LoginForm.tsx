@@ -36,9 +36,9 @@ const LoginForm = (props: Props) => {
     const password = data.password
 
     const user =  JSON.stringify({
-      name,
-      email,
-      password
+      name : name,
+      email : email,
+      password : password
     });
     const req =  await loginUser(user)
     console.log(req);

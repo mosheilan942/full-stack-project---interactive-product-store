@@ -16,7 +16,17 @@ async function createUser(user: any): Promise<any> {
 }
 
 async function loginUser(user: any): Promise<any> {
-  const response = await axios.post(`${API_URL}/login`, user);
+  console.log(user);
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: `${API_URL}/login`,
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : user
+  };
+  const response = await axios.request(config);
   return response.data;
 }
 
