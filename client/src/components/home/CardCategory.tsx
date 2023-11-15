@@ -1,10 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-type Category = {
-  categoryName: string;
+type Category =  {
+  _id: string;
   name: string;
+  rating: number;
+  product: string[];
   image: string;
+  __v: number;
 }
 
 type Props = {
@@ -16,13 +19,13 @@ const CardCategory = (props: Props) => {
   const navigate = useNavigate();
 
   const handleBoxClick = () => {
-    navigate(`/category/${category.categoryName}`);
+    navigate(`/category/${category.name}`);
   };
 
   return (
     <Box
       onClick={handleBoxClick}
-      key={category.categoryName}
+      key={category.name}
       sx={{
         background: "#ffe3b8",
         width: 200,

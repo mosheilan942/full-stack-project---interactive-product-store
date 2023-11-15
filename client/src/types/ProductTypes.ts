@@ -10,7 +10,7 @@ export type CellPhoneType = {
     description: string;
     image: string;
     addresses: string[];
-    categoryDetails: {
+    dimensions: {
         height: number;
         length: number;
         width: number;
@@ -35,7 +35,7 @@ export type RefrigeratorType = {
     description: string;
     image: string;
     addresses: string[];
-    categoryDetails: {
+    dimensions: {
         height: number;
         width: number;
         depth: number;
@@ -59,7 +59,7 @@ export type WashingMachineType = {
     description: string;
     image: string;
     addresses: string[];
-    categoryDetails: {
+    dimensions: {
        height: number;
         width: number;
         depth: number;

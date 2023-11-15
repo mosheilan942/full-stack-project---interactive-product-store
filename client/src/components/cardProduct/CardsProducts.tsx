@@ -11,13 +11,13 @@ import NavBar from '../NavBar';
 type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
 type GetProds = {
-    _id: string;
-    name: string;
-    rating: number;
-    product: ProductType[];
-    image: string;
-    __v: number;
-  }
+  _id: string;
+  name: string;
+  rating: number;
+  product: ProductType[];
+  image: string;
+  __v: number;
+}
 
 
 
@@ -26,7 +26,7 @@ const CardsProducts = () => {
 
   const [data, setData] = useState<ProductType[]>([]);
 
-  
+
 
   useEffect(() => {
     const insertData = async () => {
@@ -47,29 +47,13 @@ const CardsProducts = () => {
     insertData()
   }, []);
 
-
-  type AllData = {
-    categoryName: string;
-    name: string;
-  }
-
-
-  const allData: AllData[] = [
-    {
-      categoryName: "cellPhone",
-      name: "Cell Phone"
-    },
-    {
-      categoryName: "refrigerator",
-      name: "Refrigerators"
-    },
-    {
-      categoryName: 'washingMachine',
-      name: 'Washing Machines'
-    }
-  ]
-
-  const nameView: AllData | undefined = allData.find((category) => category.categoryName === categoryName)
+  const camelCaseToWords = (input: string): string => {
+    return input
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/\b\w/g, (c) => c.toLowerCase())
+      .replace(/^\w/, (c) => c.toUpperCase());
+  };
+  
 
   return (
     <>
@@ -82,10 +66,10 @@ const CardsProducts = () => {
         alignItems: 'center'
       }}>
 
-        <Typography variant="h4">{nameView && nameView.name}</Typography>
+        <Typography variant="h4">{categoryName && camelCaseToWords(categoryName)}</Typography>
       </Box>
       {data.map((product) => (
-        <CardProduct key={product._id} product={product}/>
+        <CardProduct key={product._id} product={product} />
       ))}
     </>
   );

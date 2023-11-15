@@ -4,7 +4,7 @@ import ROUTES from "./routesModel";
 
 
 // Pages that contain routes 
-import ProductPage from "../pages/productPage/ProductPage";
+import ProductPage from "../pages/ProductPage";
 import Comparison from "../pages/Comparison";
 
 import Cart from "../pages/Cart";
