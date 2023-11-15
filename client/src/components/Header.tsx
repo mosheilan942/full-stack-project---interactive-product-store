@@ -15,28 +15,30 @@ const styleHeaderBox = {
 
 
 const Header = (props: Props) => {
-    
+
     const cartIndex = useSelector((state: RootState) => state.cart.cartIndex);
 
-    
+
 
 
     return (
         <Box sx={styleHeaderBox} >
             <Box >
-                <IconButton> </IconButton>
-            <a href='http://localhost:5173/' >
-            צוות זבולון 
-                        </a>
-                        
-               
+
+
+
+                <a href='http://localhost:5173/' >
+                    <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '93px' }} />
+                </a>
+
+
             </Box>
             <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
                 <Box>
                     <IconButton>
-                    <a href='http://localhost:5173/cart' >
-                        <ShoppingCartOutlinedIcon />
+                        <a href='http://localhost:5173/cart' >
+                            <ShoppingCartOutlinedIcon />
                         </a>
                     </IconButton>
                     {cartIndex}

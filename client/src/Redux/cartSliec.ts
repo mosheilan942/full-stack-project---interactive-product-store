@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { getAllProduct } from '../api/cartFuncApi'; 
 import { ProductType } from '../types/ProductTypes';
+import { Cart } from '../types/CartTypes';
 
 
  
 export interface CartIndex {
   cartIndex: number;
-  cart: ProductType[] | null
+  cart: Cart | null
 }
 
 const initialState: CartIndex = {
@@ -24,13 +25,18 @@ export const cartIndexSlice = createSlice({
         state.cart?.push(action.payload)
         console.log(state.cart);
     },
-    setCart: (state, action: PayloadAction<number>) => {
-      state.cartIndex = action.payload
-    },
-    incrementToCart: (state,) => {
+    // getQuantityForProduct: (state) => {
+    //   return state.cartIndex
+    // },
+    incrementToCart: (state, action: PayloadAction<string>) => {
       state.cartIndex += 1 
     },
-    lessToCart: (state,) => {
+
+    lessToCart: (state, action: PayloadAction<string>) => {
+      state.cart?.forEach((orderItem) => {
+        if (orderItem.productId._id === action.payload) {
+          orderItem.quantity += 1
+      }})
       if (state.cartIndex > 0) {
       state.cartIndex -= 1 
       }
@@ -40,6 +46,6 @@ export const cartIndexSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setCart, incrementToCart, addProductToCart, lessToCart } = cartIndexSlice.actions
+export const {  incrementToCart, addProductToCart, lessToCart } = cartIndexSlice.actions
 
 export default cartIndexSlice.reducer
