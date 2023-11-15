@@ -8,7 +8,9 @@ routerCategory.get('/', categoryController.getHomePageControl);
 
 routerCategory.get('/:name', categoryController.getCategoriesControl);
 
-routerCategory.get('/:name/:filter', categoryController.getProducts);
+routerCategory.get('/:name/:filters', categoryController.getProducts);
+
+routerCategory.get('/:name/id/:id',categoryController.getProductById);
 
 
 export { routerCategory }

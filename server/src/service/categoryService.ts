@@ -20,9 +20,16 @@ const getByCategoryAndPrice = async (order: any, min: any, max: any, category:an
     return await categoryDal.findPrice(min, max, order, category);
 }
 
+// get id
+const ProductById = async (id: any,category:any) => {
+    const product = await categoryDal.getProductMongoById(id,category);
+    return product
+}
+
 
 export const categoryService = {
     getHomepage,
     getCategories,
     getByCategoryAndPrice,
+    ProductById,
 }

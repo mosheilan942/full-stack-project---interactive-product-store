@@ -29,21 +29,29 @@ const findPrice = async (min: any, max: any, order: string, category: any) => {
   
     const products = await Product.find({
         categoryType: category, 
-        price: {$gte: min, $lte: max}
+        price: {$gte: min, $lte: max},
       })
       .sort({price: sortOrder});
   
     return products;
   }
 
-
+  const getProductMongoById = async (id:number, category:any) => {
+    const data = await categorie.find({name: category});
+    
+    if(!data || data.length === 0) {
+      throw new Error('Category not found'); 
+    }
+    const product = await Product.findOne({ _id: id });
+    return product;
+  }
 
 
     export const categoryDal = {
         getHomePageData,
         getCategoriesData,
         findPrice,
-
+        getProductMongoById,
     }
 
 
