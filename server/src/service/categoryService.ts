@@ -4,7 +4,8 @@ import {
     allCategoriesData,
     findPrice,
     getProductMongoById,
-    searchProducts
+    searchProducts,
+    filterProductsAlphabeticallyDal
 } from '../DAL/categoryDal';
 
 
@@ -42,7 +43,11 @@ const fncSearch = async (searchTerm:any, order:any, categoryName:any) => {
     return products;
 }
 
-
+const filterProductsAlphabetically = async (order:any, category:any) => {
+    const products = await filterProductsAlphabeticallyDal(order, category);
+    return products;
+  }
+  
 export {
     getAllProductsFromCategory,
     getProductsByCategory,
@@ -50,6 +55,7 @@ export {
     getByCategoryAndPrice,
     ProductById,
     fncSearch,
+    filterProductsAlphabetically
 }
 
 

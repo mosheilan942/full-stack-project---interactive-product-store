@@ -5,7 +5,8 @@ import {
     getAllCategory,
     getByCategoryAndPrice,
     ProductById,
-    fncSearch
+    fncSearch,
+    filterProductsAlphabetically
 }
     from '../service/categoryService';
 
@@ -66,16 +67,32 @@ const getProductById = async (req: Request, res: Response) => {
 // search
 const searchProducts = async (req: Request, res: Response) => {
     try {
-      const { search, order } = req.query;
-      const categoryName = req.params.name;
-    //   console.log(search);
-      const products = await fncSearch(search, order, categoryName);
-      res.json(products);
+        const { search, order } = req.query;
+        const categoryName = req.params.name;
+        //   console.log(search);
+        const products = await fncSearch(search, order, categoryName);
+        res.json(products);
     } catch (err) {
-      console.error(err);
-      res.status(500).send(`${err}`);
+        console.error(err);
+        res.status(500).send(`${err}`);
     }
-  }
+}
+
+const alphabeticalFilter = async (req: Request, res: Response) => {
+    try {
+        const { order } = req.query
+        const  categoryName  = req.params.name;
+        console.log(order);
+        // console.log(category);
+
+        const products = await filterProductsAlphabetically(order, categoryName);
+        res.json(products);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(`${err}`);
+    }
+
+}
 
 export {
     getAllProductsFromCategoryControl,
@@ -84,4 +101,5 @@ export {
     getProducts,
     getProductById,
     searchProducts,
+    alphabeticalFilter,
 } 

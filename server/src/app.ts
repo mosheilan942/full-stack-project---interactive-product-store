@@ -10,6 +10,8 @@ import { connectDB } from './Schemes/conectMongoose';
 import { insertuser } from './Schemes/usersSchema';
 import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
 
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const app = express();
