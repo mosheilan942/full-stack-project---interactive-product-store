@@ -1,5 +1,6 @@
 import { userDal } from '../DAL/userDal';
 import bcrypt from 'bcrypt';
+import { User } from '../Schemes/usersSchema';
 
 
 
@@ -15,7 +16,10 @@ const userId = async (id: any) => {
 
 // הרשמה
 
-const register = async (userInput: { password: string | Buffer; name: any; email: any; }) => {
+// type user = User
+
+
+const register = async (userInput: User) => {
     // Validate email format
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(userInput.email)) {
@@ -25,12 +29,13 @@ const register = async (userInput: { password: string | Buffer; name: any; email
     // Generate salt and hash password
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(userInput.password, salt);
-​
+
     // Create user object
-    const newUser = {
+    const newUser:User = {
         name: userInput.name,
         email: userInput.email,
-        password: hashedPassword
+        password: hashedPassword,
+        cart: []
     };
 
     console.log("newUser", newUser);
