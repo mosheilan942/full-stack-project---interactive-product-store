@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { CellPhoneType } from '../../types/ProductTypes';
 import { RefrigeratorType } from '../../types/ProductTypes';
 import { WashingMachineType } from '../../types/ProductTypes';
+import { camelCaseToWords } from '../../utils/camelCaseToWords';
 
 type Props = {
-    product: CellPhoneType | RefrigeratorType |WashingMachineType;
+    product: CellPhoneType | RefrigeratorType | WashingMachineType;
 }
 
 const CardProduct = (props: Props) => {
@@ -31,10 +32,12 @@ const CardProduct = (props: Props) => {
                 flexDirection: 'column'
             }}>
             <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: '30%' }} />
-            <Typography sx={{ background: '#d55d31', marginTop: 3 }} variant="h6">Name: </Typography>
-            {product.name}
-            <Typography sx={{ background: '#d55d31', marginTop: 3 }} variant="h6">Category: </Typography>
-            {product.categoryType}
+            <Typography sx={{ background: '#d55d31', }} variant="h6">Name: </Typography>
+            <Typography sx={{ margin: "15px 0px" }} variant="body1">{product.name}</Typography>
+
+            <Typography sx={{ background: '#d55d31' }} variant="h6">Category: </Typography>
+            <Typography sx={{ margin: "15px 0px" }} variant="body1">{camelCaseToWords(product.categoryType)}</Typography>
+
 
         </Box>
     )

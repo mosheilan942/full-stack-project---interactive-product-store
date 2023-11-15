@@ -7,6 +7,7 @@ import { RefrigeratorType } from '../../types/ProductTypes';
 import { WashingMachineType } from '../../types/ProductTypes';
 import { getProductByCategory } from '../../api/productFuncApi';
 import NavBar from '../NavBar';
+import { camelCaseToWords } from '../../utils/camelCaseToWords';
 
 type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
@@ -46,13 +47,6 @@ const CardsProducts = () => {
 
     insertData()
   }, []);
-
-  const camelCaseToWords = (input: string): string => {
-    return input
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/\b\w/g, (c) => c.toLowerCase())
-      .replace(/^\w/, (c) => c.toUpperCase());
-  };
   
 
   return (

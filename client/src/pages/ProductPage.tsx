@@ -41,7 +41,7 @@ const ProductPage = () => {
         alignItems: 'center',
         width: "50%"
       }}>
-        <img src={product.image} alt={product.name} style={{ width: 500 }} />
+        <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-14-pro-max-colors.png" alt={product.name} style={{ width: 500 }} />
       </Box>
       <Box sx={{ margin: 5 }}>
         <Typography variant="h4">{product.name}</Typography>
