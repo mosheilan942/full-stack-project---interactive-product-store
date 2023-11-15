@@ -36,9 +36,15 @@ const LoginORname = (props: Props) => {
 
 
   const dispatch = useDispatch()
-  dispatch(ifUserLoged())
+  
   // dispatch(logoutUser())
-  const usermame = useSelector((state: RootState) => state.user.name)
+  const username = useSelector((state: RootState) => state.user.name)
+  const [user, setuser] = useState(username)
+  useEffect(() => {
+    dispatch(ifUserLoged())
+    setuser(username)
+  }, [])
+  
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,7 +53,7 @@ const LoginORname = (props: Props) => {
 
   return (
     <Box>
-      {usermame ?
+      {username ?
         <UserName /> :
         <Button onClick={handleOpen}>
           LOGIN
