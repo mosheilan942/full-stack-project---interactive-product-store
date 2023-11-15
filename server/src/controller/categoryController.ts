@@ -1,6 +1,12 @@
-
-import { getAllProductsFromCategory, getProductsByCategory, getAllCategory, getByCategoryAndPrice } from '../service/categoryService';
 import { Request, Response } from 'express';
+import {
+    getAllProductsFromCategory,
+    getProductsByCategory,
+    getAllCategory,
+    getByCategoryAndPrice,
+    ProductById
+}
+    from '../service/categoryService';
 
 
 const getAllProductsFromCategoryControl = async (req: Request, res: Response) => {
@@ -40,9 +46,7 @@ const getProducts = async (req: Request, res: Response) => {
         const products = await getByCategoryAndPrice(
             order, min, max, category
         );
-
         res.json(products);
-
     } catch (err) {
         console.error(err);
         res.status(500).send('Error getting products');
@@ -50,13 +54,24 @@ const getProducts = async (req: Request, res: Response) => {
 }
 
 
+const getProductById = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const category = req.params.name;
+        console.log(id);
+        const product = await ProductById(id, category);
+        res.status(200).json(product)
+    }
+    catch (err) {
+        res.status(404).send('product is not found')
+    }
+}
 
 
-// export const categoryController = {
-//     getHomePageControl,
-//     getCategoriesControl,
-//     getProducts,
-// }
-
-
-export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getProducts} 
+export {
+    getAllProductsFromCategoryControl,
+    getProductsByCategoryControl,
+    getAllCategoryControl,
+    getProducts,
+    getProductById,
+} 
