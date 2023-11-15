@@ -66,6 +66,7 @@ const getProductMongoById = async (id: number, nameCategory: any) => {
 }
 
 
+
 const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
     const data = await category.find({ name: categoryName });
     const sortOrder = order === 'asc' ? 1 : -1;
@@ -83,7 +84,24 @@ const searchProducts = async (searchTerm: string, order: any, categoryName: stri
     return products;
 }
 
-
+//  search
+const searchProducts = async (searchTerm:string, order:any,categoryName:string) => {
+    const data = await category.find({ name: categoryName });
+    if (!data || data.length === 0) {
+        throw new Error('Category not found')};
+      const sortOrder = order === 'asc' ? 1 : -1;
+    // console.log(searchTerm);
+    const regex = new RegExp(`.*${searchTerm}.*`, 'i');
+      const products = await Product
+        .find({
+            categoryType: categoryName,
+            name: {$regex: regex} }) 
+            .sort({name: sortOrder});
+            // console.log(categoryName);
+  
+      return products;
+    }
+  
 
 export {
     allProductsFromCategoryData,

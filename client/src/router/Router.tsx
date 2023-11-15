@@ -4,16 +4,16 @@ import ROUTES from "./routesModel";
 
 
 // Pages that contain routes 
-import ProductPage from "../pages/productPage/ProductPage";
+import ProductPage from "../pages/ProductPage";
 import Comparison from "../pages/Comparison";
 
 import Cart from "../pages/Cart";
 
 import Login from "../components/loginANDsignup/Login";
-import SignupForm from "../components/loginANDsignup/SignupForm";
 
 import HomePage from "../components/home/HomePage";
 import CardsProducts from "../components/cardProduct/CardsProducts";
+import Signup from "../components/loginANDsignup/Signup";
 
 
 
@@ -22,16 +22,6 @@ import CardsProducts from "../components/cardProduct/CardsProducts";
         {
             path: '/',
             element: <HomePage />,
-            errorElement: <ErrorPage />,          
-        },
-        {
-            path: '/login',
-            element: <Login  />,
-            errorElement: <ErrorPage />,          
-        },
-        {
-            path: '/signup',
-            element: <SignupForm  />,
             errorElement: <ErrorPage />,          
         },
         {

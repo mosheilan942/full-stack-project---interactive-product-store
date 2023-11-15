@@ -1,29 +1,35 @@
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import CardCategory from './CardCategory';
+import { getAllCategories } from '../../api/productFuncApi';
+import NavBar from '../NavBar';
 
-
-
-// רשימת קטגוריות
-const categoriesData = [
-    {
-        categoryName: "cellPhone",
-        name: "Cell Phone",
-        image: "https://images.pexels.com/photos/63690/pexels-photo-63690.jpeg?auto=compress&cs=tinysrgb&w=600"
-    },
-    {
-        categoryName: "refrigerator",
-        name: "Refrigerators",
-        image: "https://media.istockphoto.com/id/842160124/photo/refrigerator-with-fruits-and-vegetables.webp?s=1024x1024&w=is&k=20&c=EyLsx0KNKvsVYSK0_7dkTmjtTwJVFfpQXqU1cs1MgsQ="
-    },
-    {
-        categoryName: "washingMachine",
-        name: 'Washing Machines',
-        image: "https://images.pexels.com/photos/4700383/pexels-photo-4700383.jpeg?auto=compress&cs=tinysrgb&w=600"
-    },
-];
+type Category = {
+    _id: string;
+    name: string;
+    rating: number;
+    product: string[];
+    image: string;
+    __v: number;
+}
 
 const HomePage = () => {
+    const [categoriesData, setCategoriesData] = useState<Category[]>([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data: Category[] = await getAllCategories();
+                setCategoriesData(data);
+                console.log(data);
+
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -34,14 +40,14 @@ const HomePage = () => {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <Typography variant='h3'>All categores</Typography>
+                <Typography variant='h3'>All categories</Typography>
             </Box>
-
             {categoriesData.map((category) => (
-                <CardCategory key={category.categoryName} category={category} />
+                <CardCategory key={category.name} category={category} />
             ))}
         </>
-    )
+    );
 }
 
 export default HomePage;
+

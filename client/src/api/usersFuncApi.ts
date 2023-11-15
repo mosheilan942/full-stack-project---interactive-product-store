@@ -10,9 +10,21 @@ async function getUser(id: string): Promise<any> {
   return response.data;
 }
 
-async function createUser(user: any): Promise<any> {
-  const response = await axios.post(`${API_URL}/signup`, user);
-  return response.data;
+
+async function signupUser(user: any): Promise<any> {
+  console.log(user);
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url:`${API_URL}/reg`,
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : user
+  };
+    const response = await axios.request(config);
+    console.log(response);
+    return response
 }
 
 async function loginUser(user: any): Promise<any> {
@@ -26,10 +38,9 @@ async function loginUser(user: any): Promise<any> {
     },
     data : user
   };
-  
     const response = await axios.request(config);
-    return response.data;
-  
+    console.log(response);
+    return response
 }
 
 async function logoutUser(user: any): Promise<any> {
@@ -38,7 +49,7 @@ async function logoutUser(user: any): Promise<any> {
 }
 export {
   getUser,
-  createUser,
+  signupUser,
   loginUser,
   logoutUser
 };

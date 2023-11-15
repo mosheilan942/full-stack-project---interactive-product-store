@@ -7,17 +7,18 @@ import { RefrigeratorType } from '../../types/ProductTypes';
 import { WashingMachineType } from '../../types/ProductTypes';
 import { getProductByCategory } from '../../api/productFuncApi';
 import NavBar from '../NavBar';
+import { camelCaseToWords } from '../../utils/camelCaseToWords';
 
 type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
 type GetProds = {
-    _id: string;
-    name: string;
-    rating: number;
-    product: ProductType[];
-    image: string;
-    __v: number;
-  }
+  _id: string;
+  name: string;
+  rating: number;
+  product: ProductType[];
+  image: string;
+  __v: number;
+}
 
 
 
@@ -26,7 +27,7 @@ const CardsProducts = () => {
 
   const [data, setData] = useState<ProductType[]>([]);
 
-  
+
 
   useEffect(() => {
     const insertData = async () => {
@@ -46,30 +47,7 @@ const CardsProducts = () => {
 
     insertData()
   }, []);
-
-
-  type AllData = {
-    categoryName: string;
-    name: string;
-  }
-
-
-  const allData: AllData[] = [
-    {
-      categoryName: "cellPhone",
-      name: "Cell Phone"
-    },
-    {
-      categoryName: "refrigerator",
-      name: "Refrigerators"
-    },
-    {
-      categoryName: 'washingMachine',
-      name: 'Washing Machines'
-    }
-  ]
-
-  const nameView: AllData | undefined = allData.find((category) => category.categoryName === categoryName)
+  
 
   return (
     <>
@@ -82,10 +60,10 @@ const CardsProducts = () => {
         alignItems: 'center'
       }}>
 
-        <Typography variant="h4">{nameView && nameView.name}</Typography>
+        <Typography variant="h4">{categoryName && camelCaseToWords(categoryName)}</Typography>
       </Box>
       {data.map((product) => (
-        <CardProduct key={product._id} product={product}/>
+        <CardProduct key={product._id} product={product} />
       ))}
     </>
   );
