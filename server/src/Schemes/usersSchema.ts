@@ -1,9 +1,12 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, { Schema, Document, Model, Types } from 'mongoose';
+import type { IorderItem } from './databaseInitialization' 
+
 
 export interface User {
   name: string;
   email: string;
   password: string;
+  cart: IorderItem[] | []
 }
 
 
@@ -25,6 +28,11 @@ const userSchema = new Schema<User>(
       min: 7,
       max: 20
     },
+    cart: [{
+      productId: {type: Schema.Types.ObjectId, default: null, ref: 'Product', required: true},
+      quantity: {type: Number, default:0, required: true},
+      price: {type: Number, default:0, required: true}
+    }]
   },
   {
     timestamps: true,

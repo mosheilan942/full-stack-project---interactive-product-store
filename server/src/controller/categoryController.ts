@@ -4,7 +4,8 @@ import {
     getProductsByCategory,
     getAllCategory,
     getByCategoryAndPrice,
-    ProductById
+    ProductById,
+    fncSearch
 }
     from '../service/categoryService';
 
@@ -17,7 +18,6 @@ const getAllProductsFromCategoryControl = async (req: Request, res: Response) =>
         res.json(error)
     }
 };
-
 
 const getAllCategoryControl = async (req: Request, res: Response) => {
     try {
@@ -36,13 +36,11 @@ const getProductsByCategoryControl = async (req: Request, res: Response) => {
         res.json(error)
     }
 };
-
 // filter
 const getProducts = async (req: Request, res: Response) => {
     try {
         const { min, max, order } = req.query;
         const category = req.params.name;
-
         const products = await getByCategoryAndPrice(
             order, min, max, category
         );
@@ -52,8 +50,7 @@ const getProducts = async (req: Request, res: Response) => {
         res.status(500).send('Error getting products');
     }
 }
-
-
+// id product
 const getProductById = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
@@ -66,7 +63,19 @@ const getProductById = async (req: Request, res: Response) => {
         res.status(404).send('product is not found')
     }
 }
-
+// search
+const searchProducts = async (req: Request, res: Response) => {
+    try {
+      const { search, order } = req.query;
+      const categoryName = req.params.name;
+      console.log(search);
+      const products = await fncSearch(search, order, categoryName);
+      res.json(products);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error searching products');
+    }
+  }
 
 export {
     getAllProductsFromCategoryControl,
@@ -74,4 +83,5 @@ export {
     getAllCategoryControl,
     getProducts,
     getProductById,
+    searchProducts,
 } 
