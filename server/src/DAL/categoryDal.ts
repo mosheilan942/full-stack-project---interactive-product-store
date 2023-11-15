@@ -1,6 +1,5 @@
 import { Product, category } from "../Schemes/databaseInitialization";
 
-
 const allProductsFromCategoryData = async () => {
     const data = await category.find({})
         .populate({
@@ -32,7 +31,7 @@ const ProductsByCategoryData = async (name: string) => {
 
 const findPrice = async (min: any, max: any, order: string, nameCategory: any) => {
     const data = await category.find({ name: nameCategory });
-    console.log("1",data);
+    // console.log("1",data);
     
     if (!data || data.length === 0) {
         throw new Error('Category not found');
@@ -43,7 +42,7 @@ const findPrice = async (min: any, max: any, order: string, nameCategory: any) =
         price: { $gte: min, $lte: max }
     })
         .sort({ price: sortOrder });
-    console.log("2",products);
+    // console.log("2",products);
     
     return products;
 }
@@ -58,11 +57,30 @@ const getProductMongoById = async (id: number, nameCategory: any) => {
     return product;
 }
 
+ 
+const searchProducts = async (searchTerm:string, order:any,categoryName:string) => {
+    const data = await category.find({ name: categoryName });
+      const sortOrder = order === 'asc' ? 1 : -1;
+    console.log(searchTerm);
+    
+      const products = await Product
+        .find({
+            categoryType: categoryName,
+            
+            name: {$regex: new RegExp(searchTerm, 'i')}}) 
+            .sort({name: sortOrder});
+            console.log(categoryName);
+  
+      return products;
+    }
+  
+
 
 export {
     allProductsFromCategoryData,
     ProductsByCategoryData,
     allCategoriesData,
     findPrice,
-    getProductMongoById
+    getProductMongoById,
+    searchProducts
 } 

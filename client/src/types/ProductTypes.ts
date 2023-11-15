@@ -4,7 +4,7 @@ export type CellPhoneType = {
     manufacturer: string;
     model: string;
     price: number;
-    Categorie: string;
+    rating: number;
     color: string;
     quantity: number;
     description: string;
@@ -16,11 +16,12 @@ export type CellPhoneType = {
         width: number;
         weight: number;
         screenSize: number;
-    };
+    }
     categoryType: string;
     date: string;
     __v: number;
 }
+
 
 export type RefrigeratorType = {
     _id: string;
@@ -28,7 +29,7 @@ export type RefrigeratorType = {
     manufacturer: string;
     model: string;
     price: number;
-    Categorie: string;
+    rating: number;
     color: string;
     quantity: number;
     description: string;
@@ -40,7 +41,7 @@ export type RefrigeratorType = {
         depth: number;
         weight: number;
         freezerLocation: string;
-    };
+    }
     categoryType: string;
     date: string;
     __v: number;
@@ -52,23 +53,25 @@ export type WashingMachineType = {
     manufacturer: string;
     model: string;
     price: number;
-    Categorie: string;
+    rating: number;
     color: string;
     quantity: number;
     description: string;
     image: string;
     addresses: string[];
     categoryDetails: {
-        height: number;
+       height: number;
         width: number;
         depth: number;
         weight: number;
         energyRating: string;
-    };
+    }
     categoryType: string;
     date: string;
     __v: number;
+
 }
 
 export type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
+
 

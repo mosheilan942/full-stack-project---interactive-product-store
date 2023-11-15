@@ -21,8 +21,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "tsc && node dist/app.js",
-    "dev": "nodemon --watch src/**/*.ts --exec ts-node src/app.ts"
+    "dev": "tsc && node dist/Schemes/databaseInitialization.js",
+    "start": "tsc && node dist/app.js"
   },
   "keywords": [],
   "author": "",

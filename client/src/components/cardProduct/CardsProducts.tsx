@@ -10,18 +10,39 @@ import NavBar from '../NavBar';
 
 type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
+type GetProds = {
+    _id: string;
+    name: string;
+    rating: number;
+    product: ProductType[];
+    image: string;
+    __v: number;
+  }
+
+
+
 const CardsProducts = () => {
   const { categoryName } = useParams();
 
   const [data, setData] = useState<ProductType[]>([]);
 
-
+  
 
   useEffect(() => {
     const insertData = async () => {
-      const getData = await getProductByCategory(categoryName!)
-      setData(getData);
-    }
+      if (categoryName) {
+        const getData: GetProds = await getProductByCategory(categoryName);
+        const products = getData && getData.product;
+
+        if (Array.isArray(products)) {
+          setData(products);
+        } else {
+          console.log(products);
+
+          console.error("Data received is not an array:", products);
+        }
+      }
+    };
 
     insertData()
   }, []);
@@ -30,7 +51,7 @@ const CardsProducts = () => {
   type AllData = {
     categoryName: string;
     name: string;
-}
+  }
 
 
   const allData: AllData[] = [
@@ -64,7 +85,7 @@ const CardsProducts = () => {
         <Typography variant="h4">{nameView && nameView.name}</Typography>
       </Box>
       {data.map((product) => (
-        <CardProduct key={product._id} product={product} />
+        <CardProduct key={product._id} product={product}/>
       ))}
     </>
   );

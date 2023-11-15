@@ -1,4 +1,5 @@
 import { Schema, model, connect, SchemaDefinitionProperty, Types } from 'mongoose';
+import { insertuser } from './usersSchema';
 import cellPhonesArray from '../data/cellPhoneData';
 import refrigeratorsArray from '../data/refrigeratorData';
 import washingMachinesArray from '../data/WashingMachineData';
@@ -38,10 +39,37 @@ interface Icategories {
     product: Types.ObjectId
 }
 
+export interface IorderItem {
+    productId: Types.ObjectId
+    quantity: number
+    price: number
+};
+
+interface Iorder {
+    userId: Types.ObjectId
+    date: SchemaDefinitionProperty<number, Iproducts> | undefined
+    totalPrice: number
+    items: Types.ObjectId
+};
+
+const orderItemSchema = new Schema<IorderItem>({
+    productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number, required: true }
+});
+
+const orderSchema = new Schema<Iorder>({
+    userId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    date: { type: Date, required: true },
+    totalPrice: { type: Number, required: true },
+    items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }]
+})
+
+
 const categoriesSchema = new Schema<Icategories>({
     name: { type: String, required: true },
     rating: { type: Number, default: 0, required: true },
-    product: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    product: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }],
     image: { type: String, default: "https://tinyurl.com/22brmde9", required: true }
 })
 
@@ -58,7 +86,7 @@ const productsSchema = new Schema<Iproducts>({
     description: { type: String, required: true },
     image: { type: String, required: false },
     addresses: { type: [String], required: true },
-    categoryDetails: {
+    dimensions: {
         type: Schema.Types.Mixed,
         default: {},
     },
@@ -82,6 +110,10 @@ export const Product = model<Iproducts>('Product', productsSchema);
 
 export const category = model<Icategories>('Category', categoriesSchema);
 
+export const order = model<Iorder>('Order', orderSchema);
+
+// export const orderItem = model<IorderItem>('Category', orderItemSchema);
+
 const cellPhoneDetailsSchema = new Schema({
     dimensions: {
         height: { type: Number, required: true },
@@ -89,7 +121,7 @@ const cellPhoneDetailsSchema = new Schema({
         width: { type: Number, required: true },
         weight: { type: Number, required: true },
     },
-    screenSize: { type: Number, required: false },
+    // screenSize: { type: Number, required: false },
 });
 
 const refrigeratorsDetailsSchema = new Schema({
@@ -113,13 +145,9 @@ export async function DatabaseInitializationForProducts() {
             const nameOfcategorie = await category.find({ name: oneProduct.categoryType }, `${oneProduct.categoryType}._id`).exec()
             const product = new Product({
                 ...oneProduct,
-                category: nameOfcategorie,
-                // categoryType: 'cellPhone',
-                // categoryDetails: {
-                //     ...oneProduct.dimensions,
-                //     screenSize: phone.screenSize,
-                // },
-
+                category: nameOfcategorie, 
+                dimensions: oneProduct.dimensions,
+                    // screenSize: phone.screenSize,
             });
             await product.save();
         })
@@ -136,10 +164,7 @@ export async function DatabaseInitializationForCategories() {
             name: newCategorie,
             product: nameOfproduct
         })
-
-
-        // await setCategorie.save();
-
+        await setCategorie.save();
     })
 }
 
