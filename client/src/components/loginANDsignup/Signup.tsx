@@ -1,22 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Typography, Avatar, Button, Checkbox, Grid, Paper, TextField, Link } from '@mui/material';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Avatar,  Grid, Paper, } from '@mui/material';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useEffect } from 'react';
-import LoginForm from './LoginForm';
-import Signup from './Signup';
 
+import SignupForm from './SignupForm';
 
 type Props = {
     handelSignup : Dispatch<SetStateAction<string>>
     close: () => void
-}
+};
 
-const Login = (props: Props) => {
-
-
-
-
+const Signup = (props: Props) => {
 
     const paperStyle = { padding: 20, margin: '0 auto ' };
     const avatarStyle = { backgroundColor: 'green' };
@@ -32,24 +25,14 @@ const Login = (props: Props) => {
                         </Avatar>
                     </Grid>
                     <Grid item>
-                        <h2>login</h2>
+                        <h2>Signup</h2>
                     </Grid>
                 </Grid>
-                <LoginForm handelSignup={props.handelSignup} close={props.close} />
-                <Typography>
-                    <Link href='#'>
-                        Forgot password?
-                    </Link>
-                </Typography>
-                <Typography>
-                    <Button onClick={() => props.handelSignup('signup')} >
-                        sign Up
-                    </Button>
-                </Typography>
-
+                <SignupForm handelSignup={props.handelSignup} close={props.close} />
+                
             </Paper>
         </Grid>
     );
 };
 
-export default Login;
+export default Signup;

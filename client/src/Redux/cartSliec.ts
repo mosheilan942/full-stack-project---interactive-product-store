@@ -20,13 +20,10 @@ export const cartIndexSlice = createSlice({
   initialState,
   reducers: {
     insertCart: (state, action: PayloadAction<any>) => {
-      const cart =async () => {
-        const data = await getAllProduct()
-        state.cart = data
-        console.log(data);
-        cart()
-      }
+        state.cart = action.payload
+        console.log(state.cart);
       
+    
     },
     setCart: (state, action: PayloadAction<number>) => {
       state.cartIndex = action.payload
