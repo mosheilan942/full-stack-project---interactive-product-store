@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import CardProduct from '../cardProduct/CardProduct'
 import { ProductType } from '../../types/ProductTypes'
 import { useSelector, useDispatch } from 'react-redux'
-import { insertCart } from '../../Redux/cartSliec'
+import { addProductToCart } from '../../Redux/cartSliec'
 import { RootState } from '../../Redux/store'
-import { getAllProduct, getProductByCategory } from '../../api/cartFuncApi'
+import { getAllProduct, getProductByCategory } from '../../api/productFuncApi'
 
 type Props = {}
 
@@ -17,7 +17,9 @@ const cartProduct = (props: Props) => {
     useEffect(()=>{
         const insertData = async () => {
         const data = await getProductByCategory('cellPhone')
-        dispatch(insertCart(data.product))
+        console.log(data);
+        
+        dispatch(addProductToCart(data.product))
         setData(data.product)
         }
         insertData()
@@ -31,7 +33,7 @@ const cartProduct = (props: Props) => {
         <Box>
             cartProduct
             {data && data.map((product) => (
-                <CardProduct key={product._id} product={product} />
+                 <CardProduct key={product._id} product={product} />              
             ))}
         </Box>
     )
