@@ -4,8 +4,12 @@ import {
     allCategoriesData,
     findPrice,
     getProductMongoById,
-    searchProducts
+    searchProducts,
+    getTop5categoryOrProductData
 } from '../DAL/categoryDal';
+
+import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
+import { Model } from "mongoose";
 
 
 const getAllProductsFromCategory = async () => {
@@ -42,6 +46,13 @@ const fncSearch = async (searchTerm:any, order:any, categoryName:any) => {
     return products;
 }
 
+// getTop5categoryOrProduct
+const getTop5categoryOrProduct = async () => {
+    const data = await getTop5categoryOrProductData();
+    if (data) return data;
+    throw new Error("404")
+};
+
 
 export {
     getAllProductsFromCategory,
@@ -50,6 +61,7 @@ export {
     getByCategoryAndPrice,
     ProductById,
     fncSearch,
+    getTop5categoryOrProduct
 }
 
 

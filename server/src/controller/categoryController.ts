@@ -5,7 +5,8 @@ import {
     getAllCategory,
     getByCategoryAndPrice,
     ProductById,
-    fncSearch
+    fncSearch,
+    getTop5categoryOrProduct
 }
     from '../service/categoryService';
 
@@ -36,6 +37,18 @@ const getProductsByCategoryControl = async (req: Request, res: Response) => {
         res.json(error)
     }
 };
+
+// getTop5categoryOrProduct
+const getTop5categoryOrProductControl = async (req: Request, res: Response) => {
+    try {
+        const data = await getTop5categoryOrProduct();
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+
 // filter
 const getProducts = async (req: Request, res: Response) => {
     try {
@@ -84,4 +97,5 @@ export {
     getProducts,
     getProductById,
     searchProducts,
+    getTop5categoryOrProductControl
 } 

@@ -9,7 +9,7 @@ import televisionsArray from '../data/televisionsData';
 import VacuumCleanersArray from '../data/VacuumCleanersData';
 
 
-interface Iproducts {
+export interface Iproducts {
     name: string
     manufacturer: string
     model: string
@@ -32,7 +32,7 @@ interface Iproducts {
     categoryType: string
 }
 
-interface Icategories {
+export interface Icategories {
     name: string
     rating: number
     image: string
@@ -40,12 +40,13 @@ interface Icategories {
 }
 
 export interface IorderItem {
+    _id: Types.ObjectId
     productId: Types.ObjectId
     quantity: number
     price: number
 };
 
-interface Iorder {
+export interface Iorder {
     userId: Types.ObjectId
     date: SchemaDefinitionProperty<number, Iproducts> | undefined
     totalPrice: number

@@ -29,7 +29,7 @@ const userSchema = new Schema<User>(
       max: 20
     },
     cart: [{
-      productId: {type: Schema.Types.ObjectId, default: null, ref: 'Product', required: true},
+      productId: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
       quantity: {type: Number, default:0, required: true},
       price: {type: Number, default:0, required: true}
     }]
@@ -46,7 +46,7 @@ export const insertuser = async () => {
   const user = {
     name: 'moshe he poch',
     email: 'hyhnhy@gmail.com',
-    password: 'sthnring;'
+    password: 'sthnring;',
   }
   try {
     const newuser = new UserModel(user)
