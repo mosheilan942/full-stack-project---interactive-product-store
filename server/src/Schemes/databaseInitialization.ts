@@ -138,8 +138,7 @@ export async function DatabaseInitializationForCategories() {
         })
 
         await setCategorie.save();
-        
-
+       
     })
 }
 
