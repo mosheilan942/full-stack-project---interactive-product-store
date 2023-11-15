@@ -29,7 +29,13 @@ const connectANDlisten = async ()=> {
     try {
         await connectDB()
         console.log('Connecting to mongodb');
+        // למחוק את הבייס שקיים אצלך במחשב
+        // באתחול להדליק את שתי השורות הבאות
         // await insertuser()
+        // await DatabaseInitializationForProducts()
+        // לאחר מכן, לכבות את השרת ואת השורות הקודמות, להפעיל את השורה הבאה ואז את השרת
+        // await DatabaseInitializationForCategories()
+        // אח"כ לכבות גם את השורה הזו
         // await DatabaseInitializationForProducts().catch(err => console.log(err));
         // await DatabaseInitializationForCategories().catch(err => console.log(err));
         app.listen(PORT, () => {
