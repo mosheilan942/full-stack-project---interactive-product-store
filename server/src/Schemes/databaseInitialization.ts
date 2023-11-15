@@ -137,50 +137,7 @@ export async function DatabaseInitializationForCategories() {
             product: nameOfproduct
         })
         // await setCategorie.save();
+        
     })
 }
-
-
-//     cellPhonesArray.forEach(async (phone) => {
-//         const nameOfcategorie = await category.find({name: "cellPhone"}, "cellPhone._id").exec()
-//         const product = new Product({
-//             ...phone,
-//             category: nameOfcategorie[0],
-//             categoryType: 'cellPhone',
-//             categoryDetails: {
-//                 ...phone.dimensions,
-//                 screenSize: phone.screenSize,
-//             },
-
-//         });
-//         await product.save();
-//     })
-
-
-//     refrigeratorsArray.forEach(async (refrigerator) => {
-//         const nameOfcategorie = await category.find({name: "refrigerator"}, "cellPhone._id")
-//         const product = new Product({
-//             ...refrigerator,
-//             category: nameOfcategorie[0],
-//             categoryType: 'refrigerator',
-//             categoryDetails: {
-//                 ...refrigerator.dimensions,
-//                 freezerLocation: refrigerator.freezerLocation
-//             }
-//         });
-//         await product.save();
-//     })
-//     washingMachinesArray.forEach(async (washingMachine) => {
-//         const nameOfcategorie = await category.find({name: "washingMachine"}, "cellPhone._id").exec()
-//         const product = new Product({
-//             ...washingMachine,
-//             category: nameOfcategorie[0],
-//             categoryType: 'washingMachine',
-//             categoryDetails: {
-//                 ...washingMachine.dimensions,
-//                 energyRating: washingMachine.energyRating
-//             }
-//         });
-//         await product.save();
-//     })
 

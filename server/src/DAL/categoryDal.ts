@@ -30,30 +30,39 @@ const ProductsByCategoryData = async (name: string) => {
     throw new Error("404")
 };
 
-const findPrice = async (min: any, max: any, order: string, category: any) => {
-    const data = await category.find({ name: category });
+const findPrice = async (min: any, max: any, order: string, nameCategory: any) => {
+    const data = await category.find({ name: nameCategory });
+    console.log("1",data);
+    
+    if (!data || data.length === 0) {
+        throw new Error('Category not found');
+    }
+    const sortOrder = order === 'asc' ? 1 : -1;
+    const products = await Product.find({
+        categoryType: nameCategory,
+        price: { $gte: min, $lte: max }
+    })
+        .sort({ price: sortOrder });
+    console.log("2",products);
+    
+    return products;
+}
+
+const getProductMongoById = async (id: number, nameCategory: any) => {
+    const data = await category.find({ name: nameCategory });
 
     if (!data || data.length === 0) {
         throw new Error('Category not found');
     }
-
-    const sortOrder = order === 'asc' ? 1 : -1;
-
-    const products = await Product.find({
-        categoryType: category,
-        price: { $gte: min, $lte: max }
-    })
-        .sort({ price: sortOrder });
-
-    return products;
+    const product = await Product.findOne({ _id: id });
+    return product;
 }
 
 
-
-
-// export const categoryDal = {
-//     findPrice
-// }
-
-
-export { allProductsFromCategoryData, ProductsByCategoryData, allCategoriesData, findPrice } 
+export {
+    allProductsFromCategoryData,
+    ProductsByCategoryData,
+    allCategoriesData,
+    findPrice,
+    getProductMongoById
+} 
