@@ -68,12 +68,12 @@ const searchProducts = async (req: Request, res: Response) => {
     try {
       const { search, order } = req.query;
       const categoryName = req.params.name;
-      console.log(search);
+    //   console.log(search);
       const products = await fncSearch(search, order, categoryName);
       res.json(products);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Error searching products');
+      res.status(500).send(`${err}`);
     }
   }
 
