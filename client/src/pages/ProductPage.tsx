@@ -2,9 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductByID } from '../api/productFuncApi';
-import { CellPhoneType, RefrigeratorType, WashingMachineType } from '../types/ProductTypes';
-
-type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
+import { ProductType } from '../types/ProductTypes';
 
 
 

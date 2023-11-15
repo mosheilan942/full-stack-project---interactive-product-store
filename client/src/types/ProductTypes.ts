@@ -1,4 +1,4 @@
-export type  Product = {
+export type  ProductType = {
     _id: string;
     name: string;
     manufacturer: string;
@@ -15,7 +15,6 @@ export type  Product = {
         length: number;
         width: number;
         weight: number;
-        screenSize: number;
     }
     categoryType: string;
     date: string;
@@ -23,80 +22,14 @@ export type  Product = {
 }
 
 
-export type CellPhoneType = {
+export type CategoryType = {
     _id: string;
     name: string;
-    manufacturer: string;
-    model: string;
-    price: number;
     rating: number;
-    color: string;
-    quantity: number;
-    description: string;
+    product: ProductType[];
     image: string;
-    addresses: string[];
-    dimensions: {
-        height: number;
-        length: number;
-        width: number;
-        weight: number;
-        screenSize: number;
-    }
-    categoryType: string;
-    date: string;
     __v: number;
-}
+  }
 
-
-export type RefrigeratorType = {
-    _id: string;
-    name: string;
-    manufacturer: string;
-    model: string;
-    price: number;
-    rating: number;
-    color: string;
-    quantity: number;
-    description: string;
-    image: string;
-    addresses: string[];
-    dimensions: {
-        height: number;
-        width: number;
-        depth: number;
-        weight: number;
-        freezerLocation: string;
-    }
-    categoryType: string;
-    date: string;
-    __v: number;
-}
-
-export type WashingMachineType = {
-    _id: string;
-    name: string;
-    manufacturer: string;
-    model: string;
-    price: number;
-    rating: number;
-    color: string;
-    quantity: number;
-    description: string;
-    image: string;
-    addresses: string[];
-    dimensions: {
-       height: number;
-        width: number;
-        depth: number;
-        weight: number;
-        energyRating: string;
-    }
-    categoryType: string;
-    date: string;
-    __v: number;
-
-}
-
-export type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
 
 
