@@ -1,24 +1,62 @@
-import { getHomepage, getCategories } from '../service/categoryService';
-import {Request, Response} from 'express';
+
+import { getAllProductsFromCategory, getProductsByCategory, getAllCategory, getByCategoryAndPrice } from '../service/categoryService';
+import { Request, Response } from 'express';
 
 
-const getHomePageControl = async (req:Request, res:Response) => {
+const getAllProductsFromCategoryControl = async (req: Request, res: Response) => {
     try {
-        const homePage = await getHomepage();
-        // console.log(homePage);
-        res.json(homePage);
+        const allProductsFromCategory = await getAllProductsFromCategory();
+        res.json(allProductsFromCategory);
     } catch (error) {
         res.json(error)
     }
 };
 
-const getCategoriesControl = async (req:Request, res:Response) => {
+
+const getAllCategoryControl = async (req: Request, res: Response) => {
     try {
-        const ProductsByCategory = await getCategories(req.params.name);
+        const allCategory = await getAllCategory();
+        res.json(allCategory);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+const getProductsByCategoryControl = async (req: Request, res: Response) => {
+    try {
+        const ProductsByCategory = await getProductsByCategory(req.params.name);
         res.json(ProductsByCategory);
     } catch (error) {
         res.json(error)
     }
-    };
+};
 
-export { getHomePageControl, getCategoriesControl } 
+// filter
+const getProducts = async (req: Request, res: Response) => {
+    try {
+        const { min, max, order } = req.query;
+        const category = req.params.name;
+
+        const products = await getByCategoryAndPrice(
+            order, min, max, category
+        );
+
+        res.json(products);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error getting products');
+    }
+}
+
+
+
+
+// export const categoryController = {
+//     getHomePageControl,
+//     getCategoriesControl,
+//     getProducts,
+// }
+
+
+export { getAllProductsFromCategoryControl, getProductsByCategoryControl, getAllCategoryControl, getProducts} 

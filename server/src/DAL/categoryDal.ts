@@ -1,28 +1,59 @@
-import { Product, categorie } from "../Schemes/newone";
+import { Product, category } from "../Schemes/databaseInitialization";
 
 
-const getHomePageData = async () => {
-    const data = await Product.find({})
+const allProductsFromCategoryData = async () => {
+    const data = await category.find({})
+        .populate({
+            path: 'product'
+        }).exec()
+    if (data) return data
+    throw new Error("404")
+};
+
+const allCategoriesData = async () => {
+    const data = await category.find({})
+    console.log(data);
     return data
 };
 
-const getCategoriesData = async (name: string) => {
-    console.log(name);
-    const data = await categorie.findOneAndUpdate(
+const ProductsByCategoryData = async (name: string) => {
+    const data = await category.findOneAndUpdate(
         { name: name },
         { $inc: { rating: 1 } }
-    );
-    console.log(data);
+    )
+        .populate({
+            path: 'product'
+        }).exec();
     if (data) {
-        const products = await Product.find({ categoryType: `${name}` })
-        console.log(products);
-        return products
+        return data
     }
     throw new Error("404")
 };
 
+const findPrice = async (min: any, max: any, order: string, category: any) => {
+    const data = await category.find({ name: category });
+
+    if (!data || data.length === 0) {
+        throw new Error('Category not found');
+    }
+
+    const sortOrder = order === 'asc' ? 1 : -1;
+
+    const products = await Product.find({
+        categoryType: category,
+        price: { $gte: min, $lte: max }
+    })
+        .sort({ price: sortOrder });
+
+    return products;
+}
 
 
 
 
-export { getHomePageData, getCategoriesData } 
+// export const categoryDal = {
+//     findPrice
+// }
+
+
+export { allProductsFromCategoryData, ProductsByCategoryData, allCategoriesData, findPrice } 
