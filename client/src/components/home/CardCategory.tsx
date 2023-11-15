@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 type Category = {
   categoryName: string;
-  name: string; 
+  name: string;
   image: string;
 }
 
