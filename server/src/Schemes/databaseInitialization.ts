@@ -121,7 +121,7 @@ export async function DatabaseInitializationForProducts() {
                 // },
 
             });
-            // await product.save();
+            await product.save();
         })
 
     });
@@ -136,7 +136,7 @@ export async function DatabaseInitializationForCategories() {
             name: newCategorie,
             product: nameOfproduct
         })
-        // await setCategorie.save();
+        await setCategorie.save();
     })
 }
 

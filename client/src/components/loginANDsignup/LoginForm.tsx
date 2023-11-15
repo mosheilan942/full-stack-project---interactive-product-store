@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { loginUser } from '../../api/usersFuncApi';
-import { addUserInLS } from '../../utils/LSofUser';
+import { loginUser as login} from '../../api/usersFuncApi';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
 
 const schema = yup.object({
   firstName: yup.string().max(12).required(),
@@ -24,6 +26,7 @@ const schema = yup.object({
 type Props = {}
 
 const LoginForm = (props: Props) => {
+  const dispatch = useDispatch()
   const textFieldStyle = { padding: '2px', margin: '4px auto ' }
   const [loding, setLoding] = useState(false)
 
@@ -43,13 +46,14 @@ const LoginForm = (props: Props) => {
       password : password
     });
     setLoding(true)
-    const req =  await loginUser(user) 
+    const req =  await login(user) 
+    dispatch(loginUser(req.user))
     setLoding(false)
 
     console.log(req);
     
 
-    addUserInLS({name, email,})
+  
      
  }
 

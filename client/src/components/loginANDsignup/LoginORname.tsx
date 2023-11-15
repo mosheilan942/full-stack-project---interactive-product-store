@@ -1,25 +1,26 @@
 import { Box, Button, Link } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getUserNameInLS } from '../../utils/LSofUser';
+
 import { Navigate } from 'react-router-dom';
 import ROUTES from '../../router/routesModel';
+import UserName from './UserName';
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../Redux/store';
+import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
 
 type Props = {}
 
 
 const LoginORname = (props: Props) => {
-  const [userName, setUserName] = useState('');
-  useEffect(() => {
-    const name = getUserNameInLS()
-    if (name){
-      setUserName(name)
-    }
-  }, [])
+  const dispatch = useDispatch()
+  dispatch(ifUserLoged())
+  // dispatch(logoutUser())
+  const user = useSelector((state: RootState) => state.user.name)
   
   return (
     <Box>
-     {userName? 
-     userName: 
+     {user? 
+     <UserName/>: 
      <Button>
      <Link href={ROUTES.LOGIN} variant="body2">
         LOGIN
