@@ -5,6 +5,7 @@ import {
     findPrice,
     getProductMongoById,
     searchProducts,
+    filterProductsAlphabeticallyDal
     getTop5categoryOrProductData
 } from '../DAL/categoryDal';
 
@@ -46,13 +47,17 @@ const fncSearch = async (searchTerm:any, order:any, categoryName:any) => {
     return products;
 }
 
+const filterProductsAlphabetically = async (order:any, category:any) => {
+    const products = await filterProductsAlphabeticallyDal(order, category);
+    return products;
+  }
+  
 // getTop5categoryOrProduct
 const getTop5categoryOrProduct = async () => {
     const data = await getTop5categoryOrProductData();
     if (data) return data;
     throw new Error("404")
 };
-
 
 export {
     getAllProductsFromCategory,
@@ -61,6 +66,7 @@ export {
     getByCategoryAndPrice,
     ProductById,
     fncSearch,
+    filterProductsAlphabetically
     getTop5categoryOrProduct
 }
 

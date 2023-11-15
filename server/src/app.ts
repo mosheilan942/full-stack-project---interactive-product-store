@@ -11,6 +11,8 @@ import { insertuser } from './Schemes/usersSchema';
 import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
 import { addProductToCartData } from './DAL/cart'
 
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const app = express();

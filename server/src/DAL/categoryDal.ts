@@ -85,23 +85,38 @@ const searchProducts = async (searchTerm: string, order: any, categoryName: stri
 }
 
 //  search
-const searchProducts = async (searchTerm:string, order:any,categoryName:string) => {
+const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
     const data = await category.find({ name: categoryName });
     if (!data || data.length === 0) {
-        throw new Error('Category not found')};
-      const sortOrder = order === 'asc' ? 1 : -1;
+        throw new Error('Category not found')
+    };
+    const sortOrder = order === 'asc' ? 1 : -1;
     // console.log(searchTerm);
     const regex = new RegExp(`.*${searchTerm}.*`, 'i');
-      const products = await Product
+    const products = await Product
         .find({
             categoryType: categoryName,
-            name: {$regex: regex} }) 
-            .sort({name: sortOrder});
-            // console.log(categoryName);
-  
-      return products;
-    }
-  
+            name: { $regex: regex }
+        })
+        .sort({ name: sortOrder });
+    // console.log(categoryName);
+
+    return products;
+}
+
+const filterProductsAlphabeticallyDal = async (order: any, nameCategory: any) => {
+    const data = await category.find({ name: nameCategory });
+    if (!data || data.length === 0) {
+        throw new Error('Category not found')
+    };
+    const sortOrder = order === 'asc' ? 1 : -1;
+
+    const products = await Product.find({
+        categoryType: nameCategory,
+    })
+        .sort({ name: sortOrder });
+    return products;
+}
 
 export {
     allProductsFromCategoryData,
@@ -110,5 +125,6 @@ export {
     findPrice,
     getProductMongoById,
     searchProducts,
+    filterProductsAlphabeticallyDal
     getTop5categoryOrProductData
 } 
