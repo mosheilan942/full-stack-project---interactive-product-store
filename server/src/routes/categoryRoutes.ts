@@ -5,7 +5,8 @@ import {
     getAllCategoryControl,
     getProducts,
     getProductById,
-    searchProducts
+    searchProducts,
+    getTop5categoryOrProductControl
 }
     from '../controller/categoryController';
 
@@ -13,6 +14,8 @@ const routerCategory = express.Router();
 
 
 routerCategory.get('/', getAllProductsFromCategoryControl);
+
+routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
 routerCategory.get('/categories', getAllCategoryControl);
 
