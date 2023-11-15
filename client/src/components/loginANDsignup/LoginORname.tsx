@@ -15,7 +15,12 @@ const LoginORname = (props: Props) => {
   const dispatch = useDispatch()
   dispatch(ifUserLoged())
   // dispatch(logoutUser())
-  const user = useSelector((state: RootState) => state.user.name)
+  const usermame = useSelector((state: RootState) => state.user.name)
+  const [user, setUser] = useState<string>('');
+  useEffect(()=>{
+    dispatch(ifUserLoged())
+    setUser(usermame)
+  },[usermame])
   
   return (
     <Box>

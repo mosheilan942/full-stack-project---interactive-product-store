@@ -1,30 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { getAllProduct } from '../api/cartFuncApi'; 
+import { ProductType } from '../types/ProductTypes';
 
 
  
 export interface CartIndex {
-  cart: number;
+  cartIndex: number;
+  cart: ProductType[] | null
 }
 
 const initialState: CartIndex = {
-  cart: 0,
+  cartIndex: 5,
+  cart: null
 }
 
 export const cartIndexSlice = createSlice({
   name: 'cartIndex',
   initialState,
   reducers: {
+    insertCart: (state, action: PayloadAction<any>) => {
+      const cart =async () => {
+        const data = await getAllProduct()
+        state.cart = data
+        console.log(data);
+        cart()
+      }
+      
+    },
     setCart: (state, action: PayloadAction<number>) => {
-      state.cart = action.payload
+      state.cartIndex = action.payload
     },
     incrementToCart: (state,) => {
-      state.cart += 1 
+      state.cartIndex += 1 
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setCart, incrementToCart } = cartIndexSlice.actions
+export const { setCart, incrementToCart, insertCart } = cartIndexSlice.actions
 
 export default cartIndexSlice.reducer

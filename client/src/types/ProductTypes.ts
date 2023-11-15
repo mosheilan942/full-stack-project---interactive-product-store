@@ -70,3 +70,5 @@ export type WashingMachineType = {
     __v: number;
 }
 
+export type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
+
