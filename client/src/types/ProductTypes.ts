@@ -69,4 +69,9 @@ export type WashingMachineType = {
     categoryType: string;
     date: string;
     __v: number;
+
 }
+
+export type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
+
+
