@@ -21,7 +21,7 @@ function App() {
       'footer footer footer'",
     gridTemplateRows: '90px 1fr 70px',
     gridTemplateColumns: '15% 1fr 15%',
-    gridGap: '4px',
+    gridGap: '4px'
   };
   const styleHeaderBox = {
     my: 1, display: 'block',
@@ -48,7 +48,7 @@ function App() {
         <Box sx={{ ...styleHeaderBox, border: "2px solid black", gridArea: 'header' }}>
           <Header />
         </Box>
-        <Box sx={{ ...styleMainBox,background: '#c59e64', border: "2px solid black", gridArea: 'main' }}>
+        <Box sx={{ ...styleMainBox,background: '#e3c372', border: "2px solid black", gridArea: 'main' }}>
           <RouterProvider router={router} />
         </Box>
         <Box sx={{ ...styleFooterBox, border: "2px solid black", gridArea: 'footer' }}>
