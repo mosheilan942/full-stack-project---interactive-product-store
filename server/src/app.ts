@@ -9,6 +9,7 @@ import { routerCategory } from './routes/categoryRoutes';
 import { connectDB } from './Schemes/conectMongoose';
 import { insertuser } from './Schemes/usersSchema';
 import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
+import { addProductToCartData } from './DAL/cart'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -33,7 +34,12 @@ const connectANDlisten = async ()=> {
         console.log('Connecting to mongodb');
         // למחוק את הבייס שקיים אצלך במחשב
         // באתחול להדליק את שתי השורות הבאות
-        // await insertuser()
+            // await insertuser()
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7be8", ".")
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bec", ".")
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")
+        await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bfc", ".")
         // await DatabaseInitializationForProducts()
         // לאחר מכן, לכבות את השרת ואת השורות הקודמות, להפעיל את השורה הבאה ואז את השרת
         // await DatabaseInitializationForCategories()

@@ -1,4 +1,5 @@
-import { Product, category } from "../Schemes/databaseInitialization";
+import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
+import { Model } from "mongoose";
 
 const allProductsFromCategoryData = async () => {
     const data = await category.find({})
@@ -29,6 +30,13 @@ const ProductsByCategoryData = async (name: string) => {
     throw new Error("404")
 };
 
+const getTop5categoryOrProductData = async () => {
+    const dataCategories = await category.find({}).sort({ 'rating': -1 }).limit(5).exec();
+    const dataIProducts = await Product.find({}).sort({ 'rating': -1 }).limit(5).exec();
+    if (dataCategories && dataIProducts) return [dataCategories, dataIProducts];
+    throw new Error("404")
+};
+
 const findPrice = async (min: any, max: any, order: string, nameCategory: any) => {
     const data = await category.find({ name: nameCategory });
     // console.log("1",data);
@@ -53,8 +61,27 @@ const getProductMongoById = async (id: number, nameCategory: any) => {
     if (!data || data.length === 0) {
         throw new Error('Category not found');
     }
-    const product = await Product.findOne({ _id: id });
+    const product = await Product.findByIdAndUpdate({ _id: id }, { $inc: { rating: 1 } });
     return product;
+}
+
+
+
+const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
+    const data = await category.find({ name: categoryName });
+    const sortOrder = order === 'asc' ? 1 : -1;
+    console.log(searchTerm);
+
+    const products = await Product
+        .find({
+            categoryType: categoryName,
+
+            name: { $regex: new RegExp(searchTerm, 'i') }
+        })
+        .sort({ name: sortOrder });
+    console.log(categoryName);
+
+    return products;
 }
 
 //  search
@@ -99,4 +126,5 @@ export {
     getProductMongoById,
     searchProducts,
     filterProductsAlphabeticallyDal
+    getTop5categoryOrProductData
 } 
