@@ -13,7 +13,7 @@ const CardProduct = (props: Props) => {
     const navigate = useNavigate();
 
     const handleBoxClick = () => {
-        navigate(`/product/${product._id}`);
+        navigate(`/product/${product.categoryType}/${product._id}`);
     };
 
     return (

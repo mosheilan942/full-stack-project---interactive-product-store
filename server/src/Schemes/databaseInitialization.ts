@@ -165,7 +165,6 @@ export async function DatabaseInitializationForCategories() {
             product: nameOfproduct
         })
         await setCategorie.save();
-
     })
 }
 
