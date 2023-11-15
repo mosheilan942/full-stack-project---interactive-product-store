@@ -27,7 +27,13 @@ const CardsProducts = () => {
   }, []);
 
 
-  const allData = [
+  type AllData = {
+    categoryName: string;
+    name: string;
+}
+
+
+  const allData: AllData[] = [
     {
       categoryName: "cellPhone",
       name: "Cell Phone"
@@ -42,7 +48,7 @@ const CardsProducts = () => {
     }
   ]
 
-  const nameView = allData.find((category) => category.categoryName === categoryName)
+  const nameView: AllData | undefined = allData.find((category) => category.categoryName === categoryName)
 
   return (
     <>
@@ -55,7 +61,7 @@ const CardsProducts = () => {
         alignItems: 'center'
       }}>
 
-        <Typography variant="h4">{`Category: ${nameView?.name}`}</Typography>
+        <Typography variant="h4">{nameView && nameView.name}</Typography>
       </Box>
       {data.map((product) => (
         <CardProduct key={product._id} product={product} />
