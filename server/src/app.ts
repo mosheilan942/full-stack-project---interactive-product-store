@@ -30,8 +30,8 @@ const connectANDlisten = async ()=> {
         await connectDB()
         console.log('Connecting to mongodb');
         // await insertuser()
-        await DatabaseInitializationForProducts().catch(err => console.log(err));
-        await DatabaseInitializationForCategories().catch(err => console.log(err));
+        // await DatabaseInitializationForProducts().catch(err => console.log(err));
+        // await DatabaseInitializationForCategories().catch(err => console.log(err));
         app.listen(PORT, () => {
             console.log(`Server is up and running on port: ${PORT}`);
         });
