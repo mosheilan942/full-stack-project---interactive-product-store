@@ -14,7 +14,6 @@ const LoginORname = (props: Props) => {
     if (name){
       setUserName(name)
     }
-
   }, [])
   
   return (

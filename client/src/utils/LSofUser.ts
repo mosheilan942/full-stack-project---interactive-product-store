@@ -1,5 +1,6 @@
 
-const addUserInLS = (user: User) => {
+const addUserInLS = (user: any) => {
+    // localStorage.setItem('UserClientID', user._id);
     localStorage.setItem('UserClientName', user.name);
     localStorage.setItem('UserClientEmail', user.email);
 }

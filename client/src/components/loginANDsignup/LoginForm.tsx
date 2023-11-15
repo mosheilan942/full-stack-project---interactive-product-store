@@ -1,9 +1,10 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { loginUser } from '../../api/usersFuncApi';
+import { addUserInLS } from '../../utils/LSofUser';
 
 const schema = yup.object({
   firstName: yup.string().max(12).required(),
@@ -24,6 +25,7 @@ type Props = {}
 
 const LoginForm = (props: Props) => {
   const textFieldStyle = { padding: '2px', margin: '4px auto ' }
+  const [loding, setLoding] = useState(false)
 
   const { register, formState: { errors }, handleSubmit } = useForm<UserFormInput>({
     resolver: yupResolver(schema),
@@ -40,12 +42,21 @@ const LoginForm = (props: Props) => {
       email : email,
       password : password
     });
-    const req =  await loginUser(user)
+    setLoding(true)
+    const req =  await loginUser(user) 
+    setLoding(false)
+
     console.log(req);
     
+
+    addUserInLS({name, email,})
+     
  }
+
   return (
+    
     <form onSubmit={handleSubmit(onSubmit)}>
+      {loding? 'loding......' : <Grid>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
         <Grid sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -76,7 +87,7 @@ const LoginForm = (props: Props) => {
           aria-invalid={errors.password ? "true" : "false"} />
         <Typography color='red' variant='caption'>{errors.password?.message}</Typography>
       </Grid>
-
+      </Grid>}
       <Button
         type='submit'
         variant="contained"
