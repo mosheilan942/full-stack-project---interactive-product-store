@@ -1,13 +1,11 @@
 import { Box, IconButton, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import { CellPhoneType } from '../../types/ProductTypes';
-import { RefrigeratorType } from '../../types/ProductTypes';
-import { WashingMachineType } from '../../types/ProductTypes';
+import { ProductType } from '../../types/ProductTypes';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
 import AddToCartButtons from '../cart/AddToCartButtons';
 
 type Props = {
-    product: CellPhoneType | RefrigeratorType | WashingMachineType;
+    product: ProductType;
 }
 
 const CardProduct = (props: Props) => {
@@ -39,7 +37,7 @@ const CardProduct = (props: Props) => {
             <Typography sx={{ background: '#d55d31' }} variant="h6">Category: </Typography>
             <Typography sx={{ margin: "15px 0px" }} variant="body1">{camelCaseToWords(product.categoryType)}</Typography>
 
-           <AddToCartButtons/>
+           <AddToCartButtons  product={product}/>
         </Box>
     )
 }
