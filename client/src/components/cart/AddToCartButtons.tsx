@@ -13,7 +13,7 @@ type Props = {
 const AddToCartButtons = (props: Props) => {
     const product = props.product
     const dispatch = useDispatch()
-    const cart = useSelector((state: RootState) => state.cart.cart);
+    const cart = useSelector((state: RootState) => state.cart.cartLS);
     // const [cart, setCart] = useState<CartItem[] | CartLS[] | null>(null)
     const [quantity, setquantity] = useState(0)
     // const [triger, setTriger] = useState(0)

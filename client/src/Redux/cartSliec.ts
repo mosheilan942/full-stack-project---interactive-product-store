@@ -13,12 +13,14 @@ export interface CartLS {
 
 export interface Cart {
   cartIndex: number;
-  cart: CartItem[] | CartLS[] | null
+  cart: CartItem[] | null
+  cartLS: CartLS[] | null
 }
 
 const initialState: Cart = {
   cartIndex: 0,
-  cart: null
+  cartLS: null,
+  cart: null,
 }
 
 export const cartIndexSlice = createSlice({
@@ -31,9 +33,9 @@ export const cartIndexSlice = createSlice({
       
       if (userID) {
         const getCartFromServer = async () => {
-          const cart : CartItem[]= await getAllProductFromCart(userID)
+          const cart : CartItem[] = await getAllProductFromCart(userID)
           console.log(cart);
-          
+          state.cart = cart
         };
         getCartFromServer()
       } else {
@@ -44,7 +46,7 @@ export const cartIndexSlice = createSlice({
         cart.forEach(cartItem => {
           state.cartIndex += cartItem.quantity
         })
-        state.cart = cart
+        state.cartLS = cart
       } 
      
     },
@@ -67,15 +69,15 @@ export const cartIndexSlice = createSlice({
               quantity: 1
             })
           }
-          state.cart = cart
+          state.cartLS = cart
         } else {
-          state.cart = [{
+          state.cartLS = [{
             productId: action.payload,
             quantity: 1
           }]
         }
         state.cartIndex += 1
-        const cartToString = JSON.stringify(state.cart)
+        const cartToString = JSON.stringify(state.cartLS)
         localStorage.setItem('CartLS', cartToString)
       }
     },
@@ -98,8 +100,8 @@ export const cartIndexSlice = createSlice({
             }
 
           }
-          state.cart = cart;
-          const cartToString = JSON.stringify(state.cart)
+          state.cartLS = cart;
+          const cartToString = JSON.stringify(state.cartLS)
           localStorage.setItem('CartLS', cartToString)
         }
       }
