@@ -17,7 +17,7 @@ import { autoToken } from '../middleware/middleware';
 const routerCategory = express.Router();
 
 
-routerCategory.get('/',autoToken, getAllProductsFromCategoryControl);
+routerCategory.get('/', getAllProductsFromCategoryControl);
 
 
 routerCategory.get('/categories' ,getAllCategoryControl);
@@ -26,9 +26,11 @@ routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
 routerCategory.get('/categories', getAllCategoryControl);
 
+
 routerCategory.get('/Cart/Add/:userId/:productId', getCartForUserAddControl);
 
 routerCategory.get('/Cart/lower/:userId/:productId', getCartForUserlowerControl);
+
 
 routerCategory.get('/:name', getProductsByCategoryControl);
 

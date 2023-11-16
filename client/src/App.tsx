@@ -31,7 +31,9 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     marginTop: '0px',
-    background: '#ffffff'
+    background: '#ffffff',
+    width: '90vw'
+
   }
 
   const styleMainBox = {
@@ -43,6 +45,7 @@ function App() {
   }
 
   const styleFooterBox = {
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -58,6 +61,7 @@ function App() {
   return (
     <Container sx={styleContainer} fixed >
       <Provider store={store}>
+
         <Box sx={{ ...styleHeaderBox, background: '#684815', color: 'gold', gridArea: 'header'}}>
           <Header />
         </Box>
