@@ -23,7 +23,7 @@ const AddToCartButtons = (props: Props) => {
         // localStorage.removeItem('CartLS')
         const init = async () => {
             await dispatch(insertDataToCart())
-            console.log(cart);
+            // console.log(cart);
 
             // setCart(cart)
             const quantity = cart?.find(item => item.productId === product._id)?.quantity

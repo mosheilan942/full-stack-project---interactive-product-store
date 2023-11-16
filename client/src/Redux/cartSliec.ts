@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { getAllProduct } from '../api/cartFuncApi';
 import { ProductType } from '../types/ProductTypes';
 import { CartItem } from '../types/CartTypes';
+import { getAllProductFromCart } from '../api/cartFuncApi';
 
 
 export interface CartLS {
@@ -30,7 +30,12 @@ export const cartIndexSlice = createSlice({
       
       
       if (userID) {
-        // fech ....
+        const getCartFromServer = async () => {
+          const cart : CartItem[]= await getAllProductFromCart(userID)
+          console.log(cart);
+          
+        };
+        getCartFromServer()
       } else {
         
         const cartLS = localStorage.getItem('CartLS');

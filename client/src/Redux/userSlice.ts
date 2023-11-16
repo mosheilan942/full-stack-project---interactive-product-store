@@ -1,23 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { LoginUser } from '../types/UserType'
 
 
 
 
 export interface UserRducs {
-    _id?: string,
+    _id: string,
     name: string,
     email: string,
-    password: string,
-    createdAt?: Date,
-    updatedAt?: Date,
-    __v?: number
+    token: string,
+
 }
 
 const initialState: UserRducs = {
+    _id: '',
     name: '',
     email: '',
-    password: '',
+    token: '',
 }
 
 export const userSlice = createSlice({
@@ -25,35 +25,39 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         ifUserLoged: (state,) => {
-            const userName = localStorage.getItem('UserClientName');
-            const userEmail = localStorage.getItem('UserClientEmail');
+            const userToken = localStorage.getItem('UserClientToken');
             const userID = localStorage.getItem('UserClientID');
-            if (userName && userEmail) {
-                state.name = userName
-                state.email = userEmail
+
+            if (userToken) {
+                // get the user login with Token
                 state._id = userID!
             }
         },
-        loginUser: (state, action: PayloadAction<UserRducs>) => {            
-            state.name = action.payload.name
-            state.email = action.payload.email
-            state._id = action.payload._id
+        loginUser: (state, action: PayloadAction<LoginUser>) => {
+            state.name = action.payload.user.name
+            state.email = action.payload.user.email
+            state._id = action.payload.user._id
+            state.token = action.payload.accessToken
 
-            localStorage.setItem('UserClientName',state.name);
-            localStorage.setItem('UserClientEmail', state.email);
             localStorage.setItem('UserClientID', state._id!);
+            localStorage.setItem('UserClientToken', state.token);
+
+            // בדיקה אם יש עגלה והכנסתה לדאטה בייס 
 
         },
         logoutUser: (state,) => {
-            localStorage.removeItem('UserClientName');
-            localStorage.removeItem('UserClientEmail');
             localStorage.removeItem('UserClientID');
+            localStorage.removeItem('UserClientToken');
 
+            state._id = ''
             state.name = ''
             state.email = ''
-            state._id = ''
-
+            state.token = ''
         },
+
+
+
+
 
     },
 })

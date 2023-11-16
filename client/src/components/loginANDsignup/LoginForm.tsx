@@ -7,6 +7,7 @@ import { loginUser as login } from '../../api/usersFuncApi';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
+import { LoginUser } from '../../types/UserType';
 
 const stylePos = {
   position: 'absolute',
@@ -58,9 +59,10 @@ const LoginForm = (props: Props) => {
     });
     setLoading(true)
     try {
-      const response = await login(user)
-      dispatch(loginUser(response.data.user))
-      setMessage(response.data.message)
+      const response  = await login(user)
+      const data : LoginUser = response.data 
+      dispatch(loginUser(data))
+      setMessage(data.message)
       setTimeout(() => {
         props.close()
         setLoading(false)
