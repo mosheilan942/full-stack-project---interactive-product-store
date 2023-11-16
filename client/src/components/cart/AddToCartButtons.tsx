@@ -14,34 +14,25 @@ const AddToCartButtons = (props: Props) => {
     const product = props.product
     const dispatch = useDispatch()
     const cartStore = useSelector((state: RootState) => state.cart.cart);
-    const [cart, setCar] = useState<CartItem[] | CartLS[] | null>(null)
+    const [cart, setCart] = useState<CartItem[] | CartLS[] | null>(null)
     const [quantity, setquantity] = useState(0)
+    const [triger, setTriger] = useState(0)
+
 
     useEffect(() => {
         // localStorage.removeItem('CartLS')
         const init = async () => {
-            if (! cartStore){
-
-                await dispatch(insertDataToCart())
-            }
-        }
-        init()
-    }, [])
-
-    useEffect(() => {
-        // localStorage.removeItem('CartLS')
-        const init = async () => {
-            // await dispatch(insertDataToCart())
+            await dispatch(insertDataToCart())
             console.log(cartStore);
 
-            setCar(cartStore)
+            setCart(cartStore)
             const quantity = cart?.find(item => item.productId === product._id)?.quantity
             if (quantity) {
                 setquantity(quantity)
             } else { setquantity(0) }
         }
         init()
-    }, [cartStore])
+    }, [triger])
 
 
     return (
@@ -50,12 +41,14 @@ const AddToCartButtons = (props: Props) => {
                 event.stopPropagation()
                 dispatch(addProductToCart(product._id))
                 dispatch(insertDataToCart())
+                setTriger(prev => prev ++)
             }}>+</IconButton>
             <Typography>{quantity}</Typography>
             <IconButton onClick={(event) => {
                 event.stopPropagation()
                 dispatch(lessProductToCart(product._id))
                 dispatch(insertDataToCart())
+                setTriger(prev => prev --)
             }}>-</IconButton>
         </Box>
     )
