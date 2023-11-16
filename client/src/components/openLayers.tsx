@@ -111,7 +111,7 @@ const BasicMap: React.FC = () => {
     };
   }, []);
 
-  return <div ref={mapRef} style={{ width: '100%', height: '100vh', position: 'relative' }}></div>;
+  return <div ref={mapRef} style={{ width: '100%', height: '100%', position: 'relative' }}></div>;
 };
 
 export default BasicMap;
