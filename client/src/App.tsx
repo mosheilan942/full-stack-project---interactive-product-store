@@ -1,5 +1,4 @@
 import { Box, Container, Typography } from '@mui/material';
-
 import { RouterProvider } from "react-router-dom";
 import router from './router/Router';
 
@@ -14,6 +13,7 @@ function App() {
 
   const styleContainer = {
     height: '100vh',
+    width: '100%',
     display: 'grid',
     gridTemplateAreas:
       "'header header header' \
@@ -23,33 +23,37 @@ function App() {
     gridTemplateColumns: '15% 1fr 15%',
     gridGap: '4px'
   };
+
   const styleHeaderBox = {
     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
-    position:'fixed', 
+    position: 'fixed',
+    width: 'inherit',
     marginTop: '0px',
     background: '#ffffff',
-    width: '90vW'
+    width: '90vw'
+
   }
 
   const styleMainBox = {
-     display: 'flex',
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap'
-    ,width: '90vW',
-
+    flexWrap: 'wrap',
+    width: '100%'
   }
 
   const styleFooterBox = {
-     display: 'flex',
+
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position:'fixed', 
+    position: 'fixed',
+    width: 'inherit',
     bottom: '0',
     background: '#ffffff',
-    width: '90vW'
+    maxWidth: '1150px'
   }
 
 
@@ -57,11 +61,12 @@ function App() {
   return (
     <Container sx={styleContainer} fixed >
       <Provider store={store}>
-        <Box sx={{ ...styleHeaderBox, gridArea: 'header',}}>
+
+        <Box sx={{ ...styleHeaderBox, background: '#684815', color: 'gold', gridArea: 'header'}}>
           <Header />
         </Box>
 
-        <Box sx={{ ...styleMainBox,background: '#e3c379', gridArea: 'main' }}>
+        <Box sx={{ ...styleMainBox, background: '#e3c379', gridArea: 'main' }}>
 
           <RouterProvider router={router} />
         </Box>
