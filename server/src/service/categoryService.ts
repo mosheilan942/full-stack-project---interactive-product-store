@@ -10,7 +10,8 @@ import {
 } from '../DAL/categoryDal';
 
 import {
-    addProductToCartData
+    addProductToCartData,
+    getCartData
 } from '../DAL/cartDal'
 
 import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
@@ -30,8 +31,15 @@ const getAllCategory = async () => {
 };
 
 
+
 const getCartForUserAdd = async (userId:string, productId:string) => {
     const categories = await addProductToCartData(userId, productId, ".");
+    if (categories) return categories;
+    throw new Error("404")
+};
+
+const getCartListForUserService = async (userId:string) => {
+    const categories = await getCartData(userId);
     if (categories) return categories;
     throw new Error("404")
 };
@@ -87,7 +95,9 @@ export {
     filterProductsAlphabetically,
     getTop5categoryOrProduct,
     getCartForUserAdd,
-    getCartForUserlower
+    getCartForUserlower,
+    getCartListForUserService,
+    
 }
 
 

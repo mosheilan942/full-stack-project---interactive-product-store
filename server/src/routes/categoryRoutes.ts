@@ -10,6 +10,7 @@ import {
     getTop5categoryOrProductControl,
     getCartForUserAddControl,
     getCartForUserlowerControl,
+    getCartListForUserControl
 }
     from '../controller/categoryController';
 import { autoToken } from '../middleware/middleware';
@@ -31,6 +32,8 @@ routerCategory.get('/Cart/Add/:userId/:productId', getCartForUserAddControl);
 
 routerCategory.get('/Cart/lower/:userId/:productId', getCartForUserlowerControl);
 
+
+routerCategory.get('/Cart/get/:userId', getCartListForUserControl);
 
 routerCategory.get('/:name', getProductsByCategoryControl);
 
