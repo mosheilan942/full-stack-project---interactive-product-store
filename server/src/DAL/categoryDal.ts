@@ -7,13 +7,13 @@ const allProductsFromCategoryData = async () => {
             path: 'product'
         }).exec()
     if (data) return data
-    throw new Error("404")
+    throw new Error("Error fetching all products. Stage: DAL")
 };
 
 const allCategoriesData = async () => {
     const data = await category.find({})
-    console.log(data);
-    return data
+    if (data) return data
+    throw new Error("Error fetching all categories. Stage: DAL")
 };
 
 const ProductsByCategoryData = async (name: string) => {
@@ -27,14 +27,14 @@ const ProductsByCategoryData = async (name: string) => {
     if (data) {
         return data
     }
-    throw new Error("404")
+    throw new Error("Error fetching Products By Category. Stage: DAL")
 };
 
 const getTop5categoryOrProductData = async () => {
     const dataCategories = await category.find({}).sort({ 'rating': -1 }).limit(5).exec();
     const dataIProducts = await Product.find({}).sort({ 'rating': -1 }).limit(5).exec();
     if (dataCategories && dataIProducts) return [dataCategories, dataIProducts];
-    throw new Error("404")
+    throw new Error("Error fetching top five Products/Category. Stage: DAL")
 };
 
 const findPrice = async (min: any, max: any, order: string, nameCategory: any) => {
