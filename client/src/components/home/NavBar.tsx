@@ -35,7 +35,7 @@ const NavBar = () => {
 
     return (
         <Box sx={{
-            width: 1150,
+            width: '100%',
             height: 70,
             background: 'black',
             color: 'gold',

@@ -35,7 +35,7 @@ const connectANDlisten = async ()=> {
         // למחוק את הבייס שקיים אצלך במחשב
         // באתחול להדליק את שתי השורות הבאות
         // await insertuser()
-       
+
         // await DatabaseInitializationForProducts()
         // לאחר מכן, לכבות את השרת ואת השורות הקודמות, להפעיל את השורה הבאה ואז את השרת
         // await DatabaseInitializationForCategories()
