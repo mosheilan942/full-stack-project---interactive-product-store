@@ -48,7 +48,7 @@ function App() {
         <Box sx={{ ...styleHeaderBox, border: "2px solid black", gridArea: 'header' }}>
           <Header />
         </Box>
-        <Box sx={{ ...styleMainBox,background: '#e3c372', border: "2px solid black", gridArea: 'main' }}>
+        <Box sx={{ ...styleMainBox,background: '#af9b7c', border: "2px solid black", gridArea: 'main' }}>
           <RouterProvider router={router} />
         </Box>
         <Box sx={{ ...styleFooterBox, border: "2px solid black", gridArea: 'footer' }}>
