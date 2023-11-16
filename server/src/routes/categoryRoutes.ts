@@ -18,7 +18,7 @@ const routerCategory = express.Router();
 routerCategory.get('/',autoToken, getAllProductsFromCategoryControl);
 
 
-routerCategory.get('/categories', autoToken,getAllCategoryControl);
+routerCategory.get('/categories' ,getAllCategoryControl);
 routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
 routerCategory.get('/categories', getAllCategoryControl);

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductByID } from '../api/productFuncApi';
 import { ProductType } from '../types/ProductTypes';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -39,7 +40,9 @@ const ProductPage = () => {
         alignItems: 'center',
         width: "50%"
       }}>
-        <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-14-pro-max-colors.png" alt={product.name} style={{ width: 500 }} />
+        <Box >
+        <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-14-pro-max-colors.png" alt={product.name} style={{ width: '50%' }} />
+        </Box>
       </Box>
       <Box sx={{ margin: 5 }}>
         <Typography variant="h4">{product.name}</Typography>
@@ -59,7 +62,7 @@ const ProductPage = () => {
             <Typography variant="body1">Dimensions:</Typography>
             <ul>
               {Object.entries(product.dimensions).map(([key, value]) => (
-                <li key={key}>
+                <li key={uuidv4()}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
                 </li>
               ))}
