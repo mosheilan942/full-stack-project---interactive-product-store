@@ -29,13 +29,19 @@ const getAllCategory = async () => {
     throw new Error("404")
 };
 
-const getCartForUser = async (userId:string, productId:string) => {
-    const categories = await addProductToCartData(userId, productId);
+
+const getCartForUserAdd = async (userId:string, productId:string) => {
+    const categories = await addProductToCartData(userId, productId, ".");
     if (categories) return categories;
     throw new Error("404")
 };
 
 
+const getCartForUserlower = async (userId:string, productId:string) => {
+    const categories = await addProductToCartData(userId, productId);
+    if (categories) return categories;
+    throw new Error("404")
+};
 
 const getProductsByCategory = async (name: string) => {
     const ProductsByCategory = await ProductsByCategoryData(name);
@@ -80,7 +86,8 @@ export {
     fncSearch,
     filterProductsAlphabetically,
     getTop5categoryOrProduct,
-    getCartForUser
+    getCartForUserAdd,
+    getCartForUserlower
 }
 
 
