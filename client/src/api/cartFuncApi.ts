@@ -4,8 +4,8 @@ const API_URL = 'http://localhost:3000/category';
 
 
 
-async function getAllProductFromCart(): Promise<any> {
-    const response = await axios.get(`${API_URL}/`);
+async function getAllProductFromCart(id: string): Promise<any> {
+    const response = await axios.get(`${API_URL}/Cart/${id}`);
     return response.data;
 }
 
@@ -19,7 +19,7 @@ async function getProductByCategory(name: string): Promise<any> {
 }
 
 export {
-    getAllProductFromCart as getAllProduct,
+    getAllProductFromCart,
     getProductByID,
     getProductByCategory
 };

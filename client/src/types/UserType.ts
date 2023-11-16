@@ -10,3 +10,9 @@ export type User = {
     updatedAt: Date;
     __v: number;
 }
+
+export type LoginUser = {
+    accessToken: string,
+       message: string,
+       user: User;
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CardProduct from '../cardProduct/CardProduct'
 import { ProductType } from '../../types/ProductTypes'
 import { useSelector, useDispatch } from 'react-redux'
-import { addProductToCart } from '../../Redux/cartSliec'
+import { addProductToCart, insertDataToCart } from '../../Redux/cartSliec'
 import { RootState } from '../../Redux/store'
 import { getAllProduct, getProductByCategory } from '../../api/productFuncApi'
 
@@ -14,12 +14,13 @@ const cartProduct = (props: Props) => {
   const dispatch = useDispatch()
     const dataRducs = useSelector((state: RootState) => state.cart.cart)
     const [data, setData] = useState<ProductType[]| null>(null);
+
     useEffect(()=>{
         const insertData = async () => {
         const data = await getProductByCategory('cellPhone')
-        console.log(data);
+        // console.log(data);
         
-        dispatch(addProductToCart(data.product))
+        dispatch(insertDataToCart())
         setData(data.product)
         }
         insertData()
