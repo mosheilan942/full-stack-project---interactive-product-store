@@ -1,12 +1,10 @@
-import { Box, IconButton, Typography } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, IconButton} from '@mui/material'
+import { useSelector, } from 'react-redux'
 import type { RootState } from '../Redux/store'
 import LoginORname from './loginANDsignup/LoginORname';
 
-
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-type Props = {}
 
 const styleHeaderBox = {
     my: 1, display: 'flex',
@@ -14,7 +12,7 @@ const styleHeaderBox = {
 }
 
 
-const Header = (props: Props) => {
+const Header = () => {
 
     const cartIndex = useSelector((state: RootState) => state.cart.cartIndex);
 

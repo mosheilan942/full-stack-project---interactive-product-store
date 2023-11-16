@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { RouterProvider } from "react-router-dom";
 import router from './router/Router';
 
@@ -31,7 +31,8 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     marginTop: '0px',
-    background: '#ffffff'
+    background: '#ffffff',
+    maxWidth: '1280px'
   }
 
   const styleMainBox = {
@@ -39,7 +40,8 @@ function App() {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    width: '100%'
+    width: '100%',
+    height: '100vh'
   }
 
   const styleFooterBox = {
@@ -50,19 +52,21 @@ function App() {
     width: 'inherit',
     bottom: '0',
     background: '#ffffff',
-    maxWidth: '1150px'
+    maxWidth: '1280px',
+    height: '20px'
+    
   }
 
 
 
   return (
-    <Container sx={styleContainer} fixed >
+    <Box sx={styleContainer}>
       <Provider store={store}>
-        <Box sx={{ ...styleHeaderBox, background: '#684815', color: 'gold', gridArea: 'header'}}>
+        <Box sx={{ ...styleHeaderBox, gridArea: 'header'}}>
           <Header />
         </Box>
 
-        <Box sx={{ ...styleMainBox, background: '#e3c379', gridArea: 'main' }}>
+        <Box sx={{ ...styleMainBox, background: '#e3c379', gridArea: 'main'}}>
 
           <RouterProvider router={router} />
         </Box>
@@ -70,7 +74,7 @@ function App() {
           <Footer />
         </Box>
       </Provider>
-    </Container>
+    </Box>
   );
 }
 
