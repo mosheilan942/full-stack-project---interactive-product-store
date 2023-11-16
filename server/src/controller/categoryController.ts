@@ -6,7 +6,7 @@ import {
     getByCategoryAndPrice,
     ProductById,
     fncSearch,
-    filterProductsAlphabetically
+    filterProductsAlphabetically,
     getTop5categoryOrProduct
 }
     from '../service/categoryService';

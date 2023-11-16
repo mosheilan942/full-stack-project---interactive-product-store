@@ -5,7 +5,7 @@ import {
     findPrice,
     getProductMongoById,
     searchProducts,
-    filterProductsAlphabeticallyDal
+    filterProductsAlphabeticallyDal,
     getTop5categoryOrProductData
 } from '../DAL/categoryDal';
 
@@ -66,7 +66,7 @@ export {
     getByCategoryAndPrice,
     ProductById,
     fncSearch,
-    filterProductsAlphabetically
+    filterProductsAlphabetically,
     getTop5categoryOrProduct
 }
 

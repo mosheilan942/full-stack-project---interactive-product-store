@@ -6,7 +6,7 @@ import {
     getProducts,
     getProductById,
     searchProducts,
-    alphabeticalFilter
+    alphabeticalFilter,
     getTop5categoryOrProductControl
 }
     from '../controller/categoryController';

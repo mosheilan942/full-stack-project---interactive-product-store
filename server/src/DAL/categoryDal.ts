@@ -67,22 +67,22 @@ const getProductMongoById = async (id: number, nameCategory: any) => {
 
 
 
-const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
-    const data = await category.find({ name: categoryName });
-    const sortOrder = order === 'asc' ? 1 : -1;
-    console.log(searchTerm);
+// const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
+//     const data = await category.find({ name: categoryName });
+//     const sortOrder = order === 'asc' ? 1 : -1;
+//     console.log(searchTerm);
 
-    const products = await Product
-        .find({
-            categoryType: categoryName,
+//     const products = await Product
+//         .find({
+//             categoryType: categoryName,
 
-            name: { $regex: new RegExp(searchTerm, 'i') }
-        })
-        .sort({ name: sortOrder });
-    console.log(categoryName);
+//             name: { $regex: new RegExp(searchTerm, 'i') }
+//         })
+//         .sort({ name: sortOrder });
+//     console.log(categoryName);
 
-    return products;
-}
+//     return products;
+// }
 
 //  search
 const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
@@ -125,6 +125,6 @@ export {
     findPrice,
     getProductMongoById,
     searchProducts,
-    filterProductsAlphabeticallyDal
+    filterProductsAlphabeticallyDal,
     getTop5categoryOrProductData
 } 
