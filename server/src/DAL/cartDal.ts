@@ -61,4 +61,13 @@ const addProductToCartData = async (userId: string, productId: string, operation
     }
 }
 
-export { addProductToCartData }
+const getCartData =async (userId:string) => {
+    const productsInUser = await UserModel.findOne({ _id: userId})
+    const data = productsInUser?.cart
+    if (data) return data
+    throw new Error("No cart found for this user")
+}
+
+
+
+export { addProductToCartData, getCartData }
