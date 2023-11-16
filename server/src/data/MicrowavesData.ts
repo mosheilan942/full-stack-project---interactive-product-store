@@ -10,7 +10,7 @@ const Microwaves = [
         price: 169,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.6 cu. ft. capacity microwave oven with 1000 watts cooking power.",
-        image: "ge_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["123 Main St, Cityville", "456 Oak St, Townsville"],
         quantity: 5
     },
@@ -25,7 +25,7 @@ const Microwaves = [
         price: 259,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.5 cu. ft. smart sensor microwave with auto cook programs.",
-        image: "breville_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["789 Maple St, Villageton", "101 Pine St, Hamletsville"],
         quantity: 3
     },
@@ -40,7 +40,7 @@ const Microwaves = [
         price: 189,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.9 cu. ft. countertop microwave with 950 watts cooking power and sensor cooking.",
-        image: "samsung_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["222 Elm St, Villagetown", "333 Cedar St, Cityburg"],
         quantity: 8
     },
@@ -55,7 +55,7 @@ const Microwaves = [
         price: 139,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.2 cu. ft. microwave with inverter technology for precise cooking and reheating.",
-        image: "panasonic_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["444 Oak St, Townborough", "555 Pine St, Villagesburg"],
         quantity: 10
     },
@@ -70,7 +70,7 @@ const Microwaves = [
         price: 129,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "0.9 cu. ft. smart inverter microwave with easy-clean interior and sensor cooking.",
-        image: "lg_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["666 Maple St, Villagetown", "777 Elm St, Cityburg"],
         quantity: 2
     },
@@ -85,7 +85,7 @@ const Microwaves = [
         price: 99,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.1 cu. ft. carousel microwave with 1000 watts of cooking power and 10 cooking presets.",
-        image: "sharp_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["888 Pine St, Villageton", "999 Oak St, Townville"],
         quantity: 7
     },
@@ -100,7 +100,7 @@ const Microwaves = [
         price: 79,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "0.5 cu. ft. compact countertop microwave with 750 watts of cooking power.",
-        image: "whirlpool_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["111 Oak St, Townburg", "222 Maple St, Villagesville"],
         quantity: 4
     },
@@ -115,7 +115,7 @@ const Microwaves = [
         price: 199,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.7 cu. ft. over-the-range microwave with 1000 watts of cooking power and sensor cooking.",
-        image: "kenmore_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["333 Cedar St, Cityville", "444 Pine St, Townburg"],
         quantity: 6
     },
@@ -130,7 +130,7 @@ const Microwaves = [
         price: 59,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "0.7 cu. ft. digital microwave with 700 watts of cooking power and child lock feature.",
-        image: "hamiltonbeach_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["555 Elm St, Cityburg", "666 Maple St, Villagetown"],
         quantity: 1
     },
@@ -145,7 +145,7 @@ const Microwaves = [
         price: 149,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "1.2 cu. ft. convection microwave with 1000 watts of cooking power and 9 preset options.",
-        image: "cuisinart_microwave.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["777 Pine St, Villagetown", "888 Cedar St, Cityburg"],
         quantity: 9
     }
