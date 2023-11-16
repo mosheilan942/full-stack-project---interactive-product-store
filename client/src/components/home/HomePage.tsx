@@ -37,6 +37,8 @@ const HomePage = () => {
 
     return (
         <>
+        <Box sx={{}}>
+        </Box>
             <NavBar />
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant='h3'>Top Five categories</Typography>
