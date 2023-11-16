@@ -8,6 +8,10 @@ async function getAllCategories(): Promise<any> {
     const response = await axios.get(`${API_URL}/categories`);
     return response.data;
 }
+async function getTopCategories(): Promise<any> {
+    const response = await axios.get(`${API_URL}/getTopFive`);
+    return response.data;
+}
 
 async function getAllProduct(): Promise<any> {
     const response = await axios.get(`${API_URL}/`);
@@ -45,5 +49,6 @@ export {
     getOrderProductByAlphabetical,
     getProductByID,
     getProductByCategory,
-    getAllCategories
+    getAllCategories,
+    getTopCategories
 };

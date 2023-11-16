@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import CardCategory from './CardCategory';
-import { getAllCategories } from '../../api/productFuncApi';
+import { getAllCategories, getTopCategories } from '../../api/productFuncApi';
+import { v4 as uuidv4 } from 'uuid';
 
 type Category = {
     _id: string;
@@ -13,14 +14,14 @@ type Category = {
 }
 
 const HomePage = () => {
-    const [categoriesData, setCategoriesData] = useState<Category[]>([]);
+    const [categoriesData, setCategoriesData] = useState<Category[][]| null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data: Category[] = await getAllCategories();
-                setCategoriesData(data);
+                const data: Category[][] = await getTopCategories();
                 console.log(data);
+                setCategoriesData(data);
 
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -39,11 +40,15 @@ const HomePage = () => {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <Typography variant='h3'>All categories</Typography>
+                <Typography variant='h3'>Top Five categories</Typography>
             </Box>
-            {categoriesData.map((category) => (
-                <CardCategory key={category.name} category={category} />
-            ))}
+            
+                {categoriesData && categoriesData[0].map((category) => {
+                    console.log('fd',categoriesData);
+                    
+                    return <CardCategory key={uuidv4()} category={category} />
+                })}
+           
         </>
     );
 }

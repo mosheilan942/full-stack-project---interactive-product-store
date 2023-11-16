@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
+import { v4 as uuidv4 } from 'uuid';
 
 type Category = {
   _id: string;
@@ -26,7 +27,7 @@ const CardCategory = (props: Props) => {
   return (
     <Box
       onClick={handleBoxClick}
-      key={category.name}
+      key={uuidv4()}
       sx={{
         background: "#ffe3b8",
         width: 200,
