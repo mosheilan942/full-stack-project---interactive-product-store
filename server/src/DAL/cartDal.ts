@@ -27,7 +27,7 @@ const addProductToCartData = async (userId: string, productId: string, operation
             }).exec()
         console.log("The product did not exist, and successfully added");
         if (data) return data
-        throw new Error("Error: The product was not added to the cart correctly Try again")
+        throw new Error("Error: The product was not added to the cart correctly, Try again")
     }
     else {
         const product = await UserModel.findOneAndUpdate({ "cart.productId": productId },
@@ -39,12 +39,17 @@ const addProductToCartData = async (userId: string, productId: string, operation
         const array = productInUser2?.cart
         array?.forEach((product, index) => {
             if (String(product.productId) === productId) {
+                // console.log("add one!!!");
                 let quantity = product.quantity
                 operation ? ++quantity : --quantity
                 product.quantity = quantity
                 if (quantity === 0) {
                     array.splice(index, 1)
+                    console.log("The product has been successfully removed from the cart");
+                    
                 }
+                console.log("The quantity update was successful");
+                
             }
         })
         productInUser2?.save()
@@ -54,20 +59,30 @@ const addProductToCartData = async (userId: string, productId: string, operation
             .populate({
                 path: 'cart.productId'
             }).exec();
-        if (data) {
-            console.log(data.cart);
-            return data.cart
-        }
+            // console.log(data.cart);
+        if (data) return data.cart 
+        throw new Error("Error in cart activity. Stage: DAL")
+            
     }
 }
 
 const getCartData =async (userId:string) => {
-    const productsInUser = await UserModel.findOne({ _id: userId})
+    const productsInUser = await UserModel.findById({ _id: userId})
+    .populate({
+        path: 'cart.productId'
+    }).exec();
     const data = productsInUser?.cart
     if (data) return data
     throw new Error("No cart found for this user")
 }
 
+const getCartDataLengthData =async (userId:string) => {
+    const productsInUser = await UserModel.findOne({ _id: userId})
+    const data = productsInUser?.cart
+    if (data) return data.length
+    throw new Error("No cart found for this user")
+}
 
 
-export { addProductToCartData, getCartData }
+
+export { addProductToCartData, getCartData, getCartDataLengthData }

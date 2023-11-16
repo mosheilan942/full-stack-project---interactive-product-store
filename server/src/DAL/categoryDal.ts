@@ -12,7 +12,6 @@ const allProductsFromCategoryData = async () => {
 
 const allCategoriesData = async () => {
     const data = await category.find({})
-    console.log(data);
     return data
 };
 

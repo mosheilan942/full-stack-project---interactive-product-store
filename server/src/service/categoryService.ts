@@ -11,7 +11,8 @@ import {
 
 import {
     addProductToCartData,
-    getCartData
+    getCartData,
+    getCartDataLengthData
 } from '../DAL/cartDal'
 
 import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
@@ -33,22 +34,28 @@ const getAllCategory = async () => {
 
 
 const getCartForUserAdd = async (userId:string, productId:string) => {
-    const categories = await addProductToCartData(userId, productId, ".");
-    if (categories) return categories;
+    const cart = await addProductToCartData(userId, productId, ".");
+    if (cart) return cart;
     throw new Error("404")
 };
 
 const getCartListForUserService = async (userId:string) => {
-    const categories = await getCartData(userId);
-    if (categories) return categories;
+    const cart = await getCartData(userId);
+    if (cart) return cart;
+    throw new Error("404")
+};
+
+const getCartLengthForUserService = async (userId:string) => {
+    const cart = await getCartDataLengthData(userId);
+    if (cart) return cart;
     throw new Error("404")
 };
 
 
 const getCartForUserlower = async (userId:string, productId:string) => {
-    const categories = await addProductToCartData(userId, productId);
-    if (categories) return categories;
-    throw new Error("404")
+    const cart = await addProductToCartData(userId, productId);
+    if (cart) return cart;
+    throw new Error("Product reduction error. Step: SERVICE")
 };
 
 const getProductsByCategory = async (name: string) => {
@@ -97,7 +104,7 @@ export {
     getCartForUserAdd,
     getCartForUserlower,
     getCartListForUserService,
-    
+    getCartLengthForUserService
 }
 
 

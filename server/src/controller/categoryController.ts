@@ -10,7 +10,8 @@ import {
     getTop5categoryOrProduct,
     getCartForUserAdd,
     getCartForUserlower,
-    getCartListForUserService
+    getCartListForUserService,
+    getCartLengthForUserService
 }
     from '../service/categoryService';
 
@@ -66,6 +67,16 @@ const getCartForUserlowerControl = async (req: Request, res: Response) => {
     const { userId, productId } = req.params
     try {
         const data = await getCartForUserlower(userId, productId);
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+const getCartLengthForUserControl = async (req: Request, res: Response) => {
+    const { userId } = req.params
+    try {
+        const data = await getCartLengthForUserService(userId);
         res.json(data);
     } catch (error) {
         res.json(error)
@@ -152,5 +163,6 @@ export {
     getCartForUserlowerControl,
     alphabeticalFilter,
     getTop5categoryOrProductControl,
-    getCartListForUserControl
+    getCartListForUserControl,
+    getCartLengthForUserControl
 } 
