@@ -13,7 +13,7 @@ const cellPhones = [
     dimensions: { height: 146.7, length: 71.5, width: 7.7, weight: 173 },
     quantity: 50,
     description: "The latest iPhone with advanced camera and A15 Bionic chip.",
-    image: "https://example.com/iphone-13.jpg",
+    image: "https://picsum.photos/200/300",
     addresses: ["123 Main St, Cityville", "456 Oak St, Townsville"],
   },
   {
@@ -29,7 +29,7 @@ const cellPhones = [
     dimensions: { height: 151.7, length: 71.2, width: 7.9, weight: 171 },
     quantity: 40,
     description: "Powerful Android phone with a stunning display and versatile camera system.",
-    image: "https://example.com/galaxy-s21.jpg",
+    image: "https://picsum.photos/200/300",
     addresses: ["789 Elm St, Villagetown", "101 Pine St, Hamletville"],
   },
   {
@@ -44,7 +44,7 @@ const cellPhones = [
     dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
     quantity: 30,
     description: "Flagship Pixel phone with exceptional camera capabilities and stock Android experience.",
-    image: "https://example.com/pixel-6.jpg",
+    image: "https://picsum.photos/200/300",
     addresses: ["456 Maple St, Suburbia", "789 Pine St, Countryside"],
   },
   {
@@ -60,7 +60,7 @@ const cellPhones = [
     dimensions: { height: 160, length: 74.2, width: 8.7, weight: 192 },
     quantity: 25,
     description: "OnePlus flagship phone with Hasselblad camera and smooth performance.",
-    image: "https://example.com/oneplus-9.jpg",
+    image: "https://picsum.photos/200/300",
     addresses: ["101 Oak St, Countryside", "789 Birch St, Suburbia"],
   },
   {
@@ -76,7 +76,7 @@ const cellPhones = [
     dimensions: { height: 164.3, length: 74.6, width: 8.1, weight: 196 },
     quantity: 35,
     description: "Premium Xiaomi phone with a high-refresh-rate display and Snapdragon 888.",
-    image: "https://example.com/mi-11.jpg",
+    image: "https://picsum.photos/200/300",
     addresses: ["456 Pine St, Villagetown", "789 Cedar St, Hamletville"],
   },
   {
@@ -92,7 +92,7 @@ const cellPhones = [
     dimensions: { height: 165, length: 71, width: 8.2, weight: 186 },
     quantity: 20,
     description: "Sony's flagship phone with a 4K OLED display and versatile camera setup.",
-    image: "https://example.com/xperia-1-iii.jpg",
+    image: "https://picsum.photos/200/300.jpg",
     addresses: ["789 Elm St, Suburbia", "101 Pine St, Townsville"],
   },
   {
@@ -108,7 +108,7 @@ const cellPhones = [
     dimensions: { height: 165.3, length: 75.9, width: 9.5, weight: 206 },
     quantity: 15,
     description: "Budget-friendly Motorola phone with a large battery for extended usage.",
-    image: "https://example.com/moto-g-power-2021.jpg",
+    image: "https://picsum.photos/200/300r-2021.jpg",
     addresses: ["101 Birch St, Villagetown", "456 Pine St, Hamletville"],
   },
   {
@@ -124,7 +124,7 @@ const cellPhones = [
     dimensions: { height: 163.6, length: 74, width: 8.3, weight: 193 },
     quantity: 28,
     description: "Oppo flagship phone with a high-quality camera system and fast charging.",
-    image: "https://example.com/find-x3-pro.jpg",
+    image: "https://picsum.photos/200/300.jpg",
     addresses: ["789 Oak St, Suburbia", "101 Cedar St, Townsville"],
   },
   {
@@ -140,7 +140,7 @@ const cellPhones = [
     dimensions: { height: 171.9, length: 78.6, width: 8.99, weight: 220 },
     quantity: 22,
     description: "Nokia 5G phone with a large display and ZEISS optics for the camera.",
-    image: "https://example.com/nokia-8.3-5g.jpg",
+    image: "https://picsum.photos/200/300g.jpg",
     addresses: ["456 Maple St, Cityville", "789 Birch St, Townsville"],
   },
   {
@@ -156,7 +156,7 @@ const cellPhones = [
     dimensions: { height: 158.5, length: 73.3, width: 8.4, weight: 186 },
     quantity: 18,
     description: "Realme flagship phone with a Snapdragon 870 processor and 120Hz Super AMOLED display.",
-    image: "https://example.com/realme-gt.jpg",
+    image: "https://picsum.photos/200/300pg",
     addresses: ["101 Pine St, Cityville", "456 Cedar St, Suburbia"],
   },
 ];

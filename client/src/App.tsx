@@ -60,7 +60,9 @@ function App() {
         <Box sx={{ ...styleHeaderBox, gridArea: 'header',}}>
           <Header />
         </Box>
+
         <Box sx={{ ...styleMainBox,background: '#e3c379', gridArea: 'main' }}>
+
           <RouterProvider router={router} />
         </Box>
         <Box sx={{ ...styleFooterBox, gridArea: 'footer' }}>

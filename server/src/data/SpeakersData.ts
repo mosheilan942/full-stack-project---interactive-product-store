@@ -9,7 +9,7 @@ const Speakers = [
         price: 299,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Portable Bluetooth speaker with 16 hours battery life.",
-        image: "bose_speaker.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["123 Main St, Cityville", "456 Oak St, Townsville"],
         quantity: 5
     },
@@ -24,7 +24,7 @@ const Speakers = [
         price: 99,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Waterproof portable Bluetooth speaker with 12 hours playtime.",
-        image: "jbl_speaker.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["789 Maple St, Villageton", "101 Pine St, Hamletsville"],
         quantity: 3
     },
@@ -38,7 +38,7 @@ const Speakers = [
         price: 149,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Wireless Bluetooth speaker with extra bass and party lights, offering 24 hours of battery life.",
-        image: "sony_speaker.jpg",
+        image: "https://picsum.photos/200/300",
         addresses: ["222 Elm St, Villagetown", "333 Cedar St, Cityburg"],
         quantity: 8
     },
@@ -53,7 +53,7 @@ const Speakers = [
         price: 129,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Waterproof and shockproof Bluetooth speaker with 15 hours of battery life.",
-        image: "ueboom_speaker.jpg",
+        image: "https://picsum.photos/200/300pg",
         addresses: ["444 Oak St, Townborough", "555 Pine St, Villagesburg"],
         quantity: 10
     },
@@ -67,7 +67,7 @@ const Speakers = [
         price: 349,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Classic design Bluetooth speaker with powerful sound and vintage aesthetics.",
-        image: "marshall_speaker.jpg",
+        image: "https://picsum.photos/200/300.jpg",
         addresses: ["666 Maple St, Villagetown", "777 Elm St, Cityburg"],
         quantity: 2
     },
@@ -81,7 +81,7 @@ const Speakers = [
         price: 99,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Hi-Res Bluetooth speaker with 30W audio output and 12 hours of playtime.",
-        image: "anker_speaker.jpg",
+        image: "https://picsum.photos/200/300g",
         addresses: ["888 Pine St, Villagetown", "999 Oak St, Townville"],
         quantity: 7
     },
@@ -95,7 +95,7 @@ const Speakers = [
         price: 199,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Smart speaker with built-in voice control, compatible with Alexa and Google Assistant.",
-        image: "sonos_speaker.jpg",
+        image: "https://picsum.photos/200/300g",
         addresses: ["111 Oak St, Townburg", "222 Maple St, Villagesville"],
         quantity: 4
     },
@@ -110,7 +110,7 @@ const Speakers = [
         price: 249,
         dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
         description: "Compact Bluetooth speaker with 360-degree sound dispersion and 24 hours of battery life.",
-        image: "bangolufsen_speaker.jpg",
+        image: "https://picsum.photos/200/300ker.jpg",
         addresses: ["333 Cedar St, Cityville", "444 Pine St, Townburg"],
         quantity: 6
     }

@@ -32,7 +32,7 @@ const CardCategory = (props: Props) => {
         flexDirection: 'column'
       }}>
 
-      <img src={category.image} alt={category.name} style={{ width: '100%', height: '30%' }} />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmGx-nx8u8TU6sSycGa4wrsiJL_qrayptqA&usqp=CAU" alt={category.name} style={{ width: '100%', height: '30%' }} />
       <Typography sx={{
         background: '#d55d31',
       }}
