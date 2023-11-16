@@ -57,9 +57,12 @@ const ProductPage = () => {
         width: "50%"
       }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: '4px', flexDirection: 'column', alignItems: 'center' }}>
-          <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-14-pro-max-colors.png" alt={product.name} style={{ width: '50%' }} />
+          <img src={product.image} alt={product.name} style={{ width: '50%' }} />
           <Button variant='contained' sx={{ margin: '4px', }}
-            onClick={() => dispatch(incrementToComparison(product))}
+            onClick={() => {
+              dispatch(incrementToComparison(product))
+              navigate(`/category/${name}`);
+            }}
           >
             Add to Comparison
           </Button >
@@ -83,7 +86,7 @@ const ProductPage = () => {
         <Typography variant="body1">Category: {product.categoryType} .</Typography>
         <Typography variant="body1">Manufacturer: {product.manufacturer} .</Typography>
         <Typography variant="body1">Model: {product.model} .</Typography>
-        <Typography variant="body1">Addresses: {product.addresses} .</Typography>
+        {/* <Typography variant="body1">Addresses: {product.addresses} .</Typography> */}
         <Typography variant="body1">Rating: {product.rating} .</Typography>
         <Typography variant="body1">Date: {product.date} .</Typography>
         <Typography variant="body1">Price: {product.price} .</Typography>
