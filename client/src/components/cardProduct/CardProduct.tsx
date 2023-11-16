@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProductType } from '../../types/ProductTypes';
 import AddToCartButtons from '../cart/AddToCartButtons';
 
+
 type Props = {
     product: ProductType;
 }
@@ -35,7 +36,6 @@ const CardProduct = (props: Props) => {
                 <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>
                 <Typography sx={{}} variant="body1">Quantity:{product.quantity}</Typography>
             </Box>
-
             <AddToCartButtons product={product} />
         </Box>
     )
