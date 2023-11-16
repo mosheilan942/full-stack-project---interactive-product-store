@@ -24,13 +24,13 @@ function App() {
     gridGap: '4px'
   };
   const styleHeaderBox = {
-    display: 'block',
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     position:'fixed', 
     marginTop: '0px',
     background: '#ffffff',
-    width: '90vW'
+    width: '90vw'
   }
 
   const styleMainBox = {
@@ -43,7 +43,7 @@ function App() {
   }
 
   const styleFooterBox = {
-     display: 'flex',
+     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
     position:'fixed', 
@@ -57,7 +57,7 @@ function App() {
   return (
     <Container sx={styleContainer} fixed >
       <Provider store={store}>
-        <Box sx={{ ...styleHeaderBox, gridArea: 'header',}}>
+        <Box sx={{ ...styleHeaderBox, gridArea: 'header',padding:'0 85px',left: 0}}>
           <Header />
         </Box>
 

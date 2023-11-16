@@ -13,6 +13,8 @@ const CardProduct = (props: Props) => {
     const navigate = useNavigate();
 
     const handleBoxClick = () => {
+        console.log(product.categoryType);
+        
         navigate(`/product/${product.categoryType}/${product._id}`);
     };
 
