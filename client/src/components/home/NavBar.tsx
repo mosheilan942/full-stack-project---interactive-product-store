@@ -40,7 +40,9 @@ const NavBar = () => {
             background: 'black',
             color: 'gold',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            position: 'sticky',
+            top: 90
         }}>
             <Button
                 id="categories-menu"

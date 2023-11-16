@@ -40,6 +40,8 @@ const NavFilters: React.FC<NavFiltersProps> = ({ onSearch, onFilter, onSort }) =
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-around',
+                position: 'sticky',
+                top: 90
             }}
         >
             <Box>

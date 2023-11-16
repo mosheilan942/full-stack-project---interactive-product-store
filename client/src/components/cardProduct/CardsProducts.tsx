@@ -89,6 +89,7 @@ const CardsProducts: React.FC = () => {
         onSearch={handleSearch}
         onFilter={handleFilter}
         onSort={handleSort}
+        
       />
       <Box
         sx={{
