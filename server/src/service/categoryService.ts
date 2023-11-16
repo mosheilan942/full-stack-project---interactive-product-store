@@ -9,6 +9,10 @@ import {
     getTop5categoryOrProductData
 } from '../DAL/categoryDal';
 
+import {
+    addProductToCartData
+} from '../DAL/cartDal'
+
 import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
 import { Model } from "mongoose";
 
@@ -24,6 +28,14 @@ const getAllCategory = async () => {
     if (categories) return categories;
     throw new Error("404")
 };
+
+const getCartForUser = async (userId:string, productId:string) => {
+    const categories = await addProductToCartData(userId, productId);
+    if (categories) return categories;
+    throw new Error("404")
+};
+
+
 
 const getProductsByCategory = async (name: string) => {
     const ProductsByCategory = await ProductsByCategoryData(name);
@@ -67,7 +79,8 @@ export {
     ProductById,
     fncSearch,
     filterProductsAlphabetically,
-    getTop5categoryOrProduct
+    getTop5categoryOrProduct,
+    getCartForUser
 }
 
 

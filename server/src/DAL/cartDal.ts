@@ -2,7 +2,7 @@ import mongoose, { Schema, Document, Model, Types, SchemaDefinitionProperty } fr
 import { order, Product } from '../Schemes/databaseInitialization';
 import { UserModel } from '../Schemes/usersSchema';
 
-export const addProductToCartData = async (userId: string, productId: string, operation?: string) => {
+const addProductToCartData = async (userId: string, productId: string, operation?: string) => {
     const productInDb = await Product.findById({ _id: productId }).select('price').exec()
     const userInDb = await UserModel.findById({ _id: userId }).select('cart').exec();
     const productsInUser = await UserModel.findOne({ _id: userId, "cart.productId": productId }).select({
@@ -48,5 +48,17 @@ export const addProductToCartData = async (userId: string, productId: string, op
             }
         })
         productInUser2?.save()
+        const data = await UserModel.findById(
+            { _id: userId },
+        )
+            .populate({
+                path: 'cart.productId'
+            }).exec();
+        if (data) {
+            console.log(data.cart);
+            return data.cart
+        }
     }
 }
+
+export { addProductToCartData }
