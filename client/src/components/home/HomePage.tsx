@@ -20,7 +20,7 @@ const HomePage = () => {
         const fetchData = async () => {
             try {
                 const data: Category[][] = await getTopCategories();
-                console.log(data);
+                // console.log(data);
                 setCategoriesData(data);
 
             } catch (error) {
@@ -44,7 +44,7 @@ const HomePage = () => {
             </Box>
             
                 {categoriesData && categoriesData[0].map((category) => {
-                    console.log('fd',categoriesData);
+                    // console.log('fd',categoriesData);
                     
                     return <CardCategory key={uuidv4()} category={category} />
                 })}
