@@ -8,7 +8,7 @@ async function getAllCategories(): Promise<any> {
     const response = await axios.get(`${API_URL}/categories`);
     return response.data;
 }
-async function getTopCategories(): Promise<any> {
+async function getTopData(): Promise<any> {
     const response = await axios.get(`${API_URL}/getTopFive`);
     return response.data;
 }
@@ -50,5 +50,5 @@ export {
     getProductByID,
     getProductByCategory,
     getAllCategories,
-    getTopCategories
+    getTopData
 };

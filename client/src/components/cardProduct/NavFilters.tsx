@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Box, Input, Select, MenuItem, Button } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
 
-type NavBarProps = {
+type NavFiltersProps = {
     onSearch: (searchTerm: string) => void;
     onFilter: (minPrice: number, maxPrice: number) => void;
     onSort: (sorting: string) => void;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ onSearch, onFilter, onSort }) => {
+const NavFilters: React.FC<NavFiltersProps> = ({ onSearch, onFilter, onSort }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [minPrice, setMinPrice] = useState<number | ''>('');
     const [maxPrice, setMaxPrice] = useState<number | ''>('');
@@ -87,5 +87,5 @@ const NavBar: React.FC<NavBarProps> = ({ onSearch, onFilter, onSort }) => {
     );
 };
 
-export default NavBar;
+export default NavFilters;
 

@@ -2,18 +2,11 @@ import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
 import { v4 as uuidv4 } from 'uuid';
+import { CategoryType } from '../../types/ProductTypes';
 
-type Category = {
-  _id: string;
-  name: string;
-  rating: number;
-  product: string[];
-  image: string;
-  __v: number;
-}
 
 type Props = {
-  category: Category;
+  category: CategoryType;
 }
 
 const CardCategory = (props: Props) => {

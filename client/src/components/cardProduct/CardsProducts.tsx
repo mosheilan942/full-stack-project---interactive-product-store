@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import CardProduct from './CardProduct';
-import NavBar from '../NavBar';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
 import { CategoryType, ProductType } from '../../types/ProductTypes';
 import { getFilterProduct, getOrderProductByAlphabetical, getProductByCategory, getSearchProduct } from '../../api/productFuncApi';
 import { useParams } from 'react-router-dom';
+import NavFilters from './NavFilters';
 
 
 const CardsProducts: React.FC = () => {
@@ -85,7 +85,7 @@ const CardsProducts: React.FC = () => {
 
   return (
     <>
-      <NavBar
+      <NavFilters
         onSearch={handleSearch}
         onFilter={handleFilter}
         onSort={handleSort}
