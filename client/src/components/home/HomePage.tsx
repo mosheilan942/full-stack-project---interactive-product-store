@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import CardCategory from './CardCategory';
 import { getAllCategories } from '../../api/productFuncApi';
-import NavBar from '../NavBar';
 
 type Category = {
     _id: string;

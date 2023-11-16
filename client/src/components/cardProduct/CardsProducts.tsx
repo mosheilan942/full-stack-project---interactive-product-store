@@ -1,39 +1,23 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import CardProduct from './CardProduct';
-import { useParams } from 'react-router-dom';
-import { CellPhoneType } from '../../types/ProductTypes';
-import { RefrigeratorType } from '../../types/ProductTypes';
-import { WashingMachineType } from '../../types/ProductTypes';
-import { getProductByCategory } from '../../api/productFuncApi';
 import NavBar from '../NavBar';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
-
-type ProductType = CellPhoneType | RefrigeratorType | WashingMachineType;
-
-type GetProds = {
-  _id: string;
-  name: string;
-  rating: number;
-  product: ProductType[];
-  image: string;
-  __v: number;
-}
+import { CategoryType, ProductType } from '../../types/ProductTypes';
+import { getFilterProduct, getOrderProductByAlphabetical, getProductByCategory, getSearchProduct } from '../../api/productFuncApi';
+import { useParams } from 'react-router-dom';
 
 
-
-const CardsProducts = () => {
+const CardsProducts: React.FC = () => {
   const { categoryName } = useParams();
-
   const [data, setData] = useState<ProductType[]>([]);
-
 
 
   useEffect(() => {
     const insertData = async () => {
       if (categoryName) {
-        const getData: GetProds = await getProductByCategory(categoryName);
-        const products = getData && getData.product;
+        const getData: CategoryType = await getProductByCategory(categoryName);
+        const products: ProductType[] | undefined = getData && getData.product;
 
         if (Array.isArray(products)) {
           setData(products);
@@ -47,19 +31,74 @@ const CardsProducts = () => {
 
     insertData()
   }, []);
-  
+
+
+  const fetchDataSearch = async (queryParams: string) => {
+    try {
+      if (!categoryName) throw Error('Not exist categort name!!')
+      const data: ProductType[] = await getSearchProduct(categoryName, queryParams);
+      setData(data);
+      console.log(data);
+
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+
+  const fetchDataFilter = async (queryParams: string) => {
+    try {
+      if (!categoryName) throw Error('Not exist categort name!!')
+      const data: ProductType[] = await getFilterProduct(categoryName, queryParams);
+      setData(data);
+      console.log(data);
+
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const fetchDataFilterByAlphabetical = async (queryParams: string) => {
+    try {
+      if (!categoryName) throw Error('Not exist categort name!!')
+      const data: ProductType[] = await getOrderProductByAlphabetical(categoryName, queryParams);
+      setData(data);
+      console.log(data);
+
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+
+  const handleSearch = (newSearchTerm: string) => {
+    fetchDataSearch(`?search=${newSearchTerm}`);
+  };
+
+  const handleFilter = (newMinPrice: number, newMaxPrice: number) => {
+    fetchDataFilter(`?min=${newMinPrice}&max=${newMaxPrice}`);
+  };
+
+  const handleSort = (newOrder: string) => {
+    fetchDataFilterByAlphabetical(`?order=${newOrder}`);
+  };
 
   return (
     <>
-      <NavBar />
-      <Box sx={{
-        width: 1150,
-        height: 100,
-        display: "flex",
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-
+      <NavBar
+        onSearch={handleSearch}
+        onFilter={handleFilter}
+        onSort={handleSort}
+      />
+      <Box
+        sx={{
+          width: 1150,
+          height: 100,
+          display: "flex",
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
         <Typography variant="h4">{categoryName && camelCaseToWords(categoryName)}</Typography>
       </Box>
       {data.map((product) => (
@@ -70,5 +109,7 @@ const CardsProducts = () => {
 };
 
 export default CardsProducts;
+
+
 
 
