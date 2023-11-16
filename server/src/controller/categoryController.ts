@@ -7,7 +7,10 @@ import {
     ProductById,
     fncSearch,
     filterProductsAlphabetically,
-    getTop5categoryOrProduct
+    getTop5categoryOrProduct,
+    getCartForUserAdd,
+    getCartForUserlower,
+    getCartListForUserService
 }
     from '../service/categoryService';
 
@@ -48,6 +51,37 @@ const getTop5categoryOrProductControl = async (req: Request, res: Response) => {
         res.json(error)
     }
 };
+
+const getCartForUserAddControl = async (req: Request, res: Response) => {
+    const { userId, productId } = req.params
+    try {
+        const data = await getCartForUserAdd(userId, productId);
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+const getCartForUserlowerControl = async (req: Request, res: Response) => {
+    const { userId, productId } = req.params
+    try {
+        const data = await getCartForUserlower(userId, productId);
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+const getCartListForUserControl = async (req: Request, res: Response) => {
+    const { userId } = req.params
+    try {
+        const data = await getCartListForUserService(userId);
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
 
 
 // filter
@@ -94,7 +128,7 @@ const searchProducts = async (req: Request, res: Response) => {
 const alphabeticalFilter = async (req: Request, res: Response) => {
     try {
         const { order } = req.query
-        const  categoryName  = req.params.name;
+        const categoryName = req.params.name;
         console.log(order);
         // console.log(category);
 
@@ -114,7 +148,9 @@ export {
     getProducts,
     getProductById,
     searchProducts,
-
+    getCartForUserAddControl,
+    getCartForUserlowerControl,
     alphabeticalFilter,
-    getTop5categoryOrProductControl
+    getTop5categoryOrProductControl,
+    getCartListForUserControl
 } 

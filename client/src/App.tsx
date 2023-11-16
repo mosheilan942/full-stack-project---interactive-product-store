@@ -45,6 +45,7 @@ function App() {
   }
 
   const styleFooterBox = {
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

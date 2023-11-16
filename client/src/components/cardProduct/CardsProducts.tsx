@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import NavFilters from './NavFilters';
 
 
-const CardsProducts: React.FC = () => {
+const CardsProducts = () => {
   const { categoryName } = useParams();
   const [data, setData] = useState<ProductType[]>([]);
 
