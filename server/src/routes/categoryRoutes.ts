@@ -8,7 +8,8 @@ import {
     searchProducts,
     alphabeticalFilter,
     getTop5categoryOrProductControl,
-    getCartForUserControl
+    getCartForUserAddControl,
+    getCartForUserlowerControl,
 }
     from '../controller/categoryController';
 import { autoToken } from '../middleware/middleware';
@@ -25,7 +26,9 @@ routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
 routerCategory.get('/categories', getAllCategoryControl);
 
-routerCategory.get('/UserCart', getCartForUserControl);
+routerCategory.get('/Cart/Add/:userId/:productId', getCartForUserAddControl);
+
+routerCategory.get('/Cart/lower/:userId/:productId', getCartForUserlowerControl);
 
 routerCategory.get('/:name', getProductsByCategoryControl);
 

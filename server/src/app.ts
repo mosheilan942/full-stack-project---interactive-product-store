@@ -39,7 +39,7 @@ const connectANDlisten = async ()=> {
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bec", ".")
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")
 
-        await addProductToCartData("6554a721fc9d7eb3ce2fcd3b", "6554a756e173d6f796eb7bfc")
+        // await addProductToCartData("6554a721fc9d7eb3ce2fcd3b", "6554a756e173d6f796eb7bfc")
         // await addProductToCartData("6554a5a836ce1ae86f263173", "6554a756e173d6f796eb7bfc", ".")
 
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")

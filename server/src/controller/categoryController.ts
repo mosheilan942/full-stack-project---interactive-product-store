@@ -8,7 +8,8 @@ import {
     fncSearch,
     filterProductsAlphabetically,
     getTop5categoryOrProduct,
-    getCartForUser
+    getCartForUserAdd,
+    getCartForUserlower
 }
     from '../service/categoryService';
 
@@ -50,10 +51,20 @@ const getTop5categoryOrProductControl = async (req: Request, res: Response) => {
     }
 };
 
-const getCartForUserControl = async (req: Request, res: Response) => {
+const getCartForUserAddControl = async (req: Request, res: Response) => {
     const {userId, productId} = req.params
     try {
-        const data = await getCartForUser(userId, productId);
+        const data = await getCartForUserAdd(userId, productId);
+        res.json(data);
+    } catch (error) {
+        res.json(error)
+    }
+};
+
+const getCartForUserlowerControl = async (req: Request, res: Response) => {
+    const {userId, productId} = req.params
+    try {
+        const data = await getCartForUserlower(userId, productId);
         res.json(data);
     } catch (error) {
         res.json(error)
@@ -125,7 +136,8 @@ export {
     getProducts,
     getProductById,
     searchProducts,
-    getCartForUserControl,
+    getCartForUserAddControl,
+    getCartForUserlowerControl,
     alphabeticalFilter,
     getTop5categoryOrProductControl
 } 
