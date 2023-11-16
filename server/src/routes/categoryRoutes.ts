@@ -6,14 +6,19 @@ import {
     getProducts,
     getProductById,
     searchProducts,
+    alphabeticalFilter,
     getTop5categoryOrProductControl
 }
     from '../controller/categoryController';
+import { autoToken } from '../middleware/middleware';
 
 const routerCategory = express.Router();
 
 
-routerCategory.get('/', getAllProductsFromCategoryControl);
+routerCategory.get('/',autoToken, getAllProductsFromCategoryControl);
+
+
+routerCategory.get('/categories' ,getAllCategoryControl);
 
 routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
@@ -28,5 +33,6 @@ routerCategory.get('/:name/filter', getProducts);
 
 routerCategory.get('/:name/search', searchProducts);
 
+routerCategory.get('/:name/alphabetical', alphabeticalFilter)
 
 export { routerCategory }

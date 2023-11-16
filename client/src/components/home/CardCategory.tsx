@@ -1,14 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { camelCaseToWords } from '../../utils/camelCaseToWords';
+import { v4 as uuidv4 } from 'uuid';
+import { CategoryType } from '../../types/ProductTypes';
 
-type Category = {
-  categoryName: string;
-  name: string;
-  image: string;
-}
 
 type Props = {
-  category: Category;
+  category: CategoryType;
 }
 
 const CardCategory = (props: Props) => {
@@ -16,13 +14,13 @@ const CardCategory = (props: Props) => {
   const navigate = useNavigate();
 
   const handleBoxClick = () => {
-    navigate(`/category/${category.categoryName}`);
+    navigate(`/category/${category.name}`);
   };
 
   return (
     <Box
       onClick={handleBoxClick}
-      key={category.categoryName}
+      key={uuidv4()}
       sx={{
         background: "#ffe3b8",
         width: 200,
@@ -37,8 +35,10 @@ const CardCategory = (props: Props) => {
       <img src={category.image} alt={category.name} style={{ width: '100%', height: '30%' }} />
       <Typography sx={{
         background: '#d55d31',
-        marginTop: 3
-      }} variant="h6">{category.name}</Typography>
+      }}
+        variant="h6">
+        {camelCaseToWords(category.name)}
+      </Typography>
 
     </Box>
   )

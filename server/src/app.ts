@@ -11,6 +11,8 @@ import { insertuser } from './Schemes/usersSchema';
 import { DatabaseInitializationForProducts, DatabaseInitializationForCategories } from './Schemes/databaseInitialization';
 import { addProductToCartData } from './DAL/cart'
 
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const app = express();
@@ -36,8 +38,12 @@ const connectANDlisten = async ()=> {
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7be8", ".")
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bec", ".")
         // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")
+
         // await addProductToCartData("6554a721fc9d7eb3ce2fcd3b", "6554a756e173d6f796eb7bfc")
         // await addProductToCartData("6554a5a836ce1ae86f263173", "6554a756e173d6f796eb7bfc", ".")
+
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bf6", ".")
+        // await addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7bfc", ".")
         // await DatabaseInitializationForProducts()
         // לאחר מכן, לכבות את השרת ואת השורות הקודמות, להפעיל את השורה הבאה ואז את השרת
         // await DatabaseInitializationForCategories()

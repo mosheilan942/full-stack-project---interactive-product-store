@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import { CellPhoneType } from '../../types/ProductTypes';
-import { RefrigeratorType } from '../../types/ProductTypes';
-import { WashingMachineType } from '../../types/ProductTypes';
+import { ProductType } from '../../types/ProductTypes';
+import AddToCartButtons from '../cart/AddToCartButtons';
+
 
 type Props = {
-    product: CellPhoneType | RefrigeratorType |WashingMachineType;
+    product: ProductType;
 }
 
 const CardProduct = (props: Props) => {
@@ -31,11 +31,12 @@ const CardProduct = (props: Props) => {
                 flexDirection: 'column'
             }}>
             <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: '30%' }} />
-            <Typography sx={{ background: '#d55d31', marginTop: 3 }} variant="h6">Name: </Typography>
-            {product.name}
-            <Typography sx={{ background: '#d55d31', marginTop: 3 }} variant="h6">Category: </Typography>
-            {product.categoryType}
-
+            <Box>
+                <Typography sx={{}} variant="h6">{product.name}</Typography>
+                <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>
+                <Typography sx={{}} variant="body1">Quantity:{product.quantity}</Typography>
+            </Box>
+            <AddToCartButtons product={product} />
         </Box>
     )
 }

@@ -66,24 +66,57 @@ const getProductMongoById = async (id: number, nameCategory: any) => {
 }
 
 
+
+// const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
+//     const data = await category.find({ name: categoryName });
+//     const sortOrder = order === 'asc' ? 1 : -1;
+//     console.log(searchTerm);
+
+//     const products = await Product
+//         .find({
+//             categoryType: categoryName,
+
+//             name: { $regex: new RegExp(searchTerm, 'i') }
+//         })
+//         .sort({ name: sortOrder });
+//     console.log(categoryName);
+
+//     return products;
+// }
+
+//  search
 const searchProducts = async (searchTerm: string, order: any, categoryName: string) => {
     const data = await category.find({ name: categoryName });
+    if (!data || data.length === 0) {
+        throw new Error('Category not found')
+    };
     const sortOrder = order === 'asc' ? 1 : -1;
-    console.log(searchTerm);
-
+    // console.log(searchTerm);
+    const regex = new RegExp(`.*${searchTerm}.*`, 'i');
     const products = await Product
         .find({
             categoryType: categoryName,
-
-            name: { $regex: new RegExp(searchTerm, 'i') }
+            name: { $regex: regex }
         })
         .sort({ name: sortOrder });
-    console.log(categoryName);
+    // console.log(categoryName);
 
     return products;
 }
 
+const filterProductsAlphabeticallyDal = async (order: any, nameCategory: any) => {
+    const data = await category.find({ name: nameCategory });
+    if (!data || data.length === 0) {
+        throw new Error('Category not found')
+    };
+    const sortOrder = order === 'asc' ? 1 : -1;
 
+    const products = await Product.find({
+        categoryType: nameCategory,
+    })
+        .sort({ name: sortOrder });
+    return products;
+}
 
 export {
     allProductsFromCategoryData,
@@ -92,5 +125,6 @@ export {
     findPrice,
     getProductMongoById,
     searchProducts,
+    filterProductsAlphabeticallyDal,
     getTop5categoryOrProductData
 } 
