@@ -3,81 +3,51 @@ import { order, Product } from '../Schemes/databaseInitialization';
 import { UserModel } from '../Schemes/usersSchema';
 
 export const addProductToCartData = async (userId: string, productId: string, operation?: string) => {
-    const product = await Product.findById({ _id: productId }).select('price').exec()
-    const cartField = await UserModel.findById({ _id: userId }).select('cart').exec();
-    const user = await UserModel.findOne({ "cart.productId": productId }).select('cart.quantity').exec();
-    console.log(user);
+    const productInDb = await Product.findById({ _id: productId }).select('price').exec()
+    const userInDb = await UserModel.findById({ _id: userId }).select('cart').exec();
+    const productsInUser = await UserModel.findOne({ _id: userId, "cart.productId": productId }).select({
+        "cart.$": 1
+      }).exec();
+   
 
-
-    if (!cartField) throw new Error("404")
-    if (!product) throw new Error("404")
-
-    const arrayOfProduct = cartField.cart
-    arrayOfProduct.filter((product, index) => {
-        String(product.productId) === productId
-        if (String(product.productId) === productId) {
+    if (!userInDb) throw new Error("Error: The user was not created properly")
+    if (!productInDb) throw new Error("Error: There is no such product in the system")
+    if (!productsInUser) {
+        const data = await UserModel.findOneAndUpdate({ _id: userId },
+            {
+                $push:
+                {
+                    cart:
+                    {
+                        productId: productId,
+                        quantity: 1,
+                        price: productInDb.price
+                    }
+                }
+            }).exec()
+            console.log("The product did not exist, and successfully added");    
+        if (data) return data
+        throw new Error("Error: The product was not added to the cart correctly Try again")
+    }
+    else {
+        console.log("moshe?");
+        const product = await UserModel.findOneAndUpdate({"cart.productId": productId},
+        {
+        })
+        // const productInUser = await UserModel.findById({ _id: userId }).findByIdAndUpdate({"cart.productId": productId}, {"quantity": 1}).exec();
+        // const productInUser = await UserModel.findOneAndUpdate({ "cart.productId": productId }, { $set: { "quantity": 1 }}).exec();
+        const productInUser2 = await UserModel.findOne({ "cart.productId": productId }).exec();
+        const array = productInUser2?.cart
+        array?.forEach((product, index) => {
+           if (String(product.productId) === productId) {
             let quantity = product.quantity
             operation ? ++quantity : --quantity
-            quantity === 0 ? arrayOfProduct.splice(index, 1) : product.quantity = quantity
-        }
-    })
-
-    const data = await UserModel.findOneAndUpdate({ _id: userId },
-        {
-            cart: {
-                productId: productId,
-                quantity: 1,
-                price: product.price
+            product.quantity = quantity
+            if (quantity === 0) {
+                array.splice(index, 1)
             }
-        }).exec()
-    if (data) return data
-    throw new Error("404")
-
-
-    console.log(arrayOfProduct);
-
-    // if (cartField.cart.length > 0) {
-
-    //     if (quantity > 0) {
-    //         arrayOfProduct.filter((product) => {
-    //             String(product.productId) === productId ? product.quantity = quantity : null 
-    //             return "simy";
-    //         })
-    //         arrayOfProduct.filter(async (product) => {
-    //             const data = await UserModel.findOneAndUpdate({ _id: userId },
-    //                 {
-    //                     cart: {
-    //                         productId: productId,
-    //                         quantity: quantity,
-    //                         price: product.price
-    //                     }
-    //                 }).exec()
-    //             if (data) return data
-    //             throw new Error("404")
-    //         })
-    //     } else {
-    //         const newArrayOfProduct = arrayOfProduct.filter((product) => {
-    //             String(product._id) !== productId
-    //         })
-    //         const data = await UserModel.findOneAndUpdate({ _id: userId },
-    //             {
-    //                 cart: newArrayOfProduct
-    //             }).exec()
-    //         if (data) return data
-    //         throw new Error("404")
-    //     // }
-    // // } else {
-    //     const data = await UserModel.findOneAndUpdate({ _id: userId },
-    //         {
-    //             cart: {
-    //                 productId: productId,
-    //                 quantity: 1,
-    //                 price: product.price
-    //             }
-    //         }).exec()
-    //     if (data) return data
-    //     throw new Error("404")
-    // // }
+           } 
+        })
+        productInUser2?.save()
+    }
 }
-
-// addProductToCartData("6554a756e173d6f796eb7ba2", "6554a756e173d6f796eb7be8")
