@@ -13,7 +13,7 @@ function App() {
 
 
   const styleContainer = {
-    height: '98vh',
+    height: '100vh',
     display: 'grid',
     gridTemplateAreas:
       "'header header header' \
@@ -24,34 +24,46 @@ function App() {
     gridGap: '4px'
   };
   const styleHeaderBox = {
-    my: 1, display: 'block',
+    display: 'block',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position:'fixed', 
+    marginTop: '0px',
+    background: '#ffffff',
+    width: '90vW'
   }
 
   const styleMainBox = {
-    my: 1, display: 'flex',
+     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap'
+    ,width: '90vW',
+
   }
 
   const styleFooterBox = {
-    my: 1, display: 'flex',
+     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    position:'fixed', 
+    bottom: '0',
+    background: '#ffffff',
+    width: '90vW'
   }
 
 
 
   return (
-    <Container sx={styleContainer} fixed maxWidth="xl">
+    <Container sx={styleContainer} fixed >
       <Provider store={store}>
-        <Box sx={{ ...styleHeaderBox, border: "2px solid black", gridArea: 'header' }}>
+        <Box sx={{ ...styleHeaderBox, gridArea: 'header',}}>
           <Header />
         </Box>
-        <Box sx={{ ...styleMainBox,background: '#e3c372', border: "2px solid black", gridArea: 'main' }}>
+        <Box sx={{ ...styleMainBox,background: '#e3c379', gridArea: 'main' }}>
           <RouterProvider router={router} />
         </Box>
-        <Box sx={{ ...styleFooterBox, border: "2px solid black", gridArea: 'footer' }}>
+        <Box sx={{ ...styleFooterBox, gridArea: 'footer' }}>
           <Footer />
         </Box>
       </Provider>
