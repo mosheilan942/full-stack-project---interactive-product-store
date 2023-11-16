@@ -50,13 +50,8 @@ export const loginController = async (req: Request, res: Response) => {
     }
     const userEmail = req.body.email;
     const accessToken = createToken(userEmail);
-
-
     // Additional logic like generating tokens, etc
-
     return res.status(200).json({ accessToken, message: "Login successful", user });
-
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });

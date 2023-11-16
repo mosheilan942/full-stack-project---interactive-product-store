@@ -19,6 +19,7 @@ routerCategory.get('/',autoToken, getAllProductsFromCategoryControl);
 
 
 routerCategory.get('/categories' ,getAllCategoryControl);
+
 routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 
 routerCategory.get('/categories', getAllCategoryControl);
