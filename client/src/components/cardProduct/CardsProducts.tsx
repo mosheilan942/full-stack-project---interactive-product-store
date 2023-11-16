@@ -93,8 +93,8 @@ const CardsProducts = () => {
       />
       <Box
         sx={{
-          width: 1150,
-          height: 100,
+          width: '100%',
+          height: 70,
           display: "flex",
           justifyContent: 'center',
           alignItems: 'center'
