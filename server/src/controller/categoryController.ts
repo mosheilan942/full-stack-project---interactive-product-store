@@ -43,7 +43,7 @@ const getProductsByCategoryControl = async (req: Request, res: Response) => {
     }
 };
 
-// getTop5categoryOrProduct
+
 const getTop5categoryOrProductControl = async (req: Request, res: Response) => {
     try {
         const data = await getTop5categoryOrProduct();

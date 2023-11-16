@@ -22,13 +22,13 @@ import { Model } from "mongoose";
 const getAllProductsFromCategory = async () => {
     const ProductsFromCategory = await allProductsFromCategoryData();
     if (ProductsFromCategory) return ProductsFromCategory;
-    throw new Error("404")
+    throw new Error("Error fetching all products. Stage: DAL")
 };
 
 const getAllCategory = async () => {
     const categories = await allCategoriesData();
     if (categories) return categories;
-    throw new Error("404")
+    throw new Error("Error fetching all categories. Stage: Service")
 };
 
 
@@ -36,32 +36,32 @@ const getAllCategory = async () => {
 const getCartForUserAdd = async (userId:string, productId:string) => {
     const cart = await addProductToCartData(userId, productId, ".");
     if (cart) return cart;
-    throw new Error("404")
+    throw new Error("Error adding product. Stage: Service")
 };
 
 const getCartListForUserService = async (userId:string) => {
     const cart = await getCartData(userId);
     if (cart) return cart;
-    throw new Error("404")
+    throw new Error("Error fetching all products from user. Stage: Service")
 };
 
 const getCartLengthForUserService = async (userId:string) => {
     const cart = await getCartDataLengthData(userId);
     if (cart) return cart;
-    throw new Error("404")
+    throw new Error("Error fetching length of products from user. Stage: Service")
 };
 
 
 const getCartForUserlower = async (userId:string, productId:string) => {
     const cart = await addProductToCartData(userId, productId);
     if (cart) return cart;
-    throw new Error("Product reduction error. Step: SERVICE")
+    throw new Error("Product reduction error. Step: Service")
 };
 
 const getProductsByCategory = async (name: string) => {
     const ProductsByCategory = await ProductsByCategoryData(name);
     if (ProductsByCategory) return ProductsByCategory;
-    throw new Error("404")
+    throw new Error("Error fetching all products from category. Stage: Service")
 }
 
 const getByCategoryAndPrice = async (order: any, min: any, max: any, category: any) => {
@@ -89,7 +89,7 @@ const filterProductsAlphabetically = async (order:any, category:any) => {
 const getTop5categoryOrProduct = async () => {
     const data = await getTop5categoryOrProductData();
     if (data) return data;
-    throw new Error("404")
+    throw new Error("Error fetching top five products/category. Stage: Service")
 };
 
 export {
