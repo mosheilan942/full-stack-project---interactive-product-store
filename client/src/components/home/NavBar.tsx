@@ -37,12 +37,13 @@ const NavBar = () => {
         <Box sx={{
             width: '100%',
             height: 70,
-            background: 'black',
+            background: '#1f140a',
             color: 'gold',
             display: 'flex',
             alignItems: 'center',
             position: 'sticky',
-            top: 90
+            top: 0,
+            zIndex: 800
         }}>
             <Button
                 id="categories-menu"

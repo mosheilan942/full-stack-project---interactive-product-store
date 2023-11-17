@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import { RouterProvider } from "react-router-dom";
 import router from './router/Router';
-
 import { store } from './Redux/store';
 import { Provider } from 'react-redux';
 import Header from './components/Header';
@@ -31,18 +30,24 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     marginTop: '0px',
-    background: '#ffffff',
-    maxWidth: '1280px'
+    background: '#4d3119',
+    color: 'gold',
+    maxWidth: '1280px',
+    zIndex: 1000
   }
 
   const styleMainBox = {
+    background: '#b6a788',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
+    paddingBottom: '90px',
     width: '100%',
-    height: '100vh'
-  }
+    minHeight: '100vh',
+    overflowY: 'auto' // זה מאפשר גלילה אנכית
+  };
+
 
   const styleFooterBox = {
 
@@ -52,25 +57,27 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     bottom: '0',
-    background: '#ffffff',
+    background: '#4d3119',
+    color: 'gold',
     maxWidth: '1280px',
-    height: '20px'
-    
+    height: '60px'
+
   }
+
 
 
 
   return (
     <Box sx={styleContainer}>
       <Provider store={store}>
-        <Box sx={{ ...styleHeaderBox, gridArea: 'header'}}>
+        <Box sx={{ ...styleHeaderBox, gridArea: 'header' }}>
           <Header />
         </Box>
 
-        <Box sx={{ ...styleMainBox, background: '#e3c379', gridArea: 'main'}}>
-
+        <Box sx={{ ...styleMainBox, gridArea: 'main' }}>
           <RouterProvider router={router} />
         </Box>
+
         <Box sx={{ ...styleFooterBox, gridArea: 'footer' }}>
           <Footer />
         </Box>
@@ -78,5 +85,6 @@ function App() {
     </Box>
   );
 }
+
 
 export default App

@@ -1,11 +1,10 @@
-import { Box } from '@mui/material'
-import React from 'react'
 
-type Props = {}
 
-const Footer = (props: Props) => {
+
+
+const Footer = () => {
   return (
-    <Box >Footer</Box>
+    <h4>Footer</h4>
   )
 }
 

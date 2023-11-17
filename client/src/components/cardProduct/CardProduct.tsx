@@ -5,7 +5,7 @@ import AddToCartButtons from '../cart/AddToCartButtons';
 import { incrementToComparison } from '../../Redux/comparisonSlice';
 
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 
 type Props = {
@@ -25,7 +25,7 @@ const CardProduct = (props: Props) => {
 
     const handleBoxClick = () => {
         console.log(product.categoryType);
-        
+
         navigate(`/product/${product.categoryType}/${product._id}`);
     };
 
@@ -36,34 +36,58 @@ const CardProduct = (props: Props) => {
             sx={{
                 background: "#ffe3b8",
                 width: 200,
-                minHeight: 250,
+                minHeight: 370,
                 margin: 2,
                 display: 'flex',
-                justifyContent: 'center',
                 textAlign: 'center',
-                flexDirection: 'column'
-            }}>
-            <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: '30%' }} />
+                flexDirection: 'column',
+                boxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)',
+                WebkitBoxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)', 
+                MozBoxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)',
+                borderRadius: '10px'
+              }}>
+              
+            <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
             <Box>
                 <Typography sx={{}} variant="h6">{product.name}</Typography>
                 <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>
                 <Typography sx={{}} variant="body1">Quantity:{product.quantity}</Typography>
             </Box>
             <AddToCartButtons product={product} />
-            
+
 
             <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: '4px', alignItems: 'center' }}>
-                <Button variant='contained' sx={{ fontSize: '8px', margin: '4px', }}
+                <Button
                     onClick={(event) => {
                         event.stopPropagation()
                         dispatch(incrementToComparison(product))
                     }}
-                >
+                    variant='contained'
+                    sx={{
+                        background: '#9e6c39',
+                        transition: 'background 0.3s',
+                        '&:hover': {
+                            background: 'gold'
+                        },
+                        color: 'black',
+                        fontSize: '8px',
+                        margin: '4px'
+                    }}>
                     Add to Comparison
                 </Button >
                 <Button
                     onClick={handleClickToComparison}
-                    variant='contained' sx={{fontSize: '8px', margin: '4px', }}>
+                    variant='contained'
+                    sx={{
+                        background: '#9e6c39',
+                        transition: 'background 0.3s',
+                        '&:hover': {
+                            background: 'gold'
+                        },
+                        color: 'black',
+                        fontSize: '8px',
+                        margin: '4px'
+                    }}>
                     Go to Comparison
                 </Button>
 

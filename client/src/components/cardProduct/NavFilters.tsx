@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Input, Select, MenuItem, Button } from '@mui/material';
+import { Box, Input, Select, MenuItem, IconButton } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
+import SearchIcon from '@mui/icons-material/Search';
+import BlurOnIcon from '@mui/icons-material/BlurOn';
 
 type NavFiltersProps = {
     onSearch: (searchTerm: string) => void;
@@ -35,13 +37,14 @@ const NavFilters: React.FC<NavFiltersProps> = ({ onSearch, onFilter, onSort }) =
             sx={{
                 width: '100%',
                 height: 70,
-                background: 'black',
+                background: '#1f140a',
                 color: 'gold',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-around',
                 position: 'sticky',
-                top: 90
+                top: 0,
+                zIndex: 800
             }}
         >
             <Box>
@@ -51,9 +54,9 @@ const NavFilters: React.FC<NavFiltersProps> = ({ onSearch, onFilter, onSort }) =
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Button variant='contained' onClick={handleSearch} sx={{ background: 'black', color: 'gold' }}>
-                    Search
-                </Button>
+                <IconButton onClick={handleSearch} sx={{ background: 'black', color: 'gold' }}>
+                    <SearchIcon/>
+                </IconButton>
             </Box>
 
             <Box>
@@ -72,10 +75,9 @@ const NavFilters: React.FC<NavFiltersProps> = ({ onSearch, onFilter, onSort }) =
                     sx={{ background: '#ffe3b8', width: 100, marginRight: 2 }}
                 />
 
-
-                <Button variant='contained' onClick={handleFilter} sx={{ background: 'black', color: 'gold' }}>
-                    Filter
-                </Button>
+                <IconButton onClick={handleFilter} sx={{ background: 'black', color: 'gold' }}>
+                    <BlurOnIcon /> 
+                </IconButton>
             </Box>
             <Select
                 value={sorting}

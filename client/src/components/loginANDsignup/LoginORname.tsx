@@ -55,7 +55,7 @@ const LoginORname = (props: Props) => {
     <Box>
       {username ?
         <UserName /> :
-        <Button onClick={handleOpen}>
+        <Button onClick={handleOpen} sx={{ color: 'gold'}}>
           LOGIN
         </Button>
       }
