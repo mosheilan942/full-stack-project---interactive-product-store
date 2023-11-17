@@ -2,11 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { ProductType } from '../types/ProductTypes';
 import { CartItem } from '../types/CartTypes';
-import { getAllProductFromCart } from '../api/cartFuncApi';
+import { getAllProductFromCart, getProductByID } from '../api/cartFuncApi';
+import axios from 'axios';
+
+
 
 
 export interface CartLS {
-  productId: string;
+  productId: ProductType;
   quantity: number;
 }
 
@@ -19,8 +22,8 @@ export interface Cart {
 
 const initialState: Cart = {
   cartIndex: 0,
-  cartLS: null,
   cart: null,
+  cartLS: null,
 }
 
 export const cartIndexSlice = createSlice({
@@ -29,45 +32,54 @@ export const cartIndexSlice = createSlice({
   reducers: {
     insertDataToCart: (state,) => {
       const userID = localStorage.getItem('UserClientID');
-      
-      
       if (userID) {
-        const getCartFromServer = async () => {
-          const cart : CartItem[] = await getAllProductFromCart(userID)
-          console.log(cart);
-          state.cart = cart
-        };
-        getCartFromServer()
-      } else {
-        
-        const cartLS = localStorage.getItem('CartLS');
-        const cart: CartLS[] = JSON.parse(cartLS!)
-        state.cartIndex = 0
-        cart.forEach(cartItem => {
-          state.cartIndex += cartItem.quantity
+        let config = {
+          method: 'get',
+          maxBodyLength: Infinity,
+          url: `http://localhost:3000/category/Cart/get/${userID}`,
+          headers: { }
+        };        
+        axios.request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
         })
-        state.cartLS = cart
-      } 
+        .catch((error) => {
+          console.log(error);
+        });
+      } else { }
      
     },
-    addProductToCart: (state, action: PayloadAction<string>) => {
+    addProductToCart: (state, action: PayloadAction<ProductType>) => {
       const userID = localStorage.getItem('UserClientID');
       if (userID) {
-        // fech ....
+        let config = {
+          method: 'get',
+          maxBodyLength: Infinity,
+          url: `http://localhost:3000/category/Cart/Add/${userID}/${action.payload._id}`,
+          headers: { }
+        };        
+        axios.request(config)
+        .then((response) => {
+          console.log('add secses'+JSON.stringify(response.data));
+          state.cartIndex ++
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       } else {
         const cartLS = localStorage.getItem('CartLS');
         if (cartLS) {
           const cart: CartLS[] = JSON.parse(cartLS)
-          const productToUpdateIndex = cart.findIndex(item => item.productId === action.payload);
-          if (productToUpdateIndex >= 0) {    
+          const productToUpdateIndex = cart.findIndex(item => item.productId._id === action.payload._id);
+          if (productToUpdateIndex >= 0) {
             cart[productToUpdateIndex].quantity++;
+            console.log('product To Update add acsses');
           } else {
-            console.log(2);
-            
             cart.push({
               productId: action.payload,
               quantity: 1
             })
+            console.log('product To Update acsses add firt 1');
           }
           state.cartLS = cart
         } else {
@@ -81,16 +93,29 @@ export const cartIndexSlice = createSlice({
         localStorage.setItem('CartLS', cartToString)
       }
     },
-    lessProductToCart: (state, action: PayloadAction<string>) => {
+    lessProductToCart: (state, action: PayloadAction<ProductType>) => {
       const userID = localStorage.getItem('UserClientID');
       if (userID) {
-        // fech ....
+        let config = {
+          method: 'get',
+          maxBodyLength: Infinity,
+          url: `http://localhost:3000/category/Cart/lower/${userID}/${action.payload._id}`,
+          headers: { }
+        };        
+        axios.request(config)
+        .then((response) => {
+          console.log('lower secses'+JSON.stringify(response.data));
+          state.cartIndex --
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       } else {
         const cartLS = localStorage.getItem('CartLS');
         if (cartLS) {
-          const cart: CartLS[] = JSON.parse(cartLS)
-          const productToUpdateIndex = cart.findIndex(item => item.productId === action.payload);
-          
+          const cart: CartItem[] = JSON.parse(cartLS)
+          const productToUpdateIndex = cart.findIndex(item => item.productId._id === action.payload._id);
+
           if (productToUpdateIndex >= 0) {
             cart[productToUpdateIndex].quantity--;
 
@@ -100,8 +125,8 @@ export const cartIndexSlice = createSlice({
             }
 
           }
-          state.cartLS = cart;
-          const cartToString = JSON.stringify(state.cartLS)
+          state.cart = cart;
+          const cartToString = JSON.stringify(state.cart)
           localStorage.setItem('CartLS', cartToString)
         }
       }
@@ -110,6 +135,6 @@ export const cartIndexSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { lessProductToCart, addProductToCart, insertDataToCart} = cartIndexSlice.actions
+export const { lessProductToCart, addProductToCart, insertDataToCart } = cartIndexSlice.actions
 
 export default cartIndexSlice.reducer

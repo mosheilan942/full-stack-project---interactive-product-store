@@ -7,39 +7,57 @@ import { CartLS, addProductToCart, insertDataToCart } from '../../Redux/cartSlie
 import { RootState } from '../../Redux/store'
 import { getAllProduct, getProductByCategory } from '../../api/productFuncApi'
 import { CartItem } from '../../types/CartTypes'
+import useFetch from '../../hooks/useFechHoock'
+
 
 type Props = {}
 
-const cartProduct = (props: Props) => {
+const CartAllProducts = (props: Props) => {
 
-  const dispatch = useDispatch()
-    const dataRducs = useSelector((state: RootState) => state.cart.cart)
-    const [data, setData] = useState<CartItem[] | null>(null);
-
-    useEffect(()=>{
-        const insertData = async () => {
-        // console.log(data);
-        
-        dispatch(insertDataToCart())
-        
-            setData(dataRducs)
-        
-        }
-        insertData()
-        
-    },[])
+    const [config, setConfig] = useState<any>(null);
+    const [pending, error, data] = useFetch<CartItem[]>(config);
     
+  
+    
+
+    useEffect(() => {
+        // localStorage.removeItem('CartLS');
+        // localStorage.removeItem('UserClientID');
+    const userID = localStorage.getItem('UserClientID');
+    let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: `http://localhost:3000/category/Cart/get/${userID}`,
+        headers: {}
+    };
+    setConfig(config)
+
+
+
+        if (pending) {
+            console.log('Loading...');
+        } else if (error) {
+            console.error('Error:', error);
+        } else {
+          
+            console.log('Data:', data);
+            // setData(data)
+        }
+
+    }, [])
+
 
 
 
     return (
         <Box>
             cartProduct
+            {error && error.message}
             {data && data.map((product) => (
-                 <CardProduct key={product.productId._id} product={product.productId} />              
+                <CardProduct key={product.productId._id} product={product.productId} />
             ))}
         </Box>
     )
 }
 
-export default cartProduct
+export default CartAllProducts
