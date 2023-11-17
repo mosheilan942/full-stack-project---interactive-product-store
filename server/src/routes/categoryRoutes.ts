@@ -12,8 +12,7 @@ import {
     getCartForUserlowerControl,
     getCartListForUserControl,
     getCartLengthForUserControl
-}
-    from '../controller/categoryController';
+} from '../controller/categoryController';
 import { autoToken } from '../middleware/middleware';
 
 const routerCategory = express.Router();
@@ -22,7 +21,7 @@ const routerCategory = express.Router();
 routerCategory.get('/', getAllProductsFromCategoryControl);
 
 // מחזיר את כל הקטגוריות
-routerCategory.get('/categories' ,getAllCategoryControl);
+routerCategory.get('/categories', getAllCategoryControl);
 
 // מחזיר את חמש המובילים בקטגוריות
 routerCategory.get('/getTopFive', getTop5categoryOrProductControl);

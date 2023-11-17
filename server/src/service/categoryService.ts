@@ -33,26 +33,26 @@ const getAllCategory = async () => {
 
 
 
-const getCartForUserAdd = async (userId:string, productId:string) => {
+const getCartForUserAdd = async (userId: string, productId: string) => {
     const cart = await addProductToCartData(userId, productId, ".");
     if (cart) return cart;
     throw new Error("Error adding product. Stage: Service")
 };
 
-const getCartListForUserService = async (userId:string) => {
+const getCartListForUserService = async (userId: string) => {
     const cart = await getCartData(userId);
     if (cart) return cart;
     throw new Error("Error fetching all products from user. Stage: Service")
 };
 
-const getCartLengthForUserService = async (userId:string) => {
+const getCartLengthForUserService = async (userId: string) => {
     const cart = await getCartDataLengthData(userId);
     if (cart) return cart;
     throw new Error("Error fetching length of products from user. Stage: Service")
 };
 
 
-const getCartForUserlower = async (userId:string, productId:string) => {
+const getCartForUserlower = async (userId: string, productId: string) => {
     const cart = await addProductToCartData(userId, productId);
     if (cart) return cart;
     throw new Error("Product reduction error. Step: Service")
@@ -75,16 +75,16 @@ const ProductById = async (id: any, category: any) => {
 }
 
 // search
-const fncSearch = async (searchTerm:any, order:any, categoryName:any) => {
+const fncSearch = async (searchTerm: any, order: any, categoryName: any) => {
     const products = await searchProducts(searchTerm, order, categoryName);
     return products;
 }
 
-const filterProductsAlphabetically = async (order:any, category:any) => {
+const filterProductsAlphabetically = async (order: any, category: any) => {
     const products = await filterProductsAlphabeticallyDal(order, category);
     return products;
-  }
-  
+}
+
 // getTop5categoryOrProduct
 const getTop5categoryOrProduct = async () => {
     const data = await getTop5categoryOrProductData();

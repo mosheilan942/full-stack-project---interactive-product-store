@@ -113,8 +113,6 @@ export const category = model<Icategories>('Category', categoriesSchema);
 
 export const order = model<Iorder>('Order', orderSchema);
 
-// export const orderItem = model<IorderItem>('Category', orderItemSchema);
-
 const cellPhoneDetailsSchema = new Schema({
     dimensions: {
         height: { type: Number, required: true },
@@ -139,33 +137,35 @@ const washingMachinesDetailsSchema = new Schema({
     energyRating: { type: String, required: true },
 });
 
-export async function DatabaseInitializationForProducts() {
-
-    arrayProducts.forEach(async (arrayOfOneproduct) => {
-        arrayOfOneproduct.forEach(async (oneProduct) => {
-            const nameOfcategorie = await category.find({ name: oneProduct.categoryType }, `${oneProduct.categoryType}._id`).exec()
-            const product = new Product({
-                ...oneProduct,
-                category: nameOfcategorie, 
-                dimensions: oneProduct.dimensions,
-                    // screenSize: phone.screenSize,
-            });
-            await product.save();
-        })
-
-    });
-
-}
 
 export async function DatabaseInitializationForCategories() {
-
-    arrayCategories.forEach(async (newCategorie) => {
-        const nameOfproduct = await Product.find({ categoryType: newCategorie }, "_id")
-        const setCategorie = new category({
-            name: newCategorie,
-            product: nameOfproduct
-        })
-        await setCategorie.save();
-    })
+    await Promise.all(arrayCategories.map(async (newCategory) => {
+        const nameOfProduct = await Product.find({ categoryType: newCategory }, "_id");
+        const setCategory = new category({
+            name: newCategory,
+            product: nameOfProduct,
+        });
+        await setCategory.save();
+    }));
 }
 
+export async function DatabaseInitializationForProducts() {
+    await Promise.all(arrayProducts.map(async (arrayOfOneProduct) => {
+        await Promise.all(arrayOfOneProduct.map(async (oneProduct) => {
+            const nameOfCategory = await category.find({ name: oneProduct.categoryType }, `${oneProduct.categoryType}._id`).exec();
+            const product = new Product({
+                ...oneProduct,
+                category: nameOfCategory,
+                dimensions: oneProduct.dimensions,
+            });
+            await product.save();
+        }));
+    }));
+}
+
+
+export async function img() {
+    const data = await Product.updateMany({}, {"image": "https://picsum.photos/250/250"});
+    console.log(data);
+    
+}
