@@ -34,9 +34,9 @@ const Header = () => {
             <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
                 <Box>
-                    <IconButton>
+                    <IconButton >
                         <a href='http://localhost:5173/cart' >
-                            <ShoppingCartOutlinedIcon />
+                            <ShoppingCartOutlinedIcon sx={{ color: 'gold'}}/>
                         </a>
                     </IconButton>
                     {cartIndex}
