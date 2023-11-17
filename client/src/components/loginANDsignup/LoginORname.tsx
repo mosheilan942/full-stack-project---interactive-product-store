@@ -38,7 +38,7 @@ const LoginORname = (props: Props) => {
   const dispatch = useDispatch()
   
   // dispatch(logoutUser())
-  const username = useSelector((state: RootState) => state.user.name)
+  const username = localStorage.getItem('UserClientID');
   const [user, setuser] = useState(username)
   useEffect(() => {
     dispatch(ifUserLoged())
