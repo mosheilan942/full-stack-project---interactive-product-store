@@ -7,6 +7,7 @@ import MicrowavesArray from '../data/MicrowavesData';
 import SpeakersArray from '../data/SpeakersData';
 import televisionsArray from '../data/televisionsData';
 import VacuumCleanersArray from '../data/VacuumCleanersData';
+import { object } from 'joi';
 
 
 export interface Iproducts {
@@ -16,7 +17,6 @@ export interface Iproducts {
     price: number
     rating: number
     date: SchemaDefinitionProperty<number, Iproducts> | undefined
-    // categoryID?: Types.ObjectId,
     color: string;
     dimensions?: {
         height: number;
@@ -27,9 +27,9 @@ export interface Iproducts {
     quantity: number;
     description: string;
     image: string;
-    addresses: string[];
-    categoryDetails: string
+    addresses: Iaddresses[];
     categoryType: string
+    categoryDetails: {}
 }
 
 export interface Icategories {
@@ -39,18 +39,16 @@ export interface Icategories {
     product: Types.ObjectId
 }
 
+export interface Iaddresses {
+    lon: number
+    lat: number
+    name: string
+};
 export interface IorderItem {
     _id: Types.ObjectId
     productId: Types.ObjectId
     quantity: number
     price: number
-};
-
-export interface Iorder {
-    userId: Types.ObjectId
-    date: SchemaDefinitionProperty<number, Iproducts> | undefined
-    totalPrice: number
-    items: Types.ObjectId
 };
 
 const orderItemSchema = new Schema<IorderItem>({
@@ -59,12 +57,19 @@ const orderItemSchema = new Schema<IorderItem>({
     price: { type: Number, required: true }
 });
 
-const orderSchema = new Schema<Iorder>({
-    userId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    date: { type: Date, required: true },
-    totalPrice: { type: Number, required: true },
-    items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }]
-})
+// export interface Iorder {
+//     userId: Types.ObjectId
+//     date: SchemaDefinitionProperty<number, Iproducts> | undefined
+//     totalPrice: number
+//     items: Types.ObjectId
+// };
+
+// const orderSchema = new Schema<Iorder>({
+//     userId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+//     date: { type: Date, required: true },
+//     totalPrice: { type: Number, required: true },
+//     items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }]
+// })
 
 
 const categoriesSchema = new Schema<Icategories>({
@@ -74,6 +79,14 @@ const categoriesSchema = new Schema<Icategories>({
     image: { type: String, default: "https://tinyurl.com/22brmde9", required: true }
 })
 
+const addressesSchema = new Schema<Iaddresses>({
+    lon: { type: Number, required: true },
+    lat: { type: Number, required: true },
+    name: { type: String, required: true },
+});
+
+export const addresses = model<Iaddresses>('Order', addressesSchema);
+
 const productsSchema = new Schema<Iproducts>({
     name: { type: String, required: true },
     manufacturer: { type: String, required: true },
@@ -81,12 +94,11 @@ const productsSchema = new Schema<Iproducts>({
     price: { type: Number, required: true },
     rating: { type: Number, default: 0, required: true },
     date: { type: Date, default: Date.now },
-    // categoryID: { type: Schema.Types.ObjectId, ref: 'Category' }
     color: { type: String, required: false },
     quantity: { type: Number, required: true },
     description: { type: String, required: true },
     image: { type: String, required: false },
-    addresses: { type: [String], required: true },
+    addresses: { type: Schema.Types.Mixed, required: true },
     dimensions: {
         type: Schema.Types.Mixed,
         default: {},
@@ -97,6 +109,10 @@ const productsSchema = new Schema<Iproducts>({
         enum: ['cellPhone', 'refrigerator', 'washingMachine',
             'television', 'microwave', 'speaker', 'vacuumCleaner'],
     },
+    categoryDetails: {
+        type: Schema.Types.Mixed,
+        required: false,
+    }
 });
 
 const arrayCategories = ['cellPhone', 'refrigerator', 'washingMachine',
@@ -111,7 +127,6 @@ export const Product = model<Iproducts>('Product', productsSchema);
 
 export const category = model<Icategories>('Category', categoriesSchema);
 
-export const order = model<Iorder>('Order', orderSchema);
 
 const cellPhoneDetailsSchema = new Schema({
     dimensions: {
@@ -165,7 +180,7 @@ export async function DatabaseInitializationForProducts() {
 
 
 export async function img() {
-    const data = await Product.updateMany({}, {"image": "https://picsum.photos/250/250"});
+    const data = await Product.updateMany({}, { "image": "https://picsum.photos/250/250" });
     console.log(data);
-    
+
 }
