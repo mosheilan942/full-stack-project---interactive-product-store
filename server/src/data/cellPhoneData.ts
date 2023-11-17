@@ -41,10 +41,8 @@ const cellPhones = [{
   manufacturer: 'Samsung',
   model: 'S21',
   color: 'Phantom Gray',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 900,
-  screenSize: 6.2,
   dimensions: { height: 151.7, length: 71.2, width: 7.9, weight: 171 },
   quantity: 40,
   description: 'Powerful Android phone with a stunning display and versatile camera system.',
@@ -62,12 +60,16 @@ const cellPhones = [{
     },
     { lon: 35.775924, lat: 33.072175, name: '21 Herzl St, Netanya' }
   ],
-  operatingSystem: "Android",
-  specialFeatures: ["Stunning display", "Versatile camera system"],
-  storageCapacity: "256GB",
-  cameraSpecs: {
-    front: "10 MP",
-    rear: "Triple 12 MP, 64 MP, 12 MP",
+  categoryDetails: {
+    screenSize: 6.2,
+    isKosher: false,
+    operatingSystem: "Android",
+    specialFeatures: ["Stunning display", "Versatile camera system"],
+    storageCapacity: "256GB",
+    cameraSpecs: {
+      front: "10 MP",
+      rear: "Triple 12 MP, 64 MP, 12 MP",
+    }
   },
 },
 {
@@ -75,10 +77,8 @@ const cellPhones = [{
   manufacturer: 'Google',
   model: 'Pixel 6',
   color: 'Sorta Seafoam',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 800,
-  screenSize: 6.4,
   dimensions: { height: 158.6, length: 74.8, width: 8.9, weight: 206 },
   quantity: 30,
   description: 'Flagship Pixel phone with exceptional camera capabilities and stock Android experience.',
@@ -100,23 +100,25 @@ const cellPhones = [{
       name: 'Yigael Yadin Blvd 1, Ashdod'
     }
   ],
-  operatingSystem: "Android",
-  specialFeatures: ["Exceptional camera", "Stock Android experience"],
-  storageCapacity: "256GB",
-  cameraSpecs: {
-    front: "8 MP",
-    rear: "Dual 50 MP, 12 MP",
-  },
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.4,
+    operatingSystem: "Android",
+    specialFeatures: ["Exceptional camera", "Stock Android experience"],
+    storageCapacity: "256GB",
+    cameraSpecs: {
+      front: "8 MP",
+      rear: "Dual 50 MP, 12 MP",
+    },
+  }
 },
 {
   name: 'OnePlus 9',
   manufacturer: 'OnePlus',
   model: '9',
   color: 'Astral Black',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 950,
-  screenSize: 6.55,
   dimensions: { height: 160, length: 74.2, width: 8.7, weight: 192 },
   quantity: 25,
   description: 'OnePlus flagship phone with Hasselblad camera and smooth performance.',
@@ -134,23 +136,25 @@ const cellPhones = [{
       name: 'Yehuda Rd 157, Rishon LeTsiyon'
     }
   ],
-  operatingSystem: "Android",
-  specialFeatures: ["Hasselblad camera", "Smooth performance"],
-  storageCapacity: "128GB",
-  cameraSpecs: {
-    front: "16 MP",
-    rear: "Triple 48 MP, 50 MP, 2 MP",
-  },
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.55,
+    operatingSystem: "Android",
+    specialFeatures: ["Hasselblad camera", "Smooth performance"],
+    storageCapacity: "128GB",
+    cameraSpecs: {
+      front: "16 MP",
+      rear: "Triple 48 MP, 50 MP, 2 MP",
+    },
+  }
 },
 {
   name: 'Xiaomi Mi 11',
   manufacturer: 'Xiaomi',
   model: 'Mi 11',
   color: 'Midnight Gray',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 700,
-  screenSize: 6.81,
   dimensions: { height: 164.3, length: 74.6, width: 8.1, weight: 196 },
   quantity: 35,
   description: 'Premium Xiaomi phone with a high-refresh-rate display and Snapdragon 888.',
@@ -168,23 +172,25 @@ const cellPhones = [{
       name: '1st Aliyah St 5, Karmiel'
     }
   ],
-  operatingSystem: "Android",
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.81,
+    operatingSystem: "Android",
     specialFeatures: ["High-refresh-rate display", "Snapdragon 888"],
     storageCapacity: "256GB",
     cameraSpecs: {
       front: "20 MP",
       rear: "Triple 108 MP, 13 MP, 5 MP",
     },
+  }
 },
 {
   name: 'Sony Xperia 1 III',
   manufacturer: 'Sony',
   model: 'Xperia 1 III',
   color: 'Frosted Black',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 1100,
-  screenSize: 6.5,
   dimensions: { height: 165, length: 71, width: 8.2, weight: 186 },
   quantity: 20,
   description: "Sony's flagship phone with a 4K OLED display and versatile camera setup.",
@@ -198,23 +204,25 @@ const cellPhones = [{
       name: 'Abba Hillel Silver Rd 8, Ramat Gan'
     }
   ],
-  operatingSystem: "Android",
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.5,
+    operatingSystem: "Android",
     specialFeatures: ["4K OLED display", "Versatile camera setup"],
     storageCapacity: "256GB",
     cameraSpecs: {
       front: "8 MP",
       rear: "Triple 12 MP, 12 MP, 12 MP",
     },
+  }
 },
 {
   name: 'Motorola Moto G Power (2021)',
   manufacturer: 'Motorola',
   model: 'Moto G Power (2021)',
   color: 'Flash Gray',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 600,
-  screenSize: 6.6,
   dimensions: { height: 165.3, length: 75.9, width: 9.5, weight: 206 },
   quantity: 15,
   description: 'Budget-friendly Motorola phone with a large battery for extended usage.',
@@ -232,23 +240,25 @@ const cellPhones = [{
       name: 'Hativat Carmeli St 3, Afula'
     }
   ],
-  operatingSystem: "Android",
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.6,
+    operatingSystem: "Android",
     specialFeatures: ["Budget-friendly", "Large battery"],
     storageCapacity: "128GB",
     cameraSpecs: {
       front: "8 MP",
       rear: "Triple 48 MP, 2 MP, 2 MP",
     },
+  }
 },
 {
   name: 'Oppo Find X3 Pro',
   manufacturer: 'Oppo',
   model: 'Find X3 Pro',
   color: 'Gloss Black',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 1200,
-  screenSize: 6.7,
   dimensions: { height: 163.6, length: 74, width: 8.3, weight: 193 },
   quantity: 28,
   description: 'Oppo flagship phone with a high-quality camera system and fast charging.',
@@ -264,29 +274,32 @@ const cellPhones = [{
       lat: 39.087133,
       name: 'Ramatayim Menashe Blvd 3, Ashkelon'
     },
-    {
-      lon: 41.775924,
-      lat: 39.072175,
-      name: 'Yehuda Halevi St 65, Tel Aviv-Yafo'
+    {  
+        lon: 41.775924,
+        lat: 39.072175,
+        name: 'Yehuda Halevi St 65, Tel Aviv-Yafo'
+      
     }
   ],
-  operatingSystem: "Android",
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.7,
+    operatingSystem: "Android",
     specialFeatures: ["High-quality camera system", "Fast charging"],
     storageCapacity: "256GB",
     cameraSpecs: {
       front: "32 MP",
       rear: "Quad 50 MP, 50 MP, 13 MP, 3 MP",
     },
+  }
 },
 {
   name: 'Nokia 8.3 5G',
   manufacturer: 'Nokia',
   model: '8.3 5G',
   color: 'Polar Night',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 850,
-  screenSize: 6.81,
   dimensions: { height: 171.9, length: 78.6, width: 8.99, weight: 220 },
   quantity: 22,
   description: 'Nokia 5G phone with a large display and ZEISS optics for the camera.',
@@ -304,22 +317,24 @@ const cellPhones = [{
     },
     { lon: 42.775924, lat: 40.072175, name: "Hertzel St 118, El'ad" }
   ],
-  specialFeatures: ["5G connectivity", "ZEISS optics"],
-  storageCapacity: "128GB",
-  cameraSpecs: {
-    front: "24 MP",
-    rear: "Quad 64 MP, 12 MP, 2 MP, 2 MP",
-  },
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.81,
+    specialFeatures: ["5G connectivity", "ZEISS optics"],
+    storageCapacity: "128GB",
+    cameraSpecs: {
+      front: "24 MP",
+      rear: "Quad 64 MP, 12 MP, 2 MP, 2 MP",
+    },
+  }
 },
 {
   name: 'Realme GT',
   manufacturer: 'Realme',
   model: 'GT',
   color: 'Silver',
-  isKosher: false,
   categoryType: 'cellPhone',
   price: 750,
-  screenSize: 6.43,
   dimensions: { height: 158.5, length: 73.3, width: 8.4, weight: 186 },
   quantity: 18,
   description: 'Realme flagship phone with a Snapdragon 870 processor and 120Hz Super AMOLED display.',
@@ -337,12 +352,16 @@ const cellPhones = [{
       name: '42 Dizengoff St, Tel Aviv-Yafo'
     }
   ],
-  operatingSystem: "Android",
-  specialFeatures: ["Snapdragon 870 processor", "120Hz Super AMOLED display"],
-  storageCapacity: "256GB",
-  cameraSpecs: {
-    front: "16 MP",
-    rear: "64 MP, 8 MP, 2 MP, 2 MP",
-  },
+  categoryDetails: {
+    isKosher: false,
+    screenSize: 6.43,
+    operatingSystem: "Android",
+    specialFeatures: ["Snapdragon 870 processor", "120Hz Super AMOLED display"],
+    storageCapacity: "256GB",
+    cameraSpecs: {
+      front: "16 MP",
+      rear: "64 MP, 8 MP, 2 MP, 2 MP",
+    },
+  }
 }]
 export default cellPhones
