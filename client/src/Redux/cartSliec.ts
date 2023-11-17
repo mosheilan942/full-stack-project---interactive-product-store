@@ -30,24 +30,18 @@ export const cartIndexSlice = createSlice({
   name: 'cartIndex',
   initialState,
   reducers: {
-    insertDataToCart: (state,) => {
+    insertDataToCart: (state,action: PayloadAction<CartItem[] | null>) => {
       const userID = localStorage.getItem('UserClientID');
       if (userID) {
-        let config = {
-          method: 'get',
-          maxBodyLength: Infinity,
-          url: `http://localhost:3000/category/Cart/get/${userID}`,
-          headers: { }
-        };        
-        axios.request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      } else { }
-     
+            console.log(state.cartIndex);     
+            state.cart = action.payload
+            console.log('secsses');
+      } else {
+        const cartString = localStorage.getItem('CartLS');
+        const cartLS: CartLS[] = JSON.parse(cartString!)
+        state.cartLS = cartLS
+      }
+
     },
     addProductToCart: (state, action: PayloadAction<ProductType>) => {
       const userID = localStorage.getItem('UserClientID');
@@ -56,16 +50,19 @@ export const cartIndexSlice = createSlice({
           method: 'get',
           maxBodyLength: Infinity,
           url: `http://localhost:3000/category/Cart/Add/${userID}/${action.payload._id}`,
-          headers: { }
-        };        
+          headers: {}
+        };
         axios.request(config)
-        .then((response) => {
-          console.log('add secses'+JSON.stringify(response.data));
-          state.cartIndex ++
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((response) => {
+            // console.log('add secses'+JSON.stringify(response.data));
+
+            console.log('state.cartIndex' + state.cartIndex);
+            state.cartIndex++
+            console.log(state.cartIndex);
+          })
+          .catch((error) => {
+            console.log('err' + error);
+          });
       } else {
         const cartLS = localStorage.getItem('CartLS');
         if (cartLS) {
@@ -100,16 +97,16 @@ export const cartIndexSlice = createSlice({
           method: 'get',
           maxBodyLength: Infinity,
           url: `http://localhost:3000/category/Cart/lower/${userID}/${action.payload._id}`,
-          headers: { }
-        };        
+          headers: {}
+        };
         axios.request(config)
-        .then((response) => {
-          console.log('lower secses'+JSON.stringify(response.data));
-          state.cartIndex --
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((response) => {
+            console.log('lower secses' + JSON.stringify(response.data));
+            state.cartIndex--
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         const cartLS = localStorage.getItem('CartLS');
         if (cartLS) {

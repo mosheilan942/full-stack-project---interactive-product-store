@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import CardProduct from '../cardProduct/CardProduct'
 import { ProductType } from '../../types/ProductTypes'
@@ -8,43 +8,35 @@ import { RootState } from '../../Redux/store'
 import { getAllProduct, getProductByCategory } from '../../api/productFuncApi'
 import { CartItem } from '../../types/CartTypes'
 import useFetch from '../../hooks/useFechHoock'
+import { loginUser } from '../../Redux/userSlice'
 
 
 type Props = {}
 
 const CartAllProducts = (props: Props) => {
-
-    const [config, setConfig] = useState<any>(null);
-    const [pending, error, data] = useFetch<CartItem[]>(config);
+    const dispatch = useDispatch()
+    const cart = useSelector((state: RootState) => state.cart.cart);
+    const cartLS = useSelector((state: RootState) => state.cart.cartLS);
+    const userID = localStorage.getItem('UserClientID');
+    console.log(userID);
     
-  
+    const [pending, error, data] = useFetch<CartItem[]>(`http://localhost:3000/category/Cart/get/${userID}`);
     
 
     useEffect(() => {
         // localStorage.removeItem('CartLS');
         // localStorage.removeItem('UserClientID');
-    const userID = localStorage.getItem('UserClientID');
-    let config = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: `http://localhost:3000/category/Cart/get/${userID}`,
-        headers: {}
-    };
-    setConfig(config)
-
-
-
-        if (pending) {
-            console.log('Loading...');
-        } else if (error) {
-            console.error('Error:', error);
+        if (userID){          
+            dispatch(insertDataToCart(data))
+            console.log('data inserted');    
         } else {
-          
-            console.log('Data:', data);
-            // setData(data)
+         
+        
         }
+        cartLS?.forEach(p => console.log(p)
+        )
 
-    }, [])
+    }, [data])
 
 
 
@@ -52,10 +44,16 @@ const CartAllProducts = (props: Props) => {
     return (
         <Box>
             cartProduct
-            {error && error.message}
-            {data && data.map((product) => (
+           {error && <p>error </p>}
+            {
+             cart ?  cart.map((product) => (<>
                 <CardProduct key={product.productId._id} product={product.productId} />
-            ))}
+                </>)) 
+                : 
+                cartLS && cartLS.map((product) => (<>
+                    <CardProduct key={product.productId._id} product={product.productId} />
+                    </>)) 
+            }
         </Box>
     )
 }
