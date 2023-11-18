@@ -34,7 +34,8 @@ const LoginORname = (props: Props) => {
   const [loginORsinup, setLoginORsinup] = useState<string>('login');
 
 
-  if (!context) return null;
+  if (!context) {console.log('errrr');
+  return null};
   const {user} = context
   const name = user?.user.name
 
