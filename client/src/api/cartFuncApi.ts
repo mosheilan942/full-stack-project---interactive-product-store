@@ -30,17 +30,17 @@ async function getProductByID(id: string): Promise<any> {
     const response = await axios.get(`${API_URL}/${id}`);
     return response.data;
 }
-async function getAmountProductFromCart(id: string): Promise<any> {
-    const response = await axios.get(`${API_URL}/cart/amount/${id}`);
-    return response.data;
-}
+// async function getAmountProductFromCart(id: string): Promise<any> {
+//     const response = await axios.get(`${API_URL}/cart/amount/${id}`);
+//     return response.data;
+// }
 async function getProductByCategory(name: string): Promise<any> {
     const response = await axios.get(`${API_URL}/${name}`);
     return response.data;
 }
 
 export {
-    getAmountProductFromCart,
+    // getAmountProductFromCart,
     lessProductToCartByID,
     getAllProductFromCart,
     addProductToCartByID,

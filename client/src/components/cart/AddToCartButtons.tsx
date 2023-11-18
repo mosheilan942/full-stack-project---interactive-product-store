@@ -5,7 +5,7 @@ import type { RootState } from '../../Redux/store'
 import { CartLS, addProductToCart, insertDataToCart, lessProductToCart, } from '../../Redux/cartSliec'
 import { ProductType } from '../../types/ProductTypes'
 import { CartItem } from '../../types/CartTypes'
-import { addProductToCartByID, lessProductToCartByID } from '../../api/cartFuncApi'
+import { addProductToCartByID, getAllProductFromCart, lessProductToCartByID } from '../../api/cartFuncApi'
 import { UserContext } from '../../context/UserContext'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 }
 
 const AddToCartButtons = (props: Props) => {
-    const product = props.product  
+    const product = props.product
     const dispatch = useDispatch()
     const cart = useSelector((state: RootState) => state.cart.cart);
     const cartLS = useSelector((state: RootState) => state.cart.cartLS);
@@ -21,31 +21,36 @@ const AddToCartButtons = (props: Props) => {
 
     const context = useContext(UserContext);
     if (!context) return null;
-    const {user} = context
+    const { user } = context
     const userID = user?.user._id
 
 
     useEffect(() => {
         const init = () => {
-          const quantityFromCart = cart?.find((item) => item.productId._id === product._id)?.quantity;
-          const quantityFromCartLS = cartLS?.find((item) => item.productId._id === product._id)?.quantity;
-    
-          setQuantity(quantityFromCart || quantityFromCartLS || 0);
+            const quantityFromCart = cart?.find((item) => item.productId._id === product._id)?.quantity;
+            console.log(quantityFromCart);
+            
+            const quantityFromCartLS = cartLS?.find((item) => item.productId._id === product._id)?.quantity;
+
+            setQuantity(quantityFromCart || quantityFromCartLS || 0);
         };
-    
+
         init();
-      }, [product, cart, cartLS]);
+    }, [product, cart, cartLS]);
 
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', }}>
             <IconButton onClick={(event) => {
                 event.stopPropagation()
-                if (userID){
+                if (userID) {
                     const add = async () => {
                         try {
-                            await addProductToCartByID( product._id, userID)
-                            setQuantity(prev => prev ++)
+                            await addProductToCartByID(product._id, userID)
+                            dispatch(addProductToCart([product, userID]))
+                            // const cartData = await getAllProductFromCart(userID)
+                            // dispatch(insertDataToCart(cartData));
+                            // setQuantity(prev => prev++)
                         } catch (error) {
                             console.log(error);
                         }
@@ -53,21 +58,22 @@ const AddToCartButtons = (props: Props) => {
                     add()
                 } else {
                     dispatch(addProductToCart([product, userID]))
-                //  dispatch(insertDataToCart(null))
+                    //  dispatch(insertDataToCart(null))
                 }
-                
+
             }}>+</IconButton>
 
             <Typography>{quantity}</Typography>
 
             <IconButton onClick={(event) => {
                 event.stopPropagation()
-                if (userID){
+                if (userID) {
                     const add = async () => {
                         try {
-                            await  lessProductToCartByID(userID, product._id)
-                            // await dispatch(lessProductToCart([product, userID]))
-                            setQuantity(prev => prev --)
+                            await lessProductToCartByID(userID, product._id)
+                            await dispatch(lessProductToCart([product, userID]))
+                            // const cartData = await getAllProductFromCart(userID)
+                            // dispatch(insertDataToCart(cartData));
                         } catch (error) {
                             console.log(error);
                         }
@@ -75,10 +81,10 @@ const AddToCartButtons = (props: Props) => {
                     add()
                     // setTriger(prev => prev --)
                 } else {
-                //  dispatch(insertDataToCart(null))
-                dispatch(lessProductToCart([product, userID]))
+                    //  dispatch(insertDataToCart(null))
+                    dispatch(lessProductToCart([product, userID]))
                 }
-                
+
             }}>-</IconButton>
         </Box>
     )
