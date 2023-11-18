@@ -1,4 +1,4 @@
-import { Box, IconButton } from '@mui/material'
+import { Box, Button, IconButton, Typography } from '@mui/material'
 import { useSelector, } from 'react-redux'
 import type { RootState } from '../Redux/store'
 import LoginORname from './loginANDsignup/LoginORname';
@@ -26,23 +26,24 @@ const Header = () => {
 
 
 
-            <IconButton onClick={ () => {navigate(`/`);}} >
+            <Button onClick={ () => {navigate(`/`);}} >
+               
                     <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '93px' }} />
-                    </IconButton>
+                    </Button>
 
 
 
             </Box>
-            <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
+            <Box sx={{ width: 300, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
-                <Box>
+                <Box sx={{display: 'flex', justifyContent: 'space-around'}}>
                     <IconButton onClick={ () => {navigate(`/cart`);}} >
                         <ShoppingCartOutlinedIcon sx={{ color: 'gold' }} />
 
-                        <IconButton >
-                            {cartIndex}
-                        </IconButton>
                     </IconButton>
+                        <Typography sx={{color:'white'}} >
+                            {cartIndex}
+                        </Typography>
 
 
                 </Box>
