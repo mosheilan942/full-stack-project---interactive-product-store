@@ -28,7 +28,7 @@ const Header = () => {
 
             <Button onClick={ () => {navigate(`/`);}} >
                
-                    <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '93px' }} />
+                    <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '163px' }} />
                     </Button>
 
 
@@ -41,7 +41,7 @@ const Header = () => {
                         <ShoppingCartOutlinedIcon sx={{ color: 'gold' }} />
 
                     </IconButton>
-                        <Typography sx={{color:'white'}} >
+                        <Typography sx={{color:'white', position: 'fixed', right:'4%'}} >
                             {cartIndex}
                         </Typography>
 

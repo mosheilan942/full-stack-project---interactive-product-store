@@ -2,11 +2,9 @@ import { Product, category, Icategories, Iproducts } from "../Schemes/databaseIn
 import { Model } from "mongoose";
 
 const allProductsFromCategoryData = async () => {
-    const data = await category.find({})
-        .populate({
-            path: 'product'
-        }).exec()
-    if (data) return data
+    const data = await Product.find({})
+    if (data) { console.log(data);
+     return data }
     throw new Error("Error fetching all products. Stage: DAL")
 };
 

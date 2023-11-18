@@ -47,7 +47,7 @@ const CardProduct = (props: Props) => {
                 borderRadius: '10px'
               }}>
               
-            <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
+            <img src={product.image} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
             <Box>
                 <Typography sx={{}} variant="h6">{product.name}</Typography>
                 <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>

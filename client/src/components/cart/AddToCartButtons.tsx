@@ -1,11 +1,10 @@
-import { Box, IconButton, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
+import { Box, IconButton, Typography } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../Redux/store'
-import { CartLS, addProductToCart, insertDataToCart, lessProductToCart, } from '../../Redux/cartSliec'
+import {  addProductToCart,  lessProductToCart, } from '../../Redux/cartSliec'
 import { ProductType } from '../../types/ProductTypes'
-import { CartItem } from '../../types/CartTypes'
-import { addProductToCartByID, getAllProductFromCart, lessProductToCartByID } from '../../api/cartFuncApi'
+import { addProductToCartByID, lessProductToCartByID } from '../../api/cartFuncApi'
 import { UserContext } from '../../context/UserContext'
 
 type Props = {
@@ -28,7 +27,6 @@ const AddToCartButtons = (props: Props) => {
     useEffect(() => {
         const init = () => {
             const quantityFromCart = cart?.find((item) => item.productId._id === product._id)?.quantity;
-            console.log(quantityFromCart);
             
             const quantityFromCartLS = cartLS?.find((item) => item.productId._id === product._id)?.quantity;
 
@@ -48,9 +46,6 @@ const AddToCartButtons = (props: Props) => {
                         try {
                             await addProductToCartByID(product._id, userID)
                             dispatch(addProductToCart([product, userID]))
-                            // const cartData = await getAllProductFromCart(userID)
-                            // dispatch(insertDataToCart(cartData));
-                            // setQuantity(prev => prev++)
                         } catch (error) {
                             console.log(error);
                         }
@@ -58,7 +53,7 @@ const AddToCartButtons = (props: Props) => {
                     add()
                 } else {
                     dispatch(addProductToCart([product, userID]))
-                    //  dispatch(insertDataToCart(null))
+
                 }
 
             }}>+</IconButton>
@@ -72,19 +67,16 @@ const AddToCartButtons = (props: Props) => {
                         try {
                             await lessProductToCartByID(userID, product._id)
                             await dispatch(lessProductToCart([product, userID]))
-                            // const cartData = await getAllProductFromCart(userID)
-                            // dispatch(insertDataToCart(cartData));
+
                         } catch (error) {
                             console.log(error);
                         }
                     }
                     add()
-                    // setTriger(prev => prev --)
+
                 } else {
-                    //  dispatch(insertDataToCart(null))
                     dispatch(lessProductToCart([product, userID]))
                 }
-
             }}>-</IconButton>
         </Box>
     )

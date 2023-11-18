@@ -31,14 +31,14 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     marginTop: '0px',
-    background: '#4d3119',
+    background: '#7a9cc6',
     color: 'gold',
     maxWidth: '1280px',
     zIndex: 1000
   }
 
   const styleMainBox = {
-    background: '#b6a788',
+    background: '#9fbbcc',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -58,7 +58,7 @@ function App() {
     position: 'fixed',
     width: 'inherit',
     bottom: '0',
-    background: '#4d3119',
+    background: '#7a9cc6',
     color: 'gold',
     maxWidth: '1280px',
     height: '60px'

@@ -22,9 +22,9 @@ const CardCategory = (props: Props) => {
       onClick={handleBoxClick}
       key={uuidv4()}
       sx={{
-        background: "#ffe3b8",
-        width: 200,
-        minHeight: 250,
+        background: "#bde4a7",
+        // width: 200,
+        minHeight: 200,
         margin: 2,
         display: 'flex',
         justifyContent: 'center',
@@ -36,7 +36,7 @@ const CardCategory = (props: Props) => {
         borderRadius: '10px'
       }}>
 
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmGx-nx8u8TU6sSycGa4wrsiJL_qrayptqA&usqp=CAU" alt={category.name} style={{ width: '100%', height: '30%', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
+      <img src={category.image} alt={category.name} style={{ width: '100%', height: '30%', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
       <Typography sx={{
         background: '#9e6c39',
         borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px'
