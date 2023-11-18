@@ -37,9 +37,6 @@ const LoginORname = (props: Props) => {
   if (!context) return null;
   const {user} = context
   const name = user?.user.name
-  
-  console.log(user);
-
 
 
   const handleOpen = () => setOpen(true);

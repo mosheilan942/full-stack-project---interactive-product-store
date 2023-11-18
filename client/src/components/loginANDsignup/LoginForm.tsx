@@ -6,10 +6,11 @@ import * as yup from "yup"
 import { loginUser as login } from '../../api/usersFuncApi';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setAmaount } from '../../Redux/cartSliec'
+import { insertDataToCart, incremntAmaount } from '../../Redux/cartSliec'
 import { LoginUser } from '../../types/UserType';
-import {UserContext} from '../../context/UserContext';
-import { getAmountProductFromCart } from '../../api/cartFuncApi';
+import { UserContext } from '../../context/UserContext';
+import { addProductToCartByID, getAllProductFromCart } from '../../api/cartFuncApi';
+import { RootState } from '../../Redux/store';
 
 const stylePos = {
   position: 'absolute',
@@ -51,6 +52,8 @@ const LoginForm = (props: Props) => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
+  const cart = useSelector((state: RootState) => state.cart.cart);
+
   const { register, formState: { errors }, handleSubmit } = useForm<UserFormInput>({
     resolver: yupResolver(schema),
   });
@@ -70,9 +73,26 @@ const LoginForm = (props: Props) => {
     try {
       const response = await login(user)
       const data: LoginUser = response.data
-      const amount = await getAmountProductFromCart(data.user._id)
-      dispatch(setAmaount(amount))
+
+      // insert ls to db 
+      const cartLS = localStorage.getItem('CartLS')
+      if (cartLS) {
+        const cart = JSON.parse(cartLS)
+        for (const cartitem of cart) {
+          for (let i = 0; i < cartitem.quantity; i++) {
+            await addProductToCartByID(cartitem.productId._id, data.user._id)
+            // dispatch(incremntAmaount())
+          }
+        } 
+        console.log('hh');
+        
+        localStorage.removeItem('CartLS');
+        console.log("ls inserted successfully to db");
+      }
+
       setUser(data)
+      const cartData = await getAllProductFromCart(data.user._id)
+      dispatch(insertDataToCart(cartData));
       setMessage(data.message)
       setTimeout(() => {
         props.close()
