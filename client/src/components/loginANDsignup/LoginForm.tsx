@@ -1,5 +1,5 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -8,6 +8,7 @@ import { loginUser as login } from '../../api/usersFuncApi';
 import { useSelector, useDispatch } from 'react-redux'
 import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
 import { LoginUser } from '../../types/UserType';
+import {UserContext} from '../../context/UserContext';
 
 const stylePos = {
   position: 'absolute',
@@ -31,14 +32,20 @@ interface UserFormInput {
   password: string;
 }
 
+const textFieldStyle = { padding: '2px', margin: '4px auto ' }
+
 type Props = {
   handelSignup: Dispatch<SetStateAction<string>>
   close: () => void
 }
 
 const LoginForm = (props: Props) => {
-  const dispatch = useDispatch()
-  const textFieldStyle = { padding: '2px', margin: '4px auto ' }
+  const context = useContext(UserContext);
+  if (!context) return null;
+  const { setUser } = context
+
+
+
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -59,9 +66,9 @@ const LoginForm = (props: Props) => {
     });
     setLoading(true)
     try {
-      const response  = await login(user)
-      const data : LoginUser = response.data 
-      dispatch(loginUser(data))
+      const response = await login(user)
+      const data: LoginUser = response.data
+      setUser(data)
       setMessage(data.message)
       setTimeout(() => {
         props.close()

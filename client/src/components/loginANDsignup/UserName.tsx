@@ -1,20 +1,22 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../Redux/store'
-import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
+import React, { useContext } from 'react'
 import { Box, Button, Typography } from '@mui/material'
+import { UserContext } from '../../context/UserContext'
 
 
 
 type Props = {}
 
 const UserName = (props: Props) => {
-    const dispatch = useDispatch() 
-    const userName = useSelector((state: RootState) => state.user.name)
+  const context = useContext(UserContext);
+  if (!context) return null;
+  const { setUser } = context
+  const { user } = context
+    
+    const userName = user?.user.name
   return (
     <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
         <Typography >Hello {userName}</Typography>
-    <Button onClick={() => {dispatch(logoutUser())}}>
+    <Button onClick={() => {setUser(null)}}>
         logout
         </Button>
         </Box>

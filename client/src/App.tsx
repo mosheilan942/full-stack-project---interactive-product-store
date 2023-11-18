@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import UserContextProvider from './context/UserContext';
+
 
 function App() {
 
@@ -68,6 +70,7 @@ function App() {
 
 
   return (
+    <UserContextProvider>
     <Box sx={styleContainer}>
       <Provider store={store}>
         <Box sx={{ ...styleHeaderBox, gridArea: 'header' }}>
@@ -83,6 +86,7 @@ function App() {
         </Box>
       </Provider>
     </Box>
+    </UserContextProvider>
   );
 }
 
