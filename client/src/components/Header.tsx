@@ -1,8 +1,8 @@
-import { Box, IconButton} from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { useSelector, } from 'react-redux'
 import type { RootState } from '../Redux/store'
 import LoginORname from './loginANDsignup/LoginORname';
-
+import { useNavigate } from 'react-router-dom';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
@@ -13,6 +13,7 @@ const styleHeaderBox = {
 
 
 const Header = () => {
+    const navigate = useNavigate();
 
     const cartIndex = useSelector((state: RootState) => state.cart.cartIndex);
 
@@ -25,21 +26,25 @@ const Header = () => {
 
 
 
-                <a href='http://localhost:5173/' >
+            <IconButton onClick={ () => {navigate(`/`);}} >
                     <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '93px' }} />
-                </a>
+                    </IconButton>
+
 
 
             </Box>
             <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
                 <Box>
-                    <IconButton >
-                        <a href='http://localhost:5173/cart' >
-                            <ShoppingCartOutlinedIcon sx={{ color: 'gold'}}/>
-                        </a>
+                    <IconButton onClick={ () => {navigate(`/cart`);}} >
+                        <ShoppingCartOutlinedIcon sx={{ color: 'gold' }} />
+
+                        <IconButton >
+                            {cartIndex}
+                        </IconButton>
                     </IconButton>
-                    {cartIndex}
+
+
                 </Box>
             </Box>
         </Box>

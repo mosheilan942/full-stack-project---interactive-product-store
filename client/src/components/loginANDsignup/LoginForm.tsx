@@ -6,9 +6,10 @@ import * as yup from "yup"
 import { loginUser as login } from '../../api/usersFuncApi';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
+import { setAmaount } from '../../Redux/cartSliec'
 import { LoginUser } from '../../types/UserType';
 import {UserContext} from '../../context/UserContext';
+import { getAmountProductFromCart } from '../../api/cartFuncApi';
 
 const stylePos = {
   position: 'absolute',
@@ -40,6 +41,7 @@ type Props = {
 }
 
 const LoginForm = (props: Props) => {
+  const dispatch = useDispatch()
   const context = useContext(UserContext);
   if (!context) return null;
   const { setUser } = context
@@ -68,6 +70,8 @@ const LoginForm = (props: Props) => {
     try {
       const response = await login(user)
       const data: LoginUser = response.data
+      const amount = await getAmountProductFromCart(data.user._id)
+      dispatch(setAmaount(amount))
       setUser(data)
       setMessage(data.message)
       setTimeout(() => {

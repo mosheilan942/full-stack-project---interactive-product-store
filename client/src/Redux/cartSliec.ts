@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { ProductType } from '../types/ProductTypes';
 import { CartItem } from '../types/CartTypes';
-import { getAllProductFromCart, getProductByID } from '../api/cartFuncApi';
 import axios from 'axios';
+
 
 
 
@@ -30,26 +30,29 @@ export const cartIndexSlice = createSlice({
   name: 'cartIndex',
   initialState,
   reducers: {
-    insertDataToCart: (state,action: PayloadAction<CartItem[] | null>) => {
-      const userID = localStorage.getItem('UserClientID');
-      if (userID) {
-            console.log(state.cartIndex);     
-            state.cart = action.payload
-            console.log('secsses');
+    setAmaount: (state, action: PayloadAction<number>) => {
+      state.cartIndex = action.payload
+    },
+    insertDataToCart: (state, action: PayloadAction<CartItem[] | null>) => {
+
+      if (action.payload) {
+        console.log(state.cartIndex);
+        state.cart = action.payload
+        console.log('secsses');
       } else {
         const cartString = localStorage.getItem('CartLS');
-        const cartLS: CartLS[] = JSON.parse(cartString!)
-        state.cartLS = cartLS
+        const cartLS: CartLS[] = JSON.parse(cartString!) || [];
+        state.cartLS = cartLS;
       }
 
     },
-    addProductToCart: (state, action: PayloadAction<ProductType>) => {
-      const userID = localStorage.getItem('UserClientID');
-      if (userID) {
+    addProductToCart: (state, action: PayloadAction<[ProductType, string | undefined]>) => {
+      const userID = action.payload[1]
+      if (userID !== undefined) {
         let config = {
           method: 'get',
           maxBodyLength: Infinity,
-          url: `http://localhost:3000/category/Cart/Add/${userID}/${action.payload._id}`,
+          url: `http://localhost:3000/category/Cart/Add/${userID}/${action.payload[0]._id}`,
           headers: {}
         };
         axios.request(config)
@@ -64,39 +67,19 @@ export const cartIndexSlice = createSlice({
             console.log('err' + error);
           });
       } else {
-        const cartLS = localStorage.getItem('CartLS');
-        if (cartLS) {
-          const cart: CartLS[] = JSON.parse(cartLS)
-          const productToUpdateIndex = cart.findIndex(item => item.productId._id === action.payload._id);
-          if (productToUpdateIndex >= 0) {
-            cart[productToUpdateIndex].quantity++;
-            console.log('product To Update add acsses');
-          } else {
-            cart.push({
-              productId: action.payload,
-              quantity: 1
-            })
-            console.log('product To Update acsses add firt 1');
-          }
-          state.cartLS = cart
-        } else {
-          state.cartLS = [{
-            productId: action.payload,
-            quantity: 1
-          }]
-        }
-        state.cartIndex += 1
-        const cartToString = JSON.stringify(state.cartLS)
-        localStorage.setItem('CartLS', cartToString)
+        console.log('ls add');
+        
       }
     },
-    lessProductToCart: (state, action: PayloadAction<ProductType>) => {
-      const userID = localStorage.getItem('UserClientID');
+    lessProductToCart: (state, action: PayloadAction<[ProductType, string | undefined]>) => {
+      const userID = action.payload[1]
       if (userID) {
+        console.log('id from pro ' + action.payload[0]._id);
+
         let config = {
           method: 'get',
           maxBodyLength: Infinity,
-          url: `http://localhost:3000/category/Cart/lower/${userID}/${action.payload._id}`,
+          url: `http://localhost:3000/category/Cart/lower/${userID}/${action.payload[0]._id}`,
           headers: {}
         };
         axios.request(config)
@@ -108,30 +91,16 @@ export const cartIndexSlice = createSlice({
             console.log(error);
           });
       } else {
-        const cartLS = localStorage.getItem('CartLS');
-        if (cartLS) {
-          const cart: CartItem[] = JSON.parse(cartLS)
-          const productToUpdateIndex = cart.findIndex(item => item.productId._id === action.payload._id);
-
-          if (productToUpdateIndex >= 0) {
-            cart[productToUpdateIndex].quantity--;
-
-            if (cart[productToUpdateIndex].quantity <= 0) {
-              // Remove product if quantity is 0
-              cart.splice(productToUpdateIndex, 1);
-            }
-
-          }
-          state.cart = cart;
-          const cartToString = JSON.stringify(state.cart)
-          localStorage.setItem('CartLS', cartToString)
-        }
+        // const cartLS = localStorage.getItem('CartLS');
+        // const cart: CartItem[] = JSON.parse(cartLS)
+        console.log('ls less');
+        
       }
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { lessProductToCart, addProductToCart, insertDataToCart } = cartIndexSlice.actions
+export const { lessProductToCart, addProductToCart, insertDataToCart, setAmaount } = cartIndexSlice.actions
 
 export default cartIndexSlice.reducer
