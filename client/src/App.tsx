@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
-import { RouterProvider } from "react-router-dom";
-import router from './router/Router';
+import { Outlet } from "react-router-dom";
 import { store } from './Redux/store';
 import { Provider } from 'react-redux';
 import Header from './components/Header';
@@ -78,7 +77,8 @@ function App() {
         </Box>
 
         <Box sx={{ ...styleMainBox, gridArea: 'main' }}>
-          <RouterProvider router={router} />
+       
+          <Outlet/>
         </Box>
 
         <Box sx={{ ...styleFooterBox, gridArea: 'footer' }}>

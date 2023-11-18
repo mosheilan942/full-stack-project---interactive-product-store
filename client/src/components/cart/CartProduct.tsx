@@ -1,42 +1,37 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CardProduct from '../cardProduct/CardProduct'
-import { ProductType } from '../../types/ProductTypes'
 import { useSelector, useDispatch } from 'react-redux'
 import { CartLS, addProductToCart, insertDataToCart } from '../../Redux/cartSliec'
 import { RootState } from '../../Redux/store'
-import { getAllProduct, getProductByCategory } from '../../api/productFuncApi'
 import { CartItem } from '../../types/CartTypes'
 import useFetch from '../../hooks/useFechHoock'
-import { loginUser } from '../../Redux/userSlice'
+import { UserContext } from '../../context/UserContext'
 
 
 type Props = {}
 
 const CartAllProducts = (props: Props) => {
+    const context = useContext(UserContext);
+    if (!context) return null;
+    const {user} = context
+    const userID = user?.user._id
+  
     const dispatch = useDispatch()
     const cart = useSelector((state: RootState) => state.cart.cart);
     const cartLS = useSelector((state: RootState) => state.cart.cartLS);
-    const userID = localStorage.getItem('UserClientID');
     console.log(userID);
     
     const [pending, error, data] = useFetch<CartItem[]>(`http://localhost:3000/category/Cart/get/${userID}`);
     
-
     useEffect(() => {
-        // localStorage.removeItem('CartLS');
-        // localStorage.removeItem('UserClientID');
-        if (userID){          
-            dispatch(insertDataToCart(data))
-            console.log('data inserted');    
+        if (userID) {
+          dispatch(insertDataToCart(data));
+          console.log('data from fech inserted');    
         } else {
-         
-        
+          // Handle local storage logic for cartLS
         }
-        cartLS?.forEach(p => console.log(p)
-        )
-
-    }, [data])
+      }, [data, userID, dispatch]);
 
 
 
@@ -45,6 +40,7 @@ const CartAllProducts = (props: Props) => {
         <Box>
             cartProduct
            {error && <p>error </p>}
+           {pending && <p>loding.... </p>}
             {
              cart ?  cart.map((product) => (<>
                 <CardProduct key={product.productId._id} product={product.productId} />
