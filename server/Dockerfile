@@ -5,7 +5,7 @@ COPY package*.json tsconfig.json ./
 RUN npm install
 
 COPY ./src ./src
-RUN npm tsc
+RUN npm run tsc
 RUN npm uninstall typescript
 
 FROM node:lts-slim as artifact

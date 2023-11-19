@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material'
 
 import { useSelector, } from 'react-redux'
 import { RootState } from '../Redux/store'
+import Paypal from '../components/Paypal'
 
 type Props = {}
 
@@ -18,6 +19,7 @@ const Cart = (props: Props) => {
     <Box sx={{display: 'flex'}}>
       <CartProduct/>
     </Box>
+    <Paypal/>
     </Box>
   )
 }
