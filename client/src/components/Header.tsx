@@ -26,24 +26,24 @@ const Header = () => {
 
 
 
-            <Button onClick={ () => {navigate(`/`);}} >
-               
-                    <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '163px' }} />
-                    </Button>
+                <Button onClick={() => { navigate(`/`); }} >
+
+                    <img src={"../../public/logo.svg"} alt={'logo'} style={{ width: '140px' }} />
+                </Button>
 
 
 
             </Box>
-            <Box sx={{ width: 300, height: 30, display: 'flex', justifyContent: 'space-around' }}>
+            <Box sx={{ width: 200, height: 30, display: 'flex', justifyContent: 'space-around' }}>
                 <LoginORname />
-                <Box sx={{display: 'flex', justifyContent: 'space-around'}}>
-                    <IconButton onClick={ () => {navigate(`/cart`);}} >
-                        <ShoppingCartOutlinedIcon sx={{ color: 'gold' }} />
+                <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <IconButton onClick={() => { navigate(`/cart`); }} >
+                        <ShoppingCartOutlinedIcon sx={{ color: 'black' }} />
 
                     </IconButton>
-                        <Typography sx={{color:'white', position: 'fixed', right:'4%'}} >
-                            {cartIndex}
-                        </Typography>
+                    <Typography sx={{ color: 'black' }} >
+                        {cartIndex}
+                    </Typography>
 
 
                 </Box>
