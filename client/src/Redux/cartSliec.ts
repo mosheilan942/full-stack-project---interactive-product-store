@@ -51,6 +51,7 @@ export const cartIndexSlice = createSlice({
         state.cart = cartLS;
         console.log('ls louded into cert');
       }
+      
 
     },
     addProductToCart: (state, action: PayloadAction<[ProductType, string | undefined]>) => {
