@@ -15,11 +15,7 @@ type Props = {
 const CardProduct = (props: Props) => {
     const dispatch = useDispatch()
 
-
-    const handleClickToComparison = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.stopPropagation()
-        navigate(`/comparison`);
-    };
+    
     const product = props.product
     const navigate = useNavigate();
 
@@ -65,7 +61,7 @@ const CardProduct = (props: Props) => {
                     }}
                     variant='contained'
                     sx={{
-                        background: '#ecad37',
+                        background: '#bde4a7',
                         transition: 'background 0.3s',
                         '&:hover': {
                             background: 'gold'
@@ -76,23 +72,6 @@ const CardProduct = (props: Props) => {
                     }}>
                     Add to Comparison
                 </Button >
-                <Button
-                    onClick={handleClickToComparison}
-                    variant='contained'
-                    sx={{
-                        background: '#ecad37',
-                        transition: 'background 0.3s',
-                        '&:hover': {
-                            background: 'gold'
-                        },
-                        color: 'black',
-                        fontSize: '8px',
-                        margin: '4px'
-                    }}>
-                    Go to Comparison
-                </Button>
-
-
             </Box>
         </Box>
     )
