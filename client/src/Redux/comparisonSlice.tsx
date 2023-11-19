@@ -18,20 +18,22 @@ export const comparisonSlice = createSlice({
     name: 'comparison',
     initialState,
     reducers: {
-        addProductToComparison: (state, action: PayloadAction<any>) => {
+        addProductToComparison: (state, action: PayloadAction<ProductType>) => {
 
             state.comparison?.push(action.payload)
-            console.log(state.comparison);
         },
         
-        incrementToComparison: (state, action: PayloadAction<any>) => {
-            console.log(action.payload);
-            state.comparison ?
-            state.comparison?.push(action.payload)
-            :
-            state.comparison = [action.payload]
+        incrementToComparison: (state, action: PayloadAction<ProductType>) => {
+            if (state.comparison) {
+                const indextoproduct = state.comparison.findIndex((item) => item._id === action.payload._id)
+                if ( indextoproduct < 0 ){
+                    state.comparison?.push(action.payload)
+                }
+            }else{
+                state.comparison = [action.payload]
+            }
 
-            console.log(state.comparison.length);
+    
         },
         lessToComparison: (state,) => {
             if (state.comparisonIndex > 0) {

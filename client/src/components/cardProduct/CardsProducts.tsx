@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import CardProduct from './CardProduct';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
 import { CategoryType, ProductType } from '../../types/ProductTypes';
 import { getFilterProduct, getOrderProductByAlphabetical, getProductByCategory, getSearchProduct } from '../../api/productFuncApi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NavFilters from './NavFilters';
 
 
@@ -12,7 +12,11 @@ const CardsProducts = () => {
   const { categoryName } = useParams();
   const [data, setData] = useState<ProductType[]>([]);
 
-
+  const navigate = useNavigate();
+  const handleClickToComparison = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation()
+    navigate(`/comparison`);
+  };
   useEffect(() => {
     const insertData = async () => {
       if (categoryName) {
@@ -89,7 +93,7 @@ const CardsProducts = () => {
         onSearch={handleSearch}
         onFilter={handleFilter}
         onSort={handleSort}
-        
+
       />
       <Box
         sx={{
@@ -101,6 +105,25 @@ const CardsProducts = () => {
         }}
       >
         <Typography variant="h4">{categoryName && camelCaseToWords(categoryName)}</Typography>
+      </Box>
+      <Box sx={{ width: '100%', display: 'flex', marginLeft: '15%' }}>
+        <Button
+          onClick={handleClickToComparison}
+          variant='contained'
+          sx={{
+
+            background: '#bde4a7',
+            transition: 'background 0.3s',
+            '&:hover': {
+              background: 'gold'
+            },
+            color: 'black',
+            fontSize: '17px',
+            fontFamily: 'inherit',
+            margin: '4px'
+          }}>
+          Go to Comparison
+        </Button>
       </Box>
       {data.map((product) => (
         <CardProduct key={product._id} product={product} />
