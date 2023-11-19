@@ -22,9 +22,9 @@ const CardCategory = (props: Props) => {
       onClick={handleBoxClick}
       key={uuidv4()}
       sx={{
-        background: "#bde4a7",
-        // width: 200,
-        minHeight: 200,
+        background: "#9fbbcc",
+        width: 200,
+        // minHeight: 200,
         margin: 2,
         display: 'flex',
         justifyContent: 'center',

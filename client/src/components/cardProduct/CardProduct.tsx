@@ -16,10 +16,7 @@ const CardProduct = (props: Props) => {
     const dispatch = useDispatch()
 
 
-    const handleClickToComparison = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.stopPropagation()
-        navigate(`/comparison`);
-    };
+    
     const product = props.product
     const navigate = useNavigate();
 
@@ -34,9 +31,9 @@ const CardProduct = (props: Props) => {
             onClick={handleBoxClick}
             key={product._id}
             sx={{
-                background: "#ffe3b8",
-                width: 200,
-                minHeight: 370,
+                background: "#b3d2b2",
+                width: 180,
+                height: 280,
                 margin: 2,
                 display: 'flex',
                 textAlign: 'center',
@@ -47,11 +44,11 @@ const CardProduct = (props: Props) => {
                 borderRadius: '10px'
               }}>
               
-            <img src={product.image} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
+            <img src={product.image} alt={product.name} style={{ height: 100,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
             <Box>
-                <Typography sx={{}} variant="h6">{product.name}</Typography>
-                <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>
-                <Typography sx={{}} variant="body1">Quantity:{product.quantity}</Typography>
+                <Typography sx={{}} variant="body1">{product.name}</Typography>
+                <Typography sx={{}} variant="body2">Price:{product.price}$</Typography>
+                <Typography sx={{}} variant="body2">Quantity:{product.quantity}</Typography>
             </Box>
             <AddToCartButtons product={product} />
 
@@ -64,7 +61,7 @@ const CardProduct = (props: Props) => {
                     }}
                     variant='contained'
                     sx={{
-                        background: '#9e6c39',
+                        background: '#bde4a7',
                         transition: 'background 0.3s',
                         '&:hover': {
                             background: 'gold'
@@ -75,22 +72,7 @@ const CardProduct = (props: Props) => {
                     }}>
                     Add to Comparison
                 </Button >
-                <Button
-                    onClick={handleClickToComparison}
-                    variant='contained'
-                    sx={{
-                        background: '#9e6c39',
-                        transition: 'background 0.3s',
-                        '&:hover': {
-                            background: 'gold'
-                        },
-                        color: 'black',
-                        fontSize: '8px',
-                        margin: '4px'
-                    }}>
-                    Go to Comparison
-                </Button>
-
+                
 
             </Box>
         </Box>
