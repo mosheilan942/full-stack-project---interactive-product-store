@@ -38,7 +38,7 @@ const CardCategory = (props: Props) => {
         borderRadius: '10px'
       }}>
 
-      <img
+<img
         src="https://d2d22nphq0yz8t.cloudfront.net/6cbcadef-96e0-49e9-b3bd-9921afe362db/https://www.payngo.co.il/media/catalog/product/e/w/ewm7105_1_1.jpg/w_700,h_700,r_contain"
         // src={category.image}
         alt={category.name}

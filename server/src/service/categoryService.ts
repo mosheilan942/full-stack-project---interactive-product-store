@@ -15,7 +15,7 @@ import {
     getCartDataLengthData
 } from '../DAL/cartDal'
 
-import { Product, category, Iorder, Icategories, Iproducts } from "../Schemes/databaseInitialization";
+import { Product, category, Icategories, Iproducts } from "../Schemes/databaseInitialization";
 import { Model } from "mongoose";
 
 

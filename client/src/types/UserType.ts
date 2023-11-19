@@ -16,3 +16,10 @@ export type LoginUser = {
        message: string,
        user: User;
 }
+
+export type UserStateType = {
+    _id:  string;
+    name: string;
+    email: string;
+    token: string;
+}

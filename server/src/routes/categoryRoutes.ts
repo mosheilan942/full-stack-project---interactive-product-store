@@ -30,7 +30,7 @@ routerCategory.get('/getTopFive', getTop5categoryOrProductControl);
 routerCategory.get('/categories', getAllCategoryControl);
 
 // מחזיר את מספר המוצרים בעגלה
-routerCategory.get('/cart/amount', getCartLengthForUserControl);
+routerCategory.get('/cart/amount/:userId', getCartLengthForUserControl);
 
 // מפעיל פקודת הוסף לעגלה
 routerCategory.get('/Cart/Add/:userId/:productId', getCartForUserAddControl);

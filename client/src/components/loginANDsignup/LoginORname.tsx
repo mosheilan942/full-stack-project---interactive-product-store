@@ -1,14 +1,12 @@
 import { Box, Button, IconButton, Link, Modal, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-import { Navigate } from 'react-router-dom';
-import ROUTES from '../../router/routesModel';
+
 import UserName from './UserName';
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../Redux/store';
-import { ifUserLoged, loginUser, logoutUser } from '../../Redux/userSlice'
+
 import Login from './Login';
 import Signup from './Signup';
+import {UserContext} from '../../context/UserContext';
 
 type Props = {}
 
@@ -31,20 +29,16 @@ const syleCansel = {
 }
 
 const LoginORname = (props: Props) => {
+  const context = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [loginORsinup, setLoginORsinup] = useState<string>('login');
 
 
-  const dispatch = useDispatch()
-  
-  // dispatch(logoutUser())
-  const username = useSelector((state: RootState) => state.user.name)
-  const [user, setuser] = useState(username)
-  useEffect(() => {
-    dispatch(ifUserLoged())
-    setuser(username)
-  }, [])
-  
+  if (!context) {console.log('errrr');
+  return null};
+  const {user} = context
+  const name = user?.user.name
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -53,7 +47,7 @@ const LoginORname = (props: Props) => {
 
   return (
     <Box>
-      {username ?
+      {name ?
         <UserName /> :
         <Button onClick={handleOpen} sx={{ color: 'black'}}>
           LOGIN

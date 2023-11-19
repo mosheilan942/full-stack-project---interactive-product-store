@@ -9,7 +9,7 @@ type Config = {
     headers: {};
 }
 
-const useFetch = <T,>(config: Config): [boolean, Error | null, null | T] => {
+const useFetch = <T,>(url: string): [boolean, Error | null, null | T] => {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<T| null>(null);
@@ -17,7 +17,7 @@ const useFetch = <T,>(config: Config): [boolean, Error | null, null | T] => {
   useEffect(() => {
     setPending(true);
     axios
-      .request(config)
+      .get(url)
       .then(({ data }) => {
         setPending(false);
         setError(null);
@@ -28,7 +28,7 @@ const useFetch = <T,>(config: Config): [boolean, Error | null, null | T] => {
         setError(error);
         setData(null);
       });
-  }, [config]);
+  }, [url]);
 
   return [pending, error, data];
 };

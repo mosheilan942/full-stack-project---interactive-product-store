@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model, Types, SchemaDefinitionProperty } from 'mongoose';
-import { order, Product } from '../Schemes/databaseInitialization';
+import { Product } from '../Schemes/databaseInitialization';
 import { UserModel } from '../Schemes/usersSchema';
 
 const addProductToCartData = async (userId: string, productId: string, operation?: string) => {

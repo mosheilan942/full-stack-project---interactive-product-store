@@ -1,10 +1,11 @@
+import React, { useContext, useEffect, useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../Redux/store'
-import { CartLS, addProductToCart, insertDataToCart, lessProductToCart, } from '../../Redux/cartSliec'
+import {  addProductToCart,  lessProductToCart, } from '../../Redux/cartSliec'
 import { ProductType } from '../../types/ProductTypes'
-import { CartItem } from '../../types/CartTypes'
+import { addProductToCartByID, lessProductToCartByID } from '../../api/cartFuncApi'
+import { UserContext } from '../../context/UserContext'
 
 type Props = {
     product: ProductType;
@@ -14,44 +15,68 @@ const AddToCartButtons = (props: Props) => {
     const product = props.product
     const dispatch = useDispatch()
     const cart = useSelector((state: RootState) => state.cart.cart);
-    // const [cart, setCart] = useState<CartItem[] | CartLS[] | null>(null)
-    const [quantity, setquantity] = useState(0)
-    // const [triger, setTriger] = useState(0)
+    const cartLS = useSelector((state: RootState) => state.cart.cartLS);
+    const [quantity, setQuantity] = useState(0)
+
+    const context = useContext(UserContext);
+    if (!context) return null;
+    const { user } = context
+    const userID = user?.user._id
 
 
     useEffect(() => {
-        // localStorage.removeItem('CartLS')
-        const init = async () => {
-            // await dispatch(insertDataToCart())
-            // console.log(cart);
+        const init = () => {
+            const quantityFromCart = cart?.find((item) => item.productId._id === product._id)?.quantity;
+            
+            const quantityFromCartLS = cartLS?.find((item) => item.productId._id === product._id)?.quantity;
 
-            // setCart(cart)
-            const quantity = cart?.find(item => item.productId._id === product._id)?.quantity
-            if (quantity) {
-                setquantity(quantity)
-            } else { setquantity(0) }
-        }
-        init()
-    }, [])
+            setQuantity(quantityFromCart || quantityFromCartLS || 0);
+        };
+
+        init();
+    }, [product, cart, cartLS]);
 
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', }}>
             <IconButton onClick={(event) => {
                 event.stopPropagation()
-                const add = async () => {
-                    await dispatch(addProductToCart(product))
-                    await dispatch(insertDataToCart())
+                if (userID) {
+                    const add = async () => {
+                        try {
+                            await addProductToCartByID(product._id, userID)
+                            dispatch(addProductToCart([product, userID]))
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    add()
+                } else {
+                    dispatch(addProductToCart([product, userID]))
+
                 }
-                add()
-                // setTriger(prev => prev ++)
+
             }}>+</IconButton>
+
             <Typography>{quantity}</Typography>
+
             <IconButton onClick={(event) => {
                 event.stopPropagation()
-                dispatch(lessProductToCart(product))
-                // dispatch(insertDataToCart())
-                // setTriger(prev => prev --)
+                if (userID) {
+                    const add = async () => {
+                        try {
+                            await lessProductToCartByID(userID, product._id)
+                            await dispatch(lessProductToCart([product, userID]))
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    add()
+
+                } else {
+                    dispatch(lessProductToCart([product, userID]))
+                }
             }}>-</IconButton>
         </Box>
     )
