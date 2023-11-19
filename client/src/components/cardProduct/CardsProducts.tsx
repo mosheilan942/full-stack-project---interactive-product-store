@@ -1,116 +1,103 @@
-import React, { useEffect, useState } from 'react';
+// CardsProducts.tsx
+import { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import CardProduct from './CardProduct';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
-import { CategoryType, ProductType } from '../../types/ProductTypes';
-import { getFilterProduct, getOrderProductByAlphabetical, getProductByCategory, getSearchProduct } from '../../api/productFuncApi';
+import { ProductType } from '../../types/ProductTypes';
+import { getSearchProduct, getFilterProduct, getOrderProductByAlphabetical } from '../../api/productFuncApi';
 import { useParams } from 'react-router-dom';
 import NavFilters from './NavFilters';
-
 
 const CardsProducts = () => {
   const { categoryName } = useParams();
   const [data, setData] = useState<ProductType[]>([]);
-
+  const [searchTerm, setSearchTerm] = useState('');
+  const [minPrice, setMinPrice] = useState<number | ''>('');
+  const [maxPrice, setMaxPrice] = useState<number | ''>('');
+  const [sorting, setSorting] = useState('asc');
 
   useEffect(() => {
-    const insertData = async () => {
+    const fetchData = async () => {
       if (categoryName) {
-        const getData: CategoryType = await getProductByCategory(categoryName);
-        const products: ProductType[] | undefined = getData && getData.product;
-
-        if (Array.isArray(products)) {
-          setData(products);
+        let products: ProductType[] = [];
+        if (searchTerm !== '') {
+          products = await getSearchProduct(categoryName, `?search=${searchTerm}`);
+        } else if (minPrice !== '' && maxPrice !== '') {
+          products = await getFilterProduct(categoryName, `?min=${minPrice}&max=${maxPrice}`);
         } else {
-          console.log(products);
-
-          console.error("Data received is not an array:", products);
+          products = await getOrderProductByAlphabetical(categoryName, `?order=${sorting}`);
         }
+        setData(products);
       }
     };
-
-    insertData()
-  }, []);
-
-
-  const fetchDataSearch = async (queryParams: string) => {
-    try {
-      if (!categoryName) throw Error('Not exist categort name!!')
-      const data: ProductType[] = await getSearchProduct(categoryName, queryParams);
-      setData(data);
-      console.log(data);
-
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
-
-
-  const fetchDataFilter = async (queryParams: string) => {
-    try {
-      if (!categoryName) throw Error('Not exist categort name!!')
-      const data: ProductType[] = await getFilterProduct(categoryName, queryParams);
-      setData(data);
-      console.log(data);
-
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
-
-  const fetchDataFilterByAlphabetical = async (queryParams: string) => {
-    try {
-      if (!categoryName) throw Error('Not exist categort name!!')
-      const data: ProductType[] = await getOrderProductByAlphabetical(categoryName, queryParams);
-      setData(data);
-      console.log(data);
-
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
-
+    fetchData();
+  }, [categoryName, searchTerm, minPrice, maxPrice, sorting]);
 
   const handleSearch = (newSearchTerm: string) => {
-    fetchDataSearch(`?search=${newSearchTerm}`);
+    setSearchTerm(newSearchTerm);
   };
 
   const handleFilter = (newMinPrice: number, newMaxPrice: number) => {
-    fetchDataFilter(`?min=${newMinPrice}&max=${newMaxPrice}`);
+    setMinPrice(newMinPrice);
+    setMaxPrice(newMaxPrice);
+    setSearchTerm('');
   };
 
   const handleSort = (newOrder: string) => {
-    fetchDataFilterByAlphabetical(`?order=${newOrder}`);
+    setSorting(newOrder);
+    setSearchTerm('');
+    setMinPrice('');
+    setMaxPrice('');
   };
 
   return (
     <>
-      <NavFilters
-        onSearch={handleSearch}
-        onFilter={handleFilter}
-        onSort={handleSort}
-        
-      />
-      <Box
+      <Typography
         sx={{
           width: '100%',
-          height: 70,
+          height: '100px',
           display: "flex",
           justifyContent: 'center',
           alignItems: 'center'
         }}
+        variant="h4">
+        {categoryName && camelCaseToWords(categoryName)}
+      </Typography>
+
+      <Box sx={{
+        width: '100%',
+        minHeight: '500px',
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'start'
+      }}
       >
-        <Typography variant="h4">{categoryName && camelCaseToWords(categoryName)}</Typography>
+
+        <Box
+          sx={{
+            width: '80%',
+            height: '100%',
+            display: "flex",
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            // overflowY: 'auto'
+          }}
+        >
+
+          {data.map((product) => (
+            <CardProduct key={product._id} product={product} />
+
+          ))}
+        </Box>
+        <NavFilters
+          onSearch={handleSearch}
+          onFilter={handleFilter}
+          onSort={handleSort}
+        />
       </Box>
-      {data.map((product) => (
-        <CardProduct key={product._id} product={product} />
-      ))}
     </>
   );
 };
 
 export default CardsProducts;
-
-
-
-

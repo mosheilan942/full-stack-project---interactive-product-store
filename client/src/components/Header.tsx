@@ -1,4 +1,4 @@
-import { Box, IconButton} from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { useSelector, } from 'react-redux'
 import type { RootState } from '../Redux/store'
 import LoginORname from './loginANDsignup/LoginORname';
@@ -36,7 +36,7 @@ const Header = () => {
                 <Box>
                     <IconButton >
                         <a href='http://localhost:5173/cart' >
-                            <ShoppingCartOutlinedIcon sx={{ color: 'gold'}}/>
+                            <ShoppingCartOutlinedIcon sx={{ color: 'black' }} />
                         </a>
                     </IconButton>
                     {cartIndex}

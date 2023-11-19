@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductByID } from '../api/productFuncApi';
@@ -12,8 +12,8 @@ import { incrementToComparison } from '../Redux/comparisonSlice';
 import { useNavigate } from 'react-router-dom';
 
 
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../Redux/store'
+import { useDispatch } from 'react-redux'
+
 
 
 
@@ -57,7 +57,7 @@ const ProductPage = () => {
         width: "50%"
       }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: '4px', flexDirection: 'column', alignItems: 'center' }}>
-          <img src={product.image} alt={product.name} style={{ width: '50%' }} />
+          <img src={product.image} alt={product.name} style={{ width: '100%' }} />
           <Button variant='contained' sx={{ margin: '4px', }}
             onClick={() => {
               dispatch(incrementToComparison(product))
@@ -86,7 +86,6 @@ const ProductPage = () => {
         <Typography variant="body1">Category: {product.categoryType} .</Typography>
         <Typography variant="body1">Manufacturer: {product.manufacturer} .</Typography>
         <Typography variant="body1">Model: {product.model} .</Typography>
-        {/* <Typography variant="body1">Addresses: {product.addresses} .</Typography> */}
         <Typography variant="body1">Rating: {product.rating} .</Typography>
         <Typography variant="body1">Date: {product.date} .</Typography>
         <Typography variant="body1">Price: {product.price} .</Typography>

@@ -11,8 +11,9 @@ function App() {
 
 
   const styleContainer = {
-    height: '100vh',
+    maxWidth: '1280px',
     width: '100%',
+    margin: '0 auto',
     display: 'grid',
     gridTemplateAreas:
       "'header header header' \
@@ -28,40 +29,35 @@ function App() {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'fixed',
-    width: 'inherit',
+    top: 0,
+    left: 0,
     marginTop: '0px',
-    background: '#4d3119',
-    color: 'gold',
-    maxWidth: '1280px',
+    background: 'skyblue',
+    color: 'black',
+    width: '100%',
     zIndex: 1000
   }
 
   const styleMainBox = {
-    background: '#b6a788',
+    width: '100%',
+    minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',
-    paddingBottom: '90px',
-    width: '100%',
-    minHeight: '100vh',
-    overflowY: 'auto' // זה מאפשר גלילה אנכית
+    flexWrap: 'wrap'
   };
 
 
   const styleFooterBox = {
-
+    background: 'black',
+    fontSize: '130%',
+    color: 'white',
+    width: '100%',
+    height: '700px',
+    marginTop: '70px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    position: 'fixed',
-    width: 'inherit',
-    bottom: '0',
-    background: '#4d3119',
-    color: 'gold',
-    maxWidth: '1280px',
-    height: '60px'
-
+    alignItems: 'center'
   }
 
 
@@ -78,7 +74,7 @@ function App() {
           <RouterProvider router={router} />
         </Box>
 
-        <Box sx={{ ...styleFooterBox, gridArea: 'footer' }}>
+        <Box sx={{ ...styleFooterBox, gridArea: 'footer' , }}>
           <Footer />
         </Box>
       </Provider>

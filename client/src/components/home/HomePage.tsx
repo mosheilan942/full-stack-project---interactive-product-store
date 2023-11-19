@@ -37,27 +37,25 @@ const HomePage = () => {
 
     return (
         <>
-        <Box sx={{}}>
-        </Box>
             <NavBar />
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant='h3'>Top Five categories</Typography>
+            <Box sx={{ width: '100%', marginTop: '100px', marginLeft: '50px', display: 'flex', alignItems: 'center', }}>
+                <Typography variant='h4'>Our carriers</Typography>
             </Box>
 
             {topData && topData[0].map((category) => (
                 <CardCategory key={uuidv4()} category={category} />
             ))}
 
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant='h3'>Top Five Product</Typography>
+            <Box sx={{ width: '100%',marginTop: '100px', marginLeft: '50px',display: 'flex',  alignItems: 'center' }}>
+                <Typography variant='h4'>may interest you</Typography>
             </Box>
 
             {topData && topData[1].map((product) => (
                 <CardProduct key={uuidv4()} product={product} />
             ))}
 
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant='h3'>All Products</Typography>
+            {/* <Box sx={{ width: '100%',marginTop: '100px', marginLeft: '50px',display: 'flex', alignItems: 'center' }}>
+                <Typography variant='h4'>All Products</Typography>
             </Box>
 
             {Array.isArray(allProductsData) ? allProductsData.map((product) => (
@@ -65,7 +63,7 @@ const HomePage = () => {
             ))
                 :
                 <Typography variant='h5'>{allProductsData}</Typography>
-            }
+            } */}
         </>
     );
 };

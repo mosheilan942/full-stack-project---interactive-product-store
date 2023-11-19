@@ -34,20 +34,21 @@ const CardProduct = (props: Props) => {
             onClick={handleBoxClick}
             key={product._id}
             sx={{
-                background: "#ffe3b8",
+                background: 'white',
                 width: 200,
                 minHeight: 370,
                 margin: 2,
                 display: 'flex',
                 textAlign: 'center',
                 flexDirection: 'column',
+                border: '1px solid black',
                 boxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)',
                 WebkitBoxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)', 
                 MozBoxShadow: '10px 10px 9px 0px rgba(0, 0, 0, 0.75)',
                 borderRadius: '10px'
               }}>
               
-            <img src={"https://images.pexels.com/photos/7988747/pexels-photo-7988747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
+            <img src={product.image} alt={product.name} style={{ width: '100%', height: 150,  borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} />
             <Box>
                 <Typography sx={{}} variant="h6">{product.name}</Typography>
                 <Typography sx={{}} variant="body1">Price:{product.price}$</Typography>
@@ -64,7 +65,7 @@ const CardProduct = (props: Props) => {
                     }}
                     variant='contained'
                     sx={{
-                        background: '#9e6c39',
+                        background: '#ecad37',
                         transition: 'background 0.3s',
                         '&:hover': {
                             background: 'gold'
@@ -79,7 +80,7 @@ const CardProduct = (props: Props) => {
                     onClick={handleClickToComparison}
                     variant='contained'
                     sx={{
-                        background: '#9e6c39',
+                        background: '#ecad37',
                         transition: 'background 0.3s',
                         '&:hover': {
                             background: 'gold'
