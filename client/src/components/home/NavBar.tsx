@@ -1,14 +1,13 @@
-import { Box, Button, Menu, MenuItem } from '@mui/material';
+import { Box, Tab, Tabs, createTheme, ThemeProvider } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getAllCategories } from '../../api/productFuncApi';
 import { CategoryType } from '../../types/ProductTypes';
 import { camelCaseToWords } from '../../utils/camelCaseToWords';
 import { useNavigate } from 'react-router-dom';
 
-
 const NavBar = () => {
     const [categories, setCategories] = useState<CategoryType[]>([]);
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [selectedTab, setSelectedTab] = useState<number>(-1);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,52 +23,53 @@ const NavBar = () => {
         }
     };
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
+    const handleTabSelect = (index: number) => {
+        setSelectedTab(index);
+        if (index >= 0 && index < categories.length) {
+            navigate(`/category/${categories[index].name}`);
+        }
     };
 
-    const handleCategorySelect = (category: string) => {
-        setAnchorEl(null);
-        navigate(`/category/${category}`);
-    };
+    const theme = createTheme({
+        components: {
+            MuiTabs: {
+                styleOverrides: {
+                    indicator: {
+                        backgroundColor: 'blue',
+                    },
+                },
+            },
+        },
+    });
 
     return (
-        <Box sx={{
-            width: '100%',
-            height: 70,
-            background: '#1f140a',
-            color: 'gold',
-            display: 'flex',
-            alignItems: 'center',
-            position: 'sticky',
-            top: 0,
-            zIndex: 800
-        }}>
-            <Button
-                id="categories-menu"
-                aria-controls="categories-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-                style={{ marginLeft: 20 }}
-                variant="text"
-                color="inherit"
-            >
-                All categories
-            </Button>
-            <Menu
-                id="categories-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
-            >
-                {categories.map((category, index) => (
-                    <MenuItem key={index} onClick={() => handleCategorySelect(category.name)}>{camelCaseToWords(category.name)}</MenuItem>
-                ))}
-            </Menu>
-        </Box>
-    )
-}
+
+        <ThemeProvider theme={theme}>
+            <Box sx={{
+                maxWidth: '100%',
+                width: 'inherit',
+                height: 70,
+                background: 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'fixed',
+                top: 85,
+                left: 0,
+                zIndex: 800
+            }}>
+                <Tabs
+                    value={selectedTab}
+                    onChange={(_, newIndex) => handleTabSelect(newIndex)}
+                    aria-label="basic tabs example"
+                >
+                    {categories.map((category, index) => (
+                        <Tab sx={{color: 'white', fontSize: '120%'}} key={index} label={camelCaseToWords(category.name)} />
+                    ))}
+                </Tabs>
+            </Box>
+        </ThemeProvider>
+    );
+};
 
 export default NavBar;
-
