@@ -1,14 +1,14 @@
-import { Box, Typography } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import { Box} from '@mui/material'
+import { useContext, useEffect } from 'react'
 import CardProduct from '../cardProduct/CardProduct'
 import { useSelector, useDispatch } from 'react-redux'
-import { CartLS, addProductToCart, insertDataToCart } from '../../Redux/cartSliec'
+import { insertDataToCart } from '../../Redux/cartSliec'
 import { RootState } from '../../Redux/store'
 import { CartItem } from '../../types/CartTypes'
 import useFetch from '../../hooks/useFechHoock'
 import { UserContext } from '../../context/UserContext'
 
-
+ 
 type Props = {}
 
 const CartAllProducts = (props: Props) => {
@@ -37,8 +37,7 @@ const CartAllProducts = (props: Props) => {
 
 
     return (
-        <Box>
-            cartProduct
+        <Box sx={{display:'flex', flexWrap:'wrap'}}>
            {error && <p>error </p>}
            {pending && <p>loding.... </p>}
             {
