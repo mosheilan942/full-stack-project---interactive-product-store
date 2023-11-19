@@ -15,7 +15,8 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/mongoose": "^5.11.97",
-    "@types/morgan": "^1.9.9"
+    "@types/morgan": "^1.9.9",
+    "typescript": "^5.2.2"
   },
   "name": "server",
   "description": "My server!",
